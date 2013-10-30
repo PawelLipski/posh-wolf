@@ -1,7 +1,16 @@
 
 <%= @text %>
 
+<%= @coll %>
+
 <% @coll_names.each do |coll_name| %>
-	<%= coll_name %> <br/>
+  <%= coll_name %> <br/>
+<% end %>
+
+<%= form_tag("/testcase/new", method: "post") do %>
+  <%= label_tag(:url, "Test case URL::") %>
+  <%= text_field_tag(:url) %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Submit") %>
 <% end %>
 

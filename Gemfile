@@ -16,6 +16,8 @@ gem 'mongo'
 gem 'mongo_mapper'
 gem "bson_ext"
 
+gem 'savon', '~> 2.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
