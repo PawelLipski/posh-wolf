@@ -15,14 +15,16 @@ class MainController < ApplicationController
     #.each { |name| puts name }
 
     client = Savon.client do
-      endpoint "http://0.0.0.0:8080/wstest"
+      endpoint "http://scala-web-test.herokuapp.com/wstest" #"http://0.0.0.0:8080/wstest"
       namespace "org.scalabound.test"
       strip_namespaces true
     end
 
-    @soap_resp = client.call(:test, message: { value: 888 }).body
-    # @soap_resp = client.call(:intArrayTest, message: { numbers: {item: [333,555] } })
-    # @soap_resp = client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } )
+    @soap_resps = [ 
+      client.call(:test, message: { value: 888 }).body,
+      client.call(:intArrayTest, message: { numbers: {item: [333,555] } }).body,
+      client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body 
+    ]
   end
 
   def new_test_case
