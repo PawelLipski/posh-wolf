@@ -12,6 +12,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'mongo'
+gem 'mongo_mapper'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
