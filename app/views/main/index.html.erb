@@ -1,8 +1,6 @@
 
 <%= @text %> <br/>
 
-<%= @coll %> <br/>
-
 <h1>SOAP responses: </h1> <br> 
 <%= @soap_resps.each do |resp| %> 
 <%= resp =%> <br/> <br/>
@@ -18,5 +16,11 @@
   <%= text_field_tag(:url) %>
   <%= text_field_tag(:name) %>
   <%= submit_tag("Submit") %>
+<% end %>
+
+
+<%= form_tag("/testcase/async", remote: true, format: :js) do %>
+  <!-- <input type="hidden" name="format" value="js"/> -->
+  <%= submit_tag "Test AJAX (state = off)", id: "ajax-button" %>
 <% end %>
 

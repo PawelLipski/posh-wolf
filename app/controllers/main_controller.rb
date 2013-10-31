@@ -1,6 +1,7 @@
 include Mongo
 
 class MainController < ApplicationController
+
   def index
     @text = "Hello"
     mongo_client = MongoClient.from_uri("mongodb://hgt:hgt123@ds041178.mongolab.com:41178/hgtdb")
@@ -27,6 +28,12 @@ class MainController < ApplicationController
       client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
       client.call(:intMatrixToIntArray, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
     ]
+  end
+
+  def get_async
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new_test_case
