@@ -6,7 +6,7 @@ PoshWolf::Application.routes.draw do
 
   post "testcase/new" => "main#new_test_case"
 
-  post "testcase/async" => "main#get_async"
+  get "testcase/async" => "main#get_async"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

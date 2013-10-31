@@ -19,7 +19,7 @@
 <% end %>
 
 
-<%= form_tag("/testcase/async", remote: true, format: :js) do %>
+<%= form_tag("/testcase/async", remote: true, format: :js, method: :get) do %>
   <!-- <input type="hidden" name="format" value="js"/> -->
   <%= submit_tag "Test AJAX (state = off)", id: "ajax-button" %>
 <% end %>
