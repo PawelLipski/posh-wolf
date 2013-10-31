@@ -24,3 +24,27 @@
   <%= submit_tag "Test AJAX (state = off)", id: "ajax-button" %>
 <% end %>
 
+<span id="ajax-status">(AJAX status)</span>
+
+<script>
+/*$(document).ready(function() {
+  $("#ajax-status")
+    .on("ajax:success", function(e, data, status, xhr) {{
+      $("#ajax-status").append(xhr.responseText)
+    })
+    .bind("ajax:error", function(e, xhr, status, error) {
+      $("#ajax-status").append("ERROR")
+    })
+  })*/
+
+  /*
+  $(document).ajaxSuccess(function() {
+    $( "#ajax-status" ).text( "Triggered ajaxSuccess handler." );
+  });*/
+
+ $( document ).ajaxSuccess(function( event, xhr, settings ) {
+   $( "#ajax-status" ).html( event + "<br>" + xhr.responseXML + "<br>" + xhr.responseText + "<br>" + settings.url );
+ });
+
+</script>
+
