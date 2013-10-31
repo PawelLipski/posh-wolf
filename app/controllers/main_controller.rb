@@ -33,7 +33,16 @@ class MainController < ApplicationController
 
   def get_async
     respond_to do |format|
-      format.js
+      format.js do 
+        client = Savon.client do
+          #endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          endpoint "http://0.0.0.0:8080/wstest"
+          namespace "org.scalabound.test"
+          strip_namespaces true
+        end
+      	@soap_response = client.call(:test, message: { value: 1234321 }).body[:test_response][:return]
+	puts @soap_response
+      end
     end
   end
 
