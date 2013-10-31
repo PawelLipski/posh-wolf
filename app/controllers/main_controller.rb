@@ -27,6 +27,7 @@ class MainController < ApplicationController
       client.call(:intArrayTest, message: { numbers: {item: [333,555] } }).body,
       client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
       client.call(:intMatrixToIntArray, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
+      client.call(:intMatrixToComplexType, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body
     ]
   end
 
