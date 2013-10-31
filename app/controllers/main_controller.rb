@@ -35,12 +35,12 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          #endpoint "http://scala-web-test.herokuapp.com/wstest" 
-          endpoint "http://0.0.0.0:8080/wstest"
+          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          #endpoint "http://0.0.0.0:8080/wstest"
           namespace "org.scalabound.test"
           strip_namespaces true
         end
-      	@soap_response = client.call(:test, message: { value: 1234321 }).body[:test_response][:return]
+      	@soap_response = client.call(:stringToComplexTypeDelayed, message: { msg: "AJAX handler in MC" }).body[:string_to_complex_type_delayed_response][:return][:str]
 	puts @soap_response
       end
     end
