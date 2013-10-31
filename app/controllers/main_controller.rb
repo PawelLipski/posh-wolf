@@ -46,6 +46,21 @@ class MainController < ApplicationController
     end
   end
 
+  def ajax_init_task
+    respond_to do |format|
+      format.js do 
+        client = Savon.client do
+          #endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          endpoint "http://0.0.0.0:8080/wstest"
+          namespace "org.scalabound.test"
+          strip_namespaces true
+        end
+      	@soap_response = client.call(:initTask).body[:init_task_response][:return]
+	puts @soap_response
+      end
+    end
+  end
+
   def new_test_case
     @url = params[:url]
     @name = params[:name]

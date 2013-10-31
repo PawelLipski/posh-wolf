@@ -18,7 +18,8 @@
   <%= submit_tag("Submit") %>
 <% end %>
 
-<%= link_to "Async call", "/testcase/async", remote: true %>
+<!-- TODO: CSRF? -->
+<%= link_to "Async call", "/testcase/ajax-init-task", method: :post, remote: true %>
 
 <%= form_tag("/testcase/async", remote: true, format: :js, method: :get) do %>
   <!-- <input type="hidden" name="format" value="js"/> -->

@@ -7,6 +7,8 @@ PoshWolf::Application.routes.draw do
   post "testcase/new" => "main#new_test_case"
 
   get "testcase/async" => "main#get_async"
+
+  post "testcase/ajax-init-task" => "main#ajax_init_task"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
