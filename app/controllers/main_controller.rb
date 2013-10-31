@@ -50,12 +50,27 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          #endpoint "http://scala-web-test.herokuapp.com/wstest" 
-          endpoint "http://0.0.0.0:8080/wstest"
+          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          #endpoint "http://0.0.0.0:8080/wstest"
           namespace "org.scalabound.test"
           strip_namespaces true
         end
       	@soap_response = client.call(:initTask).body[:init_task_response][:return]
+	puts @soap_response
+      end
+    end
+  end
+
+  def ajax_get_progress
+    respond_to do |format|
+      format.js do 
+        client = Savon.client do
+          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          #endpoint "http://0.0.0.0:8080/wstest"
+          namespace "org.scalabound.test"
+          strip_namespaces true
+        end
+      	@soap_response = client.call(:getProgress).body[:get_progress_response][:return]
 	puts @soap_response
       end
     end

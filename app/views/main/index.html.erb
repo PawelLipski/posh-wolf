@@ -19,7 +19,7 @@
 <% end %>
 
 <!-- TODO: CSRF? -->
-<%= link_to "Async call", "/testcase/ajax-init-task", method: :post, remote: true %>
+<%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %>
 
 <%= form_tag("/testcase/async", remote: true, format: :js, method: :get) do %>
   <!-- <input type="hidden" name="format" value="js"/> -->
@@ -30,26 +30,34 @@
 
 
 <script>
-/*$(document).ready(function() {
-  $("#ajax-status")
-    .on("ajax:success", function(e, data, status, xhr) {{
-      $("#ajax-status").append(xhr.responseText)
-    })
-    .bind("ajax:error", function(e, xhr, status, error) {
-      $("#ajax-status").append("ERROR")
-    })
-  })*/
-
   /*
   $(document).ajaxSuccess(function() {
     $( "#ajax-status" ).text( "Triggered ajaxSuccess handler." );
   });*/
 
- $( document ).ajaxSuccess(function( event, xhr, settings ) {
-   $( "#ajax-status" ).append( event + "<br>" + xhr.responseXML + "<br>" + xhr.responseText + "<br>" + settings.url );
-   $.ajax({url: "/testcase/async" })
- });
 
+
+ /*$( document ).ajaxSuccess(function( event, xhr, settings ) {
+   $( "#ajax-status" ).append( event + "<br>" + xhr.responseXML + "<br>" + xhr.responseText + "<br>" + settings.url );
+   //$.ajax({url: "/testcase/async" })
+ });*/
+
+  $(document).on('ajax:success', '#init_task_link', function(e) {
+      $( "#ajax-button" ).attr('value', "Task already initialized" )
+      function check_progress() {
+        $.ajax({
+      	  url: "/testcase/ajax/get-progress", 
+	  success: check_progress
+	})
+      }
+      check_progress()
+      /*$.ajax({
+      	url: "/testcase/ajax/get-progress" //, 
+	success: function(dataCheck) { 		
+          $( "#ajax-status" ).append( "<br><b>"+ dataCheck + "</b>" );
+	} 
+      })*/
+  });
 
 </script>
 
