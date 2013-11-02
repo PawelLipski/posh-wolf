@@ -31,11 +31,11 @@
 //$.ajax({url: "/testcase/async" })
 });*/
 
+progressCheckRunning = false
 taskIds = new Array(0)
 
 $(document).on('ajax:success', '#init_task_link', function(e) {
-    //$( "#ajax-button" ).attr('value', "Task already initialized" )
-    //$( "#ajax-status" ).html("Task already initialized" )
+
     function get_progress() {
       $.ajax({
         url: "/testcase/ajax/get-all-progresses", 
@@ -43,13 +43,12 @@ $(document).on('ajax:success', '#init_task_link', function(e) {
         success: get_progress
       })
     }
-    get_progress()
-    /*$.ajax({
-      url: "/testcase/ajax/get-progress" //, 
-      success: function(dataCheck) {    
-      $( "#ajax-status" ).append( "<br><b>"+ dataCheck + "</b>" );
-      } 
-      })*/
+
+    if (!progressCheckRunning) {
+      progressCheckRunning = true
+      get_progress()
+    }
+
   });
 
 </script>
