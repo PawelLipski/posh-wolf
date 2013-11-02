@@ -16,6 +16,8 @@
 <!-- TODO: CSRF? -->
 <%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %>
 
+<div id="progressbar"></div>
+
 <span id="ajax-status">(AJAX status)</span>
 
 <script>
