@@ -1,2 +1,3 @@
-$("#ajax-status").html('Task initialized, number given: <%= escape_javascript(@soap_response) %>')
+var taskId = <%= escape_javascript(@soap_response) %>
+$("#ajax-status").html('Task initialized, number given: ' + taskId)
 

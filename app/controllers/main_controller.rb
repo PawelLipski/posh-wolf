@@ -41,7 +41,7 @@ class MainController < ApplicationController
           strip_namespaces true
         end
         @soap_response = client.call(:stringToComplexTypeDelayed, message: { msg: "AJAX handler in MC" }).body[:string_to_complex_type_delayed_response][:return][:str]
-  puts @soap_response
+        puts @soap_response
       end
     end
   end
@@ -50,13 +50,13 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
-          #endpoint "http://0.0.0.0:8080/wstest"
-          namespace "org.scalabound.test"
+          #endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
+          endpoint "http://0.0.0.0:8080/posh-wolf-ws"
+          namespace "com.poshwolf.ws"
           strip_namespaces true
         end
         @soap_response = client.call(:initTask).body[:init_task_response][:return]
-  puts @soap_response
+        puts @soap_response
       end
     end
   end
@@ -65,13 +65,12 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
-          #endpoint "http://0.0.0.0:8080/wstest"
-          namespace "org.scalabound.test"
+          endpoint "http://0.0.0.0:8080/posh-wolf-ws"
+          namespace "com.poshwolf.ws"
           strip_namespaces true
         end
-        @soap_response = client.call(:getProgress).body[:get_progress_response][:return]
-  puts @soap_response
+        @soap_response = client.call(:getProgress, message: { taskId: params[:taskId] }).body[:get_progress_response][:return]
+        puts @soap_response
       end
     end
   end

@@ -44,13 +44,14 @@
 
 $(document).on('ajax:success', '#init_task_link', function(e) {
     $( "#ajax-button" ).attr('value', "Task already initialized" )
-    function check_progress() {
+    function get_progress() {
       $.ajax({
         url: "/testcase/ajax/get-progress", 
-        success: check_progress
+        data: { "taskId": taskId },
+        success: get_progress
       })
     }
-    check_progress()
+    get_progress()
     /*$.ajax({
       url: "/testcase/ajax/get-progress" //, 
       success: function(dataCheck) {    
