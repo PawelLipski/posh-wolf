@@ -31,34 +31,37 @@ class MainController < ApplicationController
 #    ]
   end
 
+
   def ajax_init_task
-    respond_to do |format|
-      format.js do 
-        client = Savon.client do
-          endpoint "http://posh-wolf-ws.herokuapp.com" 
-          #endpoint "http://0.0.0.0:8080/posh-wolf-ws"
-          namespace "com.poshwolf.ws"
-          strip_namespaces true
-        end
-        @soap_response = client.call(:initTask).body[:init_task_response][:return]
-        puts @soap_response
-      end
-    end
+    @task_id = execute_soap_request(:initTask, {}, :init_task_response)
+#    respond_to do |format|
+#      format.js do 
+#        client = Savon.client do
+#          endpoint "http://posh-wolf-ws.herokuapp.com" 
+#          #endpoint "http://0.0.0.0:8080"
+#          namespace "com.poshwolf.ws"
+#          strip_namespaces true
+#        end
+#        @soap_response = client.call(:initTask).body[:init_task_response][:return]
+#        puts @soap_response
+#      end
+#    end
   end
 
-  def ajax_get_progress
-    respond_to do |format|
-      format.js do 
-        client = Savon.client do
-          endpoint "http://posh-wolf-ws.herokuapp.com" 
-          #endpoint "http://0.0.0.0:8080/posh-wolf-ws"
-          namespace "com.poshwolf.ws"
-          strip_namespaces true
-        end
-        @soap_response = client.call(:getProgress, message: { taskId: params[:taskId] }).body[:get_progress_response][:return]
-        puts @soap_response
-      end
-    end
+  def ajax_get_all_progresses
+    @all_progresses = execute_soap_request(:getAllProgresses, { taskIds: { item: params[:taskIds] } }, :get_all_progresses_response)
+#    respond_to do |format|
+#      format.js do 
+#        client = Savon.client do
+#          endpoint "http://posh-wolf-ws.herokuapp.com"
+#          #endpoint "http://0.0.0.0:8080"
+#          namespace "com.poshwolf.ws"
+#          strip_namespaces true
+#        end
+#        @soap_response = client.call(:getAllProgresses, message: { taskIds: { item: params[:taskIds] } }).body[:get_all_progresses_response][:return]
+#        puts @soap_response
+#      end
+#    end
   end
 
   def new_test_case
@@ -80,5 +83,21 @@ class MainController < ApplicationController
     #require 'net/http'
     #@contents = Net::HTTP.get_response(URI.parse(@url).host, URI.parse(@url).path).body
   end
+
+  private
+    def execute_soap_request(method, args, retval)
+      respond_to do |format|
+        format.js do 
+          client = Savon.client do
+            endpoint "http://posh-wolf-ws.herokuapp.com" 
+            #endpoint "http://0.0.0.0:8080"
+            namespace "com.poshwolf.ws"
+            strip_namespaces true
+          end
+          puts args
+          client.call(method, message: args).body[retval][:return]
+        end
+      end
+    end
 end
 

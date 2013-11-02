@@ -1,3 +1,4 @@
-var taskId = <%= escape_javascript(@soap_response) %>
-$("#ajax-status").html('Task initialized, number given: ' + taskId)
+var newTaskId = <%= @task_id %> 
+taskIds.push(newTaskId)
+$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + taskIds)
 
