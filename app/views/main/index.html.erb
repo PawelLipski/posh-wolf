@@ -3,11 +3,11 @@
 
 <h1>SOAP responses: </h1> <br> 
 <%= @soap_resps.each do |resp| %> 
-<%= resp =%> <br/> <br/>
+  <%= resp =%> <br/> <br/>
 <% end %>
 
 <h1> Collection names: </h1> <br>
-<% @coll_names.each do |coll_name| %>
+  <% @coll_names.each do |coll_name| %>
   <%= coll_name %> <br/>
 <% end %>
 
@@ -30,32 +30,32 @@
 
 
 <script>
-  /*
-  $(document).ajaxSuccess(function() {
-    $( "#ajax-status" ).text( "Triggered ajaxSuccess handler." );
-  });*/
+/*
+   $(document).ajaxSuccess(function() {
+   $( "#ajax-status" ).text( "Triggered ajaxSuccess handler." );
+   });*/
 
 
 
- /*$( document ).ajaxSuccess(function( event, xhr, settings ) {
-   $( "#ajax-status" ).append( event + "<br>" + xhr.responseXML + "<br>" + xhr.responseText + "<br>" + settings.url );
-   //$.ajax({url: "/testcase/async" })
- });*/
+/*$( document ).ajaxSuccess(function( event, xhr, settings ) {
+  $( "#ajax-status" ).append( event + "<br>" + xhr.responseXML + "<br>" + xhr.responseText + "<br>" + settings.url );
+//$.ajax({url: "/testcase/async" })
+});*/
 
-  $(document).on('ajax:success', '#init_task_link', function(e) {
-      $( "#ajax-button" ).attr('value', "Task already initialized" )
-      function check_progress() {
-        $.ajax({
-      	  url: "/testcase/ajax/get-progress", 
-	  success: check_progress
-	})
-      }
-      check_progress()
-      /*$.ajax({
-      	url: "/testcase/ajax/get-progress" //, 
-	success: function(dataCheck) { 		
-          $( "#ajax-status" ).append( "<br><b>"+ dataCheck + "</b>" );
-	} 
+$(document).on('ajax:success', '#init_task_link', function(e) {
+    $( "#ajax-button" ).attr('value', "Task already initialized" )
+    function check_progress() {
+      $.ajax({
+        url: "/testcase/ajax/get-progress", 
+        success: check_progress
+      })
+    }
+    check_progress()
+    /*$.ajax({
+      url: "/testcase/ajax/get-progress" //, 
+      success: function(dataCheck) {    
+      $( "#ajax-status" ).append( "<br><b>"+ dataCheck + "</b>" );
+      } 
       })*/
   });
 

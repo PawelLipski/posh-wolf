@@ -40,8 +40,8 @@ class MainController < ApplicationController
           namespace "org.scalabound.test"
           strip_namespaces true
         end
-      	@soap_response = client.call(:stringToComplexTypeDelayed, message: { msg: "AJAX handler in MC" }).body[:string_to_complex_type_delayed_response][:return][:str]
-	puts @soap_response
+        @soap_response = client.call(:stringToComplexTypeDelayed, message: { msg: "AJAX handler in MC" }).body[:string_to_complex_type_delayed_response][:return][:str]
+  puts @soap_response
       end
     end
   end
@@ -55,8 +55,8 @@ class MainController < ApplicationController
           namespace "org.scalabound.test"
           strip_namespaces true
         end
-      	@soap_response = client.call(:initTask).body[:init_task_response][:return]
-	puts @soap_response
+        @soap_response = client.call(:initTask).body[:init_task_response][:return]
+  puts @soap_response
       end
     end
   end
@@ -70,8 +70,8 @@ class MainController < ApplicationController
           namespace "org.scalabound.test"
           strip_namespaces true
         end
-      	@soap_response = client.call(:getProgress).body[:get_progress_response][:return]
-	puts @soap_response
+        @soap_response = client.call(:getProgress).body[:get_progress_response][:return]
+  puts @soap_response
       end
     end
   end
