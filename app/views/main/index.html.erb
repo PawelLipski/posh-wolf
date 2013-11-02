@@ -37,11 +37,14 @@ taskIds = new Array(0)
 $(document).on('ajax:success', '#init_task_link', function(e) {
 
     function get_progress() {
-      $.ajax({
-        url: "/testcase/ajax/get-all-progresses", 
-        data: { "taskIds": taskIds },
-        success: get_progress
-      })
+      if (taskIds.length == 0) 
+        progressCheckRunning = false
+      else  
+        $.ajax({
+          url: "/testcase/ajax/get-all-progresses", 
+          data: { "taskIds": taskIds },
+          success: get_progress
+        })
     }
 
     if (!progressCheckRunning) {
