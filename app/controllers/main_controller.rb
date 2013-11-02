@@ -15,43 +15,28 @@ class MainController < ApplicationController
     @coll = coll.find.to_a
     #.each { |name| puts name }
 
-    client = Savon.client do
-      endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
-      #endpoint "http://0.0.0.0:8080/wstest"
-      namespace "org.scalabound.test"
-      strip_namespaces true
-    end
+#    client = Savon.client do
+#      endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
+#      #endpoint "http://0.0.0.0:8080/wstest"
+#      namespace "org.scalabound.test"
+#      strip_namespaces true
+#    end
 
-    @soap_resps = [ 
-      client.call(:test, message: { value: 888 }).body,
-      client.call(:intArrayTest, message: { numbers: {item: [333,555] } }).body,
-      client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
-      client.call(:intMatrixToIntArray, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
-      client.call(:intMatrixToComplexType, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body
-    ]
-  end
-
-  def get_async
-    respond_to do |format|
-      format.js do 
-        client = Savon.client do
-          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
-          #endpoint "http://0.0.0.0:8080/wstest"
-          namespace "org.scalabound.test"
-          strip_namespaces true
-        end
-        @soap_response = client.call(:stringToComplexTypeDelayed, message: { msg: "AJAX handler in MC" }).body[:string_to_complex_type_delayed_response][:return][:str]
-        puts @soap_response
-      end
-    end
+#    @soap_resps = [ 
+#      client.call(:test, message: { value: 888 }).body,
+#      client.call(:intArrayTest, message: { numbers: {item: [333,555] } }).body,
+#      client.call(:intMatrixTest, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
+#      client.call(:intMatrixToIntArray, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body,
+#      client.call(:intMatrixToComplexType, message: { matrix: {item: [{item: [1111,2222]}, {item: [3333,4444]}] } } ).body
+#    ]
   end
 
   def ajax_init_task
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          #endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
-          endpoint "http://0.0.0.0:8080/posh-wolf-ws"
+          endpoint "http://posh-wolf-ws.herokuapp.com" 
+          #endpoint "http://0.0.0.0:8080/posh-wolf-ws"
           namespace "com.poshwolf.ws"
           strip_namespaces true
         end
@@ -65,7 +50,8 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://0.0.0.0:8080/posh-wolf-ws"
+          endpoint "http://posh-wolf-ws.herokuapp.com" 
+          #endpoint "http://0.0.0.0:8080/posh-wolf-ws"
           namespace "com.poshwolf.ws"
           strip_namespaces true
         end

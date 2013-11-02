@@ -1,11 +1,6 @@
 
 <%= @text %> <br/>
 
-<h1>SOAP responses: </h1> <br> 
-<%= @soap_resps.each do |resp| %> 
-  <%= resp =%> <br/> <br/>
-<% end %>
-
 <h1> Collection names: </h1> <br>
   <% @coll_names.each do |coll_name| %>
   <%= coll_name %> <br/>
@@ -21,13 +16,7 @@
 <!-- TODO: CSRF? -->
 <%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %>
 
-<%= form_tag("/testcase/async", remote: true, format: :js, method: :get) do %>
-  <!-- <input type="hidden" name="format" value="js"/> -->
-  <%= submit_tag "Test AJAX (state = off)", id: "ajax-button" %>
-<% end %>
-
 <span id="ajax-status">(AJAX status)</span>
-
 
 <script>
 /*
