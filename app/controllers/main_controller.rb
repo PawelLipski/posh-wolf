@@ -16,7 +16,7 @@ class MainController < ApplicationController
     #.each { |name| puts name }
 
     client = Savon.client do
-      endpoint "http://scala-web-test.herokuapp.com/wstest" 
+      endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
       #endpoint "http://0.0.0.0:8080/wstest"
       namespace "org.scalabound.test"
       strip_namespaces true
@@ -35,7 +35,7 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
           #endpoint "http://0.0.0.0:8080/wstest"
           namespace "org.scalabound.test"
           strip_namespaces true
@@ -50,7 +50,7 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
           #endpoint "http://0.0.0.0:8080/wstest"
           namespace "org.scalabound.test"
           strip_namespaces true
@@ -65,7 +65,7 @@ class MainController < ApplicationController
     respond_to do |format|
       format.js do 
         client = Savon.client do
-          endpoint "http://scala-web-test.herokuapp.com/wstest" 
+          endpoint "http://posh-wolf-ws.herokuapp.com/wstest" 
           #endpoint "http://0.0.0.0:8080/wstest"
           namespace "org.scalabound.test"
           strip_namespaces true
