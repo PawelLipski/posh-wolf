@@ -1,2 +1,30 @@
-$("#ajax-status").append('<br>Progress: <%= escape_javascript(@all_progresses.to_s) %>')
+$("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
+
+<% 
+  puts @all_progresses[:item] 
+
+    if @all_progresses[:item].kind_of?(Array)
+      for e in @all_progresses[:item] 
+        if e[:progress] == "100" %>
+
+          for (var i = taskIds.length - 1; i >= 0; i--)
+            if (taskIds[i] == <%= e[:id] %>)
+             taskIds.splice(i, 1);
+
+    <%
+        end
+      end
+    else 
+
+      e = @all_progresses[:item] 
+      if e[:progress] == "100" %>
+
+        for (var i = taskIds.length - 1; i >= 0; i--)
+          if (taskIds[i] == <%= e[:id] %>)
+             taskIds.splice(i, 1);
+
+       <%
+      end
+    end
+%>
 
