@@ -2,3 +2,7 @@ var newTaskId = <%= @task_id %>
 taskIds.push(newTaskId)
 $("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + taskIds)
 
+pbid = 'progressbar-' + newTaskId
+$('#pb-container').append('<div id="' + pbid + '"/>')
+$('#' + pbid).progressbar({ value: false })
+
