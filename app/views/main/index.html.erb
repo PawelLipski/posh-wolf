@@ -35,7 +35,7 @@ taskIds = {}
 $(document).on('ajax:success', '#init_task_link', function(e) {
 
     function get_progress() {
-      if (taskIds.length == 0) 
+      if (Object.keys(taskIds).length == 0) 
         progressCheckRunning = false
       else  
         $.ajax({
