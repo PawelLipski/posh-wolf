@@ -36,6 +36,9 @@ class MainController < ApplicationController
 #    ]
   end
 
+  def do_sleep
+    sleep 10
+  end
 
   def ajax_init_task
     @task_id = execute_soap_request(:initTask, {}, :init_task_response)

@@ -11,6 +11,9 @@ PoshWolf::Application.routes.draw do
   post "testcase/ajax/init-task" => "main#ajax_init_task"
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
+
+  get "sleep" => "main#do_sleep"
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
