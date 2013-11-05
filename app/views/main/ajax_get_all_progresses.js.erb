@@ -20,6 +20,7 @@ for (i = 0; i < tasks.length; i++) {
   if (task.progress == '100') {
     $(pbId).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
+
   } else {
     $(pbId).progressbar({value: parseInt(task.progress) * 3})   
     $(pbId + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
