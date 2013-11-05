@@ -16,7 +16,11 @@
 <!-- TODO: CSRF? -->
 <%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %>
 
-<div id="progressbar"></div>
+<table id="task-table" width="100%">
+  <tbody>
+  </tbody>
+</table>  
+    <!-- <div id="progressbar"></div> -->
 
 <div id="pb-container"></div>
 

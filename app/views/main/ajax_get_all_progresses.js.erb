@@ -15,11 +15,13 @@ taskIds = []
 for (i = 0; i < tasks.length; i++) {
 
   task = tasks[i]
+  pbId = "#progressbar-" + task.id
+
   if (task.progress == '100') {
-    $("#progressbar").progressbar({value: 100})
+    $(pbId).progressbar({value: 100})
   } else {
-    $("#progressbar").progressbar({value: parseInt(task.progress) * 3})
-    taskIds.push(task.id)
+    $(pbId).progressbar({value: parseInt(task.progress) * 3})
+    taskIds.push(parseInt(task.id))
   }
 }   
 
