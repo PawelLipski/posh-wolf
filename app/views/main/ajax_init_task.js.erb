@@ -1,10 +1,11 @@
 var newTaskId = <%= @task_id %> 
-taskIds.push(newTaskId)
-$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + taskIds)
+taskIds[newTaskId] = true
+$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + Object.keys(taskIds))
 
 //$('#pb-container').append('<div id="' + pbid + '"/>')
 
 pbId = 'progressbar-' + newTaskId
-$('#task-table > tbody').append('<tr><td><div id="' + pbId + '"></div></td></tr>')
+$('#task-table > tbody').append('<tr><td width="10%"><b>Task #' + newTaskId + '</b></td>' +
+  '<td><div id="' + pbId + '"></div></td></tr>')
 $('#' + pbId).progressbar({ value: false }).height(30)
 

@@ -30,7 +30,7 @@
 <script>
 
 progressCheckRunning = false
-taskIds = new Array(0)
+taskIds = {}
 
 $(document).on('ajax:success', '#init_task_link', function(e) {
 
@@ -40,7 +40,7 @@ $(document).on('ajax:success', '#init_task_link', function(e) {
       else  
         $.ajax({
           url: "/testcase/ajax/get-all-progresses", 
-          data: { "taskIds": taskIds },
+          data: { "taskIds": Object.keys(taskIds) },
           success: get_progress
         })
     }

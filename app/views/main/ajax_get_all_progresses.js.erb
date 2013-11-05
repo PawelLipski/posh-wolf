@@ -10,7 +10,6 @@ puts p.to_json
 %>
 
 tasks = <%= raw(p.to_json) %>
-taskIds = []
 
 for (i = 0; i < tasks.length; i++) {
 
@@ -19,9 +18,9 @@ for (i = 0; i < tasks.length; i++) {
 
   if (task.progress == '100') {
     $(pbId).progressbar({value: 100})
+    delete taskIds[parseInt(task.id)]
   } else {
     $(pbId).progressbar({value: parseInt(task.progress) * 3})
-    taskIds.push(parseInt(task.id))
   }
 }   
 
