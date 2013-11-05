@@ -6,6 +6,7 @@ $("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all t
 
 pbId = 'progressbar-' + newTaskId
 $('#task-table > tbody').append('<tr><td width="10%"><b>Task #' + newTaskId + '</b></td>' +
-  '<td><div id="' + pbId + '"></div></td></tr>')
+  '<td><div id="' + pbId + '" style="display: none"></div></td></tr>')
 $('#' + pbId).progressbar({ value: false }).height(10)
+$('#' + pbId).show(500)
 
