@@ -4,15 +4,20 @@ class MainController < ApplicationController
 
   def index
     @text = "Hello"
-    mongo_client = MongoClient.from_uri("mongodb://hgt:hgt123@ds041178.mongolab.com:41178/hgtdb")
-    db = mongo_client.db("hgtdb")
     
-    coll = db["flow-shop-test-cases"]
-    doc = {"name" => "MongoDB", "type" => "database", "count" => 1, "info" => {"x" => 203, "y" => '102'}}
-    id = coll.insert(doc)
+#    mongo_client = MongoClient.from_uri("mongodb://hgt:hgt123@ds041178.mongolab.com:41178/hgtdb")
+#    db = mongo_client.db("hgtdb")
+#    
+#    coll = db["flow-shop-test-cases"]
+#    doc = {"name" => "MongoDB", "type" => "database", "count" => 1, "info" => {"x" => 203, "y" => '102'}}
+#    id = coll.insert(doc)
+#
+#    @coll_names = db.collection_names
+#    @coll = coll.find.to_a
 
-    @coll_names = db.collection_names
-    @coll = coll.find.to_a
+    @coll_names = []
+    @coll = ""
+
     #.each { |name| puts name }
 
 #    client = Savon.client do

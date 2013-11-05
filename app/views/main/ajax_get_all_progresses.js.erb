@@ -3,34 +3,23 @@ $("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
 <% 
 puts @all_progresses[:item] 
 
-  if @all_progresses[:item].kind_of?(Array)
-    for e in @all_progresses[:item] 
-      if e[:progress] == "100" 
-      %>
+p = @all_progresses[:item] 
+p = [ p ] unless p.kind_of?(Array)
 
-        for (var i = taskIds.length - 1; i >= 0; i--)
-          if (taskIds[i] == <%= e[:id] %>)
-            taskIds.splice(i, 1);
-            
+puts p.to_json  
+%>
 
-      <%
-      end
-    end
-  else 
+tasks = <%= raw(p.to_json) %>
+taskIds = []
 
-    e = @all_progresses[:item] 
-    if e[:progress] == "100" 
-    %>
+for (i = 0; i < tasks.length; i++) {
 
-      for (var i = taskIds.length - 1; i >= 0; i--)
-        if (taskIds[i] == <%= e[:id] %>)
-          taskIds.splice(i, 1);
-    <%
-    else 
-    %>
-     $("#progressbar").progressbar({value: <%= e[:progress].to_i %> * 3})
-    <%
-    end
-  end
-  %>
+  task = tasks[i]
+  if (task.progress == '100') {
+    $("#progressbar").progressbar({value: 100})
+  } else {
+    $("#progressbar").progressbar({value: parseInt(task.progress) * 3})
+    taskIds.push(task.id)
+  }
+}   
 
