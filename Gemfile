@@ -21,6 +21,7 @@ gem 'savon', '~> 2.0'
 gem 'jquery-ui-rails'
 
 gem 'bootstrap-sass', '2.3.2.0'
+gem 'twitter-bootstrap-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

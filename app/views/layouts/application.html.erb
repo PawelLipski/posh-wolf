@@ -6,10 +6,47 @@
   <%= stylesheet_link_tag    "progressbar" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "sample app", '#', id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Home", "#" %></li>
+          <li><%= link_to "Help", "#" %></li>
 
-<%= yield %>
+            <!-- <li><%= link_to "Settings", "#" %></li>
+                <li><%= link_to "Sign out" %></li>
+                <li><%= link_to "Profile" %></li> -->
 
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile" %></li>
+                <li><%= link_to "Settings" %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Sign out" %>
+                </li>
+              </ul>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %> </div>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
 </body>
 </html>
