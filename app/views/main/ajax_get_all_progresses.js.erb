@@ -16,15 +16,22 @@ function updateProgresses(task) {
   var hdrTrSel = "#task-hdr-tr-" + task.id
   var hdrTdSel = "#task-hdr-td-" + task.id
   var detTrSel = ".task-det-tr-" + task.id
+  var animBtnId = "task-anim-btn-" + task.id
 
   if (task.progress == '100') {
     $(pbSel).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
-    $(pbSel).hide(1000, function() {
-      $(hdrTdSel).append('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
-      //$(detTrSel).show('blind',{direction:'down', duration: 1000})
+    
+    $(pbSel).hide(1000, function() {      
+      $(hdrTdSel).append('<b>Result: 12345</b>' + 
+        '<button id="' + animBtnId + '" class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+      
       $(detTrSel).show(1000)
+
+      $("#" + animBtnId).click(function() { alert('btn clicked') })
     })
+
+
   } else {
     $(pbSel).progressbar({value: parseInt(task.progress) * 10})   
     $(pbSel + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
