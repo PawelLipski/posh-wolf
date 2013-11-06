@@ -22,7 +22,7 @@ for (i = 0; i < tasks.length; i++) {
     $(pbId).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
     $(pbId).hide(1000, function() {
-      $(tdId).html('<b>Result: 12345</b><button style="float: right">Animate</button>')
+      $(tdId).html('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
     })
   } else {
     $(pbId).progressbar({value: parseInt(task.progress) * 10})   
