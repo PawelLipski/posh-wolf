@@ -30,7 +30,14 @@ function updateProgresses(task) {
 
       $("#" + animBtnId).click(function() { 
       $("#content").fadeOut(1000, function() {
-          $("#content").html('<table><tr><td style="border-right: dotted">Hello animation!</td></tr></table>').show()
+          $("#content").html('<table id="anim-table"/>').show()
+          $("#anim-table").html('<tr><td id="flow-td-1" style="border-right: dotted"></td></tr></table>')
+          flowTd = $("#flow-td-1")
+          for (i = 1; i <= 5; i++) {
+            opId = 'task-' + task.id + '-op-' + i
+            flowTd.append('<div id="' + opId + '" style="float: left"/>')
+            $("#" + opId).progressbar({value: 10*i}).width(100)
+          }
         })
       })
     })
