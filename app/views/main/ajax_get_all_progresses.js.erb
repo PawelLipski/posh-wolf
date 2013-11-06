@@ -29,8 +29,8 @@ function updateProgresses(task) {
       $(detTrSel).show(1000)
 
       $("#" + animBtnId).click(function() { 
-        $("#content").fadeOut(1000, function() {
-          $("#content").html("Hello animation!").show()
+      $("#content").fadeOut(1000, function() {
+          $("#content").html('<table><tr><td style="border-right: dotted">Hello animation!</td></tr></table>').show()
         })
       })
     })
