@@ -28,7 +28,9 @@ function updateProgresses(task) {
       
       $(detTrSel).show(1000)
 
-      $("#" + animBtnId).click(function() { alert('btn clicked') })
+      $("#" + animBtnId).click(function() { 
+        $("#content").fadeOut(1000)        
+      })
     })
 
 
