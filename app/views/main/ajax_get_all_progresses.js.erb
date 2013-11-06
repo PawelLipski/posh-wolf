@@ -34,9 +34,18 @@ function updateProgresses(task) {
           $("#anim-table").html('<tr><td id="flow-td-1" style="border-right: dotted"></td></tr></table>')
           flowTd = $("#flow-td-1")
           for (i = 1; i <= 5; i++) {
-            opId = 'task-' + task.id + '-op-' + i
-            flowTd.append('<div id="' + opId + '" style="float: left"/>')
-            $("#" + opId).progressbar({value: 10*i}).width(100)
+
+            opContnrId = 'task-' + task.id + '-op-' + i
+            flowTd.append('<div id="' + opContnrId + '" style="float: left; position: relative"/>')
+            opContnr = $('#' + opContnrId)
+
+              opPbId = 'task-' + task.id + '-op-' + i + '-pb'
+              opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
+              $("#" + opPbId).progressbar({value: 10*i}).width(100)
+
+              opLabelId = 'task-' + task.id + '-op-' + i + '-label'
+              opContnr.append('<div id="' + opLabelId + '" style="position:absolute; top:0; left:0; width:100"><center>foo</center></div>')
+
           }
         })
       })
