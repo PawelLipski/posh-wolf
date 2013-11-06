@@ -11,19 +11,18 @@ puts p.to_json
 
 tasks = <%= raw(p.to_json) %>
 
-for (i = 0; i < tasks.length; i++) {
-
-  task = tasks[i]
-  pbSel = "#progressbar-" + task.id
-  hdrTrSel = "#task-hdr-tr-" + task.id
-  hdrTdSel = "#task-hdr-td-" + task.id
-  detTrSel = "#task-det-tr-" + task.id
+function updateProgresses(task) {
+  var pbSel = "#progressbar-" + task.id
+  var hdrTrSel = "#task-hdr-tr-" + task.id
+  var hdrTdSel = "#task-hdr-td-" + task.id
+  var detTrSel = ".task-det-tr-" + task.id
 
   if (task.progress == '100') {
     $(pbSel).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
     $(pbSel).hide(1000, function() {
-      $(hdrTdSel).html('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+      $(hdrTdSel).append('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+      //$(detTrSel).show('blind',{direction:'down', duration: 1000})
       $(detTrSel).show(1000)
     })
   } else {
@@ -31,4 +30,7 @@ for (i = 0; i < tasks.length; i++) {
     $(pbSel + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
   }
 }
+
+for (i = 0; i < tasks.length; i++)
+  updateProgresses(tasks[i])
 

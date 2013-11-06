@@ -1,18 +1,22 @@
 var newTaskId = <%= @task_id %> 
 taskIds[newTaskId] = true
-$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + Object.keys(taskIds))
 
-//$('#pb-container').append('<div id="' + pbid + '"/>')
+//$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + Object.keys(taskIds))
 
 pbId = 'progressbar-' + newTaskId
 hdrTrId = 'task-hdr-tr-' + newTaskId
 hdrTdId = 'task-hdr-td-' + newTaskId
 
-detTrId = 'task-det-tr-' + newTaskId
+detTrCls = 'task-det-tr-' + newTaskId
 $('#task-table > tbody').append(
   '<tr id="' + hdrTrId + '" style="display: none"><td width="10%"><b>Task #' + newTaskId + '</b></td>' +
-  '<td id="' + hdrTdId + '"><div id="' + pbId + '"></div></td></tr>' + 
-  '<tr id="' + detTrId + '" style="display: none"><td>Foobar</td></tr>')
+  '<td id="' + hdrTdId + '" width="90%" colspan="3"><div id="' + pbId + '"></div></td></tr>' + 
+  //'<tr id="' + detTrId + '" style="display: none">' + 
+    //'<table style="display: none">' +
+  '<tr class="' + detTrCls + '" style="display: none"><th width="25%">Lorem</th><th width="25%">Ipsum</th><th width="25%">Dolor</th><th width="25%">Sit</th></tr>' +
+  '<tr class="' + detTrCls + '" style="display: none"><td>Lorem</td><td>Ipsum</td><td>Dolor</td><td>Sit</td></tr>')
+//    '</table>' +
+  //'</tr>')
 $('#' + pbId).progressbar({ value: false }).height(10)
 $('#' + hdrTrId).show(500)
 
