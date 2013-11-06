@@ -1,4 +1,4 @@
-$("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
+//$("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
 
 <% 
 puts @all_progresses[:item] 
@@ -15,15 +15,17 @@ for (i = 0; i < tasks.length; i++) {
 
   task = tasks[i]
   pbId = "#progressbar-" + task.id
-  trId = "#tr-" + task.id
-
+  trId = "#task-tr-" + task.id
+  tdId = "#task-td-" + task.id
 
   if (task.progress == '100') {
     $(pbId).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
-    $(pbId).hide(1000)
+    $(pbId).hide(1000, function() {
+      $(tdId).html('<b>Result: 12345</b><button style="float: right">Animate</button>')
+    })
   } else {
-    $(pbId).progressbar({value: parseInt(task.progress) * 3})   
+    $(pbId).progressbar({value: parseInt(task.progress) * 10})   
     $(pbId + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
   }
 }   

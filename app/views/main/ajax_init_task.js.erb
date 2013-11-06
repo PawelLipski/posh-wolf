@@ -5,9 +5,9 @@ $("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all t
 //$('#pb-container').append('<div id="' + pbid + '"/>')
 
 pbId = 'progressbar-' + newTaskId
-trId = 'tr-' + newTaskId
+trId = 'task-tr-' + newTaskId
 $('#task-table > tbody').append('<tr id="' + trId + '" style="display: none"><td width="10%"><b>Task #' + newTaskId + '</b></td>' +
-  '<td><div id="' + pbId + '"></div></td></tr>')
+  '<td id="task-td-' + newTaskId + '"><div id="' + pbId + '"></div></td></tr>')
 $('#' + pbId).progressbar({ value: false }).height(10)
 $('#' + trId).show(500)
 
