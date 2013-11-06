@@ -1,9 +1,9 @@
 //$("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
 
 <% 
-puts @all_progresses[:item] 
+puts @all_progresses[:item]
 
-p = @all_progresses[:item] 
+p = @all_progresses[:item]
 p = [ p ] unless p.kind_of?(Array)
 
 puts p.to_json  
@@ -14,19 +14,21 @@ tasks = <%= raw(p.to_json) %>
 for (i = 0; i < tasks.length; i++) {
 
   task = tasks[i]
-  pbId = "#progressbar-" + task.id
-  trId = "#task-tr-" + task.id
-  tdId = "#task-td-" + task.id
+  pbSel = "#progressbar-" + task.id
+  hdrTrSel = "#task-hdr-tr-" + task.id
+  hdrTdSel = "#task-hdr-td-" + task.id
+  detTrSel = "#task-det-tr-" + task.id
 
   if (task.progress == '100') {
-    $(pbId).progressbar({value: 100})
+    $(pbSel).progressbar({value: 100})
     delete taskIds[parseInt(task.id)]
-    $(pbId).hide(1000, function() {
-      $(tdId).html('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+    $(pbSel).hide(1000, function() {
+      $(hdrTdSel).html('<b>Result: 12345</b><button class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+      $(detTrSel).show(1000)
     })
   } else {
-    $(pbId).progressbar({value: parseInt(task.progress) * 10})   
-    $(pbId + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
+    $(pbSel).progressbar({value: parseInt(task.progress) * 10})   
+    $(pbSel + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
   }
-}   
+}
 
