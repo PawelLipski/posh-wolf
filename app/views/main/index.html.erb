@@ -12,7 +12,8 @@
 <% end %>
 
 <!-- TODO: CSRF? -->
-<%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %>
+<!-- <####%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %> -->
+<button id="task-init-button" class="btn btn-large btn-primary">Init task</button>
 
 <table id="task-table" width="100%">
   <tbody>
@@ -25,25 +26,34 @@
 progressCheckRunning = false
 taskIds = {}
 
-$(document).on('ajax:success', '#init_task_link', function(e) {
+function get_progress() {
+  if (Object.keys(taskIds).length == 0) 
+    progressCheckRunning = false
+  else  
+    $.ajax({
+      url: "/testcase/ajax/get-all-progresses", 
+      data: { "taskIds": Object.keys(taskIds) },
+      success: get_progress
+    })
+}      
 
-    function get_progress() {
-      if (Object.keys(taskIds).length == 0) 
-        progressCheckRunning = false
-      else  
-        $.ajax({
-          url: "/testcase/ajax/get-all-progresses", 
-          data: { "taskIds": Object.keys(taskIds) },
-          success: get_progress
-        })
-    }
+$(document).ready(
+  $("#task-init-button").click(
+    function() {
+      
+      $.ajax({
+        url: "/testcase/ajax/init-task",
+        type: "POST",
+        success: function() {
+          if (!progressCheckRunning) {
+            progressCheckRunning = true
+            get_progress()
+          }
+       }
+     })
 
-    if (!progressCheckRunning) {
-      progressCheckRunning = true
-      get_progress()
-    }
-
-  });
+  })
+)  
 
 </script>
 
