@@ -30,7 +30,8 @@ function updateProgresses(task) {
 
       $("#" + animBtnId).click(function() { 
       $("#content").fadeOut(1000, function() {
-          $("#content").html('<div id="anim-machines-header" style="height: 10.2em; position: relative; left: 0; top: 0">foo</div>')         
+          $("#content").html('<div id="anim-machines-header" style="height: 10.2em; position: relative; left: 0; top: 0">' +
+            '<h3><small>Machines</small></h3></div>')         
           $("#content").append('<table id="anim-table"/>')
           $("#content").show()
 
