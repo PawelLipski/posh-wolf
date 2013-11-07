@@ -30,7 +30,7 @@ function updateProgresses(task) {
 
       $("#" + animBtnId).click(function() { 
       $("#content").fadeOut(1000, function() {
-          $("#content").html('<div id="anim-machines-header" style="height: 10.2em; position: relative; left: 0; top: 0">' +
+          $("#content").html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
             '<h3><small>Machines</small></h3></div>')         
 
           $("#anim-machines-header").append('<table id="anim-machines-table" width="100%"><tr id="anim-machines-tr"/></table>')
@@ -45,12 +45,12 @@ function updateProgresses(task) {
             //'<tr height="5%" id="anim-machines"><td colspan="2"></td></tr>' +
           //)
 
-          $("#anim-table").append('<tr><td id="flow-td-1" style="border-right: dotted"></td></tr>')
-          flowTd = $("#flow-td-1")
+          $("#anim-table").append('<tr><td id="waiting-td-1" style="border-right: solid"></td><td id="done-td-w"/></tr>')
+          waitingTd = $("#waiting-td-1")
           for (i = 1; i <= 5; i++) {
 
             opContnrId = 'task-' + task.id + '-op-' + i
-            flowTd.append('<div id="' + opContnrId + '" style="float: left; position: relative"/>')
+            waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative"/>')
             opContnr = $('#' + opContnrId)
 
               opPbId = 'task-' + task.id + '-op-' + i + '-pb'
@@ -64,6 +64,7 @@ function updateProgresses(task) {
               opContnr.append(label)
 
           }
+
         })
       })
     })
