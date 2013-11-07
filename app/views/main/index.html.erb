@@ -24,6 +24,7 @@
 <script>
 
 progressCheckRunning = false
+initTaskLocked = false
 taskIds = {}
 
 function get_progress() {
@@ -41,10 +42,16 @@ $(document).ready(
   $("#task-init-button").click(
     function() {
       
+      if (initTaskLocked) return
+
+      initTaskLocked = true
+
       $.ajax({
         url: "/testcase/ajax/init-task",
         type: "POST",
         success: function() {
+          initTaskLocked = false
+
           if (!progressCheckRunning) {
             progressCheckRunning = true
             get_progress()
