@@ -30,8 +30,16 @@ function updateProgresses(task) {
 
       $("#" + animBtnId).click(function() { 
       $("#content").fadeOut(1000, function() {
-          $("#content").html('<table id="anim-table"/>').show()
-          $("#anim-table").html('<tr><td id="flow-td-1" style="border-right: dotted"></td></tr></table>')
+          $("#content").html('<div id="anim-machines-header" style="height: 10.2em; position: relative; left: 0; top: 0">foo</div>')         
+          $("#content").append('<table id="anim-table"/>')
+          $("#content").show()
+
+          //$("#anim-table").html(
+            //'<tr height="5%" id="anim-machines-header" style="border-bottom: solid; border-color: gray"><td colspan="2"></td></tr>' +
+            //'<tr height="5%" id="anim-machines"><td colspan="2"></td></tr>' +
+          //)
+
+          $("#anim-table").append('<tr><td id="flow-td-1" style="border-right: dotted"></td></tr>')
           flowTd = $("#flow-td-1")
           for (i = 1; i <= 5; i++) {
 
