@@ -32,6 +32,11 @@ function updateProgresses(task) {
       $("#content").fadeOut(1000, function() {
           $("#content").html('<div id="anim-machines-header" style="height: 10.2em; position: relative; left: 0; top: 0">' +
             '<h3><small>Machines</small></h3></div>')         
+
+          $("#anim-machines-header").append('<table id="anim-machines-table" width="100%"><tr id="anim-machines-tr"/></table>')
+          for (i = 1; i <= 5; i++)
+            $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
+
           $("#content").append('<table id="anim-table"/>')
           $("#content").show()
 
