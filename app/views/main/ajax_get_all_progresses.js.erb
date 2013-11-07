@@ -66,16 +66,21 @@ function updateProgresses(task) {
           }
 
           function updateExecutionProgress(taskId, opId, val) {
-            $('#task-' + taskId + '-op-' + opId + '-pb').progressbar({value: val}).height(50)
+            op = $('#task-' + taskId + '-op-' + opId + '-pb')
+            op.progressbar({value: val}).height(50)
             if (val < 100) {
               setTimeout(function() {
                 updateExecutionProgress(taskId, opId, val + 10)
               }, 1000)
+            } else {
+              op.fadeOut(1000, function() {
+                $(op).detach().prependTo('#waiting-td-' + taskId)
+              })
             }
           }
 
           setTimeout(function() {
-            updateExecutionProgress(task.id, 1, 20)
+            updateExecutionProgress(task.id, 5, 20)
           }, 1000)
   
 
