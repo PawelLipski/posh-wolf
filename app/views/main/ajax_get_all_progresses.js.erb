@@ -29,7 +29,16 @@ function updateProgresses(task) {
       $(detTrSel).show(1000)
 
       $("#" + animBtnId).click(function() { 
-      $("#content").fadeOut(1000, function() {
+        
+        $.ajax({
+          url: '/ajax/load-animation',
+          data: { taskId: task.id },
+          success: function() {
+            alert('Loaded animation for task' + task.id)
+          }
+        })
+
+        $("#content").fadeOut(1000, function() {
           $("#content").html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
             '<h3><small>Machines</small></h3></div>')         
 

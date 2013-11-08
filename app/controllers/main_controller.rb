@@ -70,6 +70,10 @@ class MainController < ApplicationController
 #    end
   end
 
+
+  def ajax_load_animation
+  end
+
   def new_test_case
     @url = params[:url]
     @name = params[:name]

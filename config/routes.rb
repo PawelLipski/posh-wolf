@@ -12,6 +12,8 @@ PoshWolf::Application.routes.draw do
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
 
+  get "ajax/load-animation" => "main#ajax_load_animation"
+
   get "sleep" => "main#do_sleep"
 
   # You can have the root of your site routed with "root"
