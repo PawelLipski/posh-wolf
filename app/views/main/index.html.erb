@@ -49,6 +49,7 @@ $(document).ready(
       $.ajax({
         url: "/testcase/ajax/init-task",
         type: "POST",
+        contentType: "application/soap+xml; charset=utf-8",
         success: function() {
           initTaskLocked = false
 
