@@ -29,13 +29,15 @@ function updateProgresses(task) {
       $(detTrSel).show(1000)
 
       $("#" + animBtnId).click(function() { 
-        
+       
+        //$("#content").hide(function() {
+          $("#content").html('<%= image_tag "ajax-loader.gif" %>')
+        //  alert('foo')
+        //})
+
         $.ajax({
           url: '/ajax/load-animation',
-          data: { taskId: task.id },
-          success: function() {
-            alert('Loaded animation for task' + task.id)
-          }
+          data: { taskId: task.id }
         })
       })
 
