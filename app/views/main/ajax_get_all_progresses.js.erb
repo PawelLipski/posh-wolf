@@ -37,68 +37,9 @@ function updateProgresses(task) {
             alert('Loaded animation for task' + task.id)
           }
         })
-
-        $("#content").fadeOut(1000, function() {
-          $("#content").html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
-            '<h3><small>Machines</small></h3></div>')         
-
-          $("#anim-machines-header").append('<table id="anim-machines-table" width="100%"><tr id="anim-machines-tr"/></table>')
-          for (var i = 1; i <= 5; i++)
-            $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
-
-          $("#content").append('<table id="anim-table"/>')
-          $("#content").show()
-
-          //$("#anim-table").html(
-            //'<tr height="5%" id="anim-machines-header" style="border-bottom: solid; border-color: gray"><td colspan="2"></td></tr>' +
-            //'<tr height="5%" id="anim-machines"><td colspan="2"></td></tr>' +
-          //)
-
-          $("#anim-table").append('<tr><td id="waiting-td-' + task.id +  '" style="border-right: solid"></td>' +
-            '<td id="done-td-' + task.id + '"/></tr>')
-          waitingTd = $("#waiting-td-" + task.id)
-
-          for (var i = 1; i <= 5; i++) {
-
-            opContnrId = 'task-' + task.id + '-op-' + i
-            waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative"/>')
-            opContnr = $('#' + opContnrId)
-
-              opPbId = 'task-' + task.id + '-op-' + i + '-pb'
-              opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-              $("#" + opPbId).progressbar({value: 10*i}).width(100).height(50)
-
-              opLabelId = 'task-' + task.id + '-op-' + i + '-label'
-
-              label = '<div style="display: table; position:absolute; top:0; left:0; width:100px; height:50px; overflow: hidden">' + 
-                '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" > <center>foo</center> </div> </div>'
-              opContnr.append(label)
-
-          }
-
-          function updateExecutionProgress(taskId, opId, val) {
-            op = $('#task-' + taskId + '-op-' + opId + '-pb')
-            op.progressbar({value: val}).height(50)
-            if (val < 100) {
-              setTimeout(function() {
-                updateExecutionProgress(taskId, opId, val + 10)
-              }, 1000)
-            } else {
-              op.fadeOut(1000, function() {
-                $(op).detach().prependTo('#done-td-' + taskId).fadeIn(1000)
-              })
-            }
-          }
-
-          setTimeout(function() {
-            updateExecutionProgress(task.id, 5, 20)
-          }, 1000)
-  
-
-        })
       })
-    })
 
+    })
 
   } else {
     $(pbSel).progressbar({value: parseInt(task.progress) * 10})   
