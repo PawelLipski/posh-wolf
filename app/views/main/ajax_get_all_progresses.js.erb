@@ -45,8 +45,10 @@ function updateProgresses(task) {
             //'<tr height="5%" id="anim-machines"><td colspan="2"></td></tr>' +
           //)
 
-          $("#anim-table").append('<tr><td id="waiting-td-1" style="border-right: solid"></td><td id="done-td-w"/></tr>')
-          waitingTd = $("#waiting-td-1")
+          $("#anim-table").append('<tr><td id="waiting-td-' + task.id +  '" style="border-right: solid"></td>' +
+            '<td id="done-td-' + task.id + '"/></tr>')
+          waitingTd = $("#waiting-td-" + task.id)
+
           for (var i = 1; i <= 5; i++) {
 
             opContnrId = 'task-' + task.id + '-op-' + i
@@ -74,7 +76,7 @@ function updateProgresses(task) {
               }, 1000)
             } else {
               op.fadeOut(1000, function() {
-                $(op).detach().prependTo('#waiting-td-' + taskId)
+                $(op).detach().prependTo('#done-td-' + taskId).fadeIn(1000)
               })
             }
           }
