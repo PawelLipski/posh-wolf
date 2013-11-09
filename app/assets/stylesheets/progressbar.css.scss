@@ -1,5 +1,9 @@
 @import "shared-mixins";
 
+.ui-progressbar {
+    background: Gray;
+}
+
 .ui-progressbar-value {
     margin: -1px;
     height: 100%;
