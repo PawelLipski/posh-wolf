@@ -66,13 +66,26 @@ function loadQueueForJob(jobId) {
 
 }
 
+
+function moveOpPbToDone(jobId, opId) { 
+  var opContnr = $('#job-' + jobId + '-op-' + opId)
+
+  opContnr.fadeOut(1000, function() {
+    $(opContnr).detach().prependTo('#done-job-' + jobId).fadeIn(1000)
+  })
+
+}
+
+
 function handleNextOpExecution(machineId) {
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
 
-  opPb.animate({ width: 100 }, 500, function() {
+  opPb.animate({ width: 100 }, 2000, function() {
+
+    moveOpPbToDone(jobId, machineId)
   
     currentSchedIndex[machineId - 1] = schedIndex + 1
 
