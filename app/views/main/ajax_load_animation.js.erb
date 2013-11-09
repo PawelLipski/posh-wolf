@@ -76,11 +76,13 @@ $("#task-list-container").fadeOut(1000, function() {
 
   var taskId = <%= params[:taskId] %>
   var jobId = 12345 // TODO
+  var jobCnt = 20
   var machineCnt = 5 // TODO
 
   loadAnimationScaffolding(taskId, machineCnt)
 
-  loadQueueForJob(jobId, machineCnt)
+  for (var job = 1; job <= jobCnt; job++)
+    loadQueueForJob(job, machineCnt)
 
   displayAndStartAnimation(jobId /* TODO */)
 
