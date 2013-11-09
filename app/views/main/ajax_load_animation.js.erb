@@ -62,6 +62,18 @@ function updateExecutionProgress(jobId, opId, val) {
   }
 }
 
+function produceMockOrder(jobCnt, machineCnt) {
+  var order = new Array(machineCnt)
+  for (var m = 0; m < machineCnt; m++) {
+    order[m] = new Array(jobCnt)
+    for (var j = 0; j < jobCnt; j++) {
+      order[m][j] =  j+1
+    }
+  }
+  return order
+}
+
+
 function displayAndStartAnimation(/*TODO*/ jobId) {
   $("#anim-container").fadeIn(1000, function() {
   
@@ -71,6 +83,7 @@ function displayAndStartAnimation(/*TODO*/ jobId) {
 
   })
 }
+
 
 $("#task-list-container").fadeOut(1000, function() {
 
@@ -83,6 +96,8 @@ $("#task-list-container").fadeOut(1000, function() {
 
   for (var job = 1; job <= jobCnt; job++)
     loadQueueForJob(job, machineCnt)
+
+  order = produceMockOrder(jobCnt, machineCnt)
 
   displayAndStartAnimation(jobId /* TODO */)
 
