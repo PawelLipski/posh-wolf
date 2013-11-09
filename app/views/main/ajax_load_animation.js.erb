@@ -80,7 +80,11 @@ function displayAndStartAnimation(/*TODO*/ jobId) {
     setTimeout(function() {
       updateExecutionProgress(jobId, 5, 10)
     }, 1000)
-
+    
+    var op = $('#job-' + jobId + '-op-' + 4 + '-pb .ui-progressbar-value')
+    op.animate({ width: 100 }, 1000, function() { 
+      alert('Done')
+    })
   })
 }
 
@@ -88,7 +92,7 @@ function displayAndStartAnimation(/*TODO*/ jobId) {
 $("#task-list-container").fadeOut(1000, function() {
 
   var taskId = <%= params[:taskId] %>
-  var jobId = 12345 // TODO
+  var jobId = 1 // TODO
   var jobCnt = 20
   var machineCnt = 5 // TODO
 
