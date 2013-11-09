@@ -1,4 +1,7 @@
 
+opWidth = 100
+opHeight = 20
+
 function loadAnimationScaffolding(machineCnt) {
 
   $("#content").html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
@@ -25,11 +28,11 @@ function loadQueueForTask(taskId, machineCnt) {
 
       var opPbId = 'task-' + taskId + '-op-' + i + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-      $("#" + opPbId).progressbar({value: 10*i}).width(100).height(20)
+      $("#" + opPbId).progressbar({value: 10*i}).width(opWidth).height(opHeight)
 
       var opLabelId = 'task-' + taskId + '-op-' + i + '-label'
 
-      var label = '<div style="display: table; position:absolute; top:0; left:0; width:100px; height:50px; overflow: hidden">' + 
+      var label = '<div style="display: table; position:absolute; top:0; left:0; width:100px; height:' + opHeight + 'px; overflow: hidden">' + 
         '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" > <center>foo</center> </div> </div>'
       opContnr.append(label)
   }
@@ -38,7 +41,7 @@ function loadQueueForTask(taskId, machineCnt) {
 
 function updateExecutionProgress(taskId, opId, val) {
   var op = $('#task-' + taskId + '-op-' + opId + '-pb')
-  op.progressbar({value: val}).height(50)
+  op.progressbar({value: val}).height(opHeight)
   if (val < 100) {
     setTimeout(function() {
       updateExecutionProgress(taskId, opId, val + 10)
