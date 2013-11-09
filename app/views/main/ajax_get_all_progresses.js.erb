@@ -44,8 +44,7 @@ function updateProgresses(task) {
           url: '/ajax/load-animation',
           data: { taskId: task.id },
           success: function() {
-            animBtnContnr.empty()
-            animBtnContnr.append(animBtn)
+            animBtnContnr.empty().hide().append(animBtn)
           }
         })
       })
