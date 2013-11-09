@@ -25,7 +25,7 @@ function loadQueueForTask(taskId, machineCnt) {
 
       var opPbId = 'task-' + taskId + '-op-' + i + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-      $("#" + opPbId).progressbar({value: 10*i}).width(100).height(50)
+      $("#" + opPbId).progressbar({value: 10*i}).width(100).height(20)
 
       var opLabelId = 'task-' + taskId + '-op-' + i + '-label'
 
