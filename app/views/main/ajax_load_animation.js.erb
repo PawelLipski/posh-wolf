@@ -66,27 +66,13 @@ function loadQueueForJob(jobId) {
 
 }
 
-function updateExecutionProgress(jobId, opId, val) {
-  var op = $('#job-' + jobId + '-op-' + opId + '-pb')
-  op.progressbar({value: val}).height(opHeight)
-  if (val < 100) {
-    setTimeout(function() {
-      updateExecutionProgress(jobId, opId, val + 10)
-    }, 1000)
-  } else {
-    op.fadeOut(1000, function() {
-      $(op).detach().prependTo('#done-job-' + jobId).fadeIn(1000)
-    })
-  }
-}
-
 function handleNextOpExecution(machineId) {
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
 
-  opPb.animate({ width: 100 }, 5000, function() {
+  opPb.animate({ width: 100 }, 500, function() {
   
     currentSchedIndex[machineId - 1] = schedIndex + 1
 
@@ -109,23 +95,6 @@ function handleNextOpExecution(machineId) {
 
 }
 
-function displayAndStartAnimation(/*TODO*/ jobId) {
-  $("#anim-container").fadeIn(1000, function() {
-  
-    //setTimeout(function() {
-      //updateExecutionProgress(jobId, 5, 10)
-    //}, 1000)
-    
-    /*var op = $('#job-' + jobId + '-op-' + 4 + '-pb .ui-progressbar-value')
-    op.animate({ width: 100 }, 1000, function() { 
-      alert('Done')
-    })*/
-
-      handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex + 1)
-  })
-}
-
-
 $("#task-list-container").fadeOut(1000, function() {
 
   taskId = <%= params[:taskId] %> // TODO - czy nie bedzie problemow z synciem przy Back buttonie?
@@ -141,9 +110,6 @@ $("#task-list-container").fadeOut(1000, function() {
 
   for (var job = 1; job <= jobCnt; job++)
     loadQueueForJob(job)
-
-
-  //displayAndStartAnimation(jobId /* TODO */)
 
   $("#anim-container").fadeIn(1000, function() {
       handleNextOpExecution(1)
