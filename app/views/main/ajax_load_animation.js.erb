@@ -82,7 +82,7 @@ function updateExecutionProgress(jobId, opId, val) {
 
 function handleNextOpExecution(machineId) {
 
-  var schedIndex = currentMachineSched[machineId - 1]
+  var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
 
@@ -135,7 +135,7 @@ $("#task-list-container").fadeOut(1000, function() {
 
   order = createMockOrder()
 
-  currentMachineSched = createMachineSchedArray()
+  currentSchedIndex = createMachineSchedArray()
 
   loadAnimationScaffolding()
 
