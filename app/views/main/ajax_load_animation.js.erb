@@ -73,18 +73,31 @@ function produceMockOrder(jobCnt, machineCnt) {
   return order
 }
 
+function handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex) {
+
+  var jobId = order[machineId - 1][schedIndex - 1];
+  var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
+
+  opPb.animate({ width: 100 }, 5000, function() {
+    if (schedIndex < jobCnt)
+      handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex + 1)
+  })
+
+}
 
 function displayAndStartAnimation(/*TODO*/ jobId) {
   $("#anim-container").fadeIn(1000, function() {
   
-    setTimeout(function() {
-      updateExecutionProgress(jobId, 5, 10)
-    }, 1000)
+    //setTimeout(function() {
+      //updateExecutionProgress(jobId, 5, 10)
+    //}, 1000)
     
-    var op = $('#job-' + jobId + '-op-' + 4 + '-pb .ui-progressbar-value')
+    /*var op = $('#job-' + jobId + '-op-' + 4 + '-pb .ui-progressbar-value')
     op.animate({ width: 100 }, 1000, function() { 
       alert('Done')
-    })
+    })*/
+
+      handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex + 1)
   })
 }
 
@@ -101,9 +114,13 @@ $("#task-list-container").fadeOut(1000, function() {
   for (var job = 1; job <= jobCnt; job++)
     loadQueueForJob(job, machineCnt)
 
-  order = produceMockOrder(jobCnt, machineCnt)
+  var order = produceMockOrder(jobCnt, machineCnt)
 
-  displayAndStartAnimation(jobId /* TODO */)
+  //displayAndStartAnimation(jobId /* TODO */)
+
+  $("#anim-container").fadeIn(1000, function() {
+      handleOpExecution(order, jobCnt, machineCnt, 1, 1)
+  })
 
 })
 
