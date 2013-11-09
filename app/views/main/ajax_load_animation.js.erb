@@ -4,17 +4,18 @@ opHeight = 20
 
 function loadAnimationScaffolding(machineCnt) {
 
-  $("#content").html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
-    '<h3><small>Machines</small></h3></div>')         
+  animContnr = $("#animation-container")
+
+  animContnr.html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
+    '<h3><small>Machines</small></h3></div>')
 
   $("#anim-machines-header").append('<table id="anim-machines-table" width="100%"><tr id="anim-machines-tr"/></table>')
   for (var i = 1; i <= machineCnt; i++)
     $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
 
-  $("#content").append('<table id="anim-jobs-table"/>')
+  animContnr.append('<table id="anim-jobs-table"/>')
 
-  $("#content").append('<button id="back-button" class="btn">Back</button>')
-
+  animContnr.append('<button id="back-button" class="btn">Back</button>')
 }
 
 function loadQueueForJob(jobId, machineCnt) {
@@ -56,7 +57,7 @@ function updateExecutionProgress(jobId, opId, val) {
 }
 
 function displayAndStartAnimation(/*TODO*/ jobId) {
-  $("#content").fadeIn(1000, function() {
+  $("#anim-container").fadeIn(1000, function() {
   
     setTimeout(function() {
       updateExecutionProgress(jobId, 5, 10)
@@ -65,7 +66,7 @@ function displayAndStartAnimation(/*TODO*/ jobId) {
   })
 }
 
-$("#content").hide(function() {
+$("#task-list-container").hide(function() {
 
   var jobId = 12345 // TODO
   var machineCnt = 5 // TODO
