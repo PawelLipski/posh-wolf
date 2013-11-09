@@ -74,7 +74,7 @@ function moveOpPbToDone(jobId, opId) {
   var opContnr = $('#job-' + jobId + '-op-' + opId)
 
   opContnr.fadeOut(1000, function() {
-    $(opContnr).detach().appendTo('#done-job-' + jobId).fadeIn(1000)
+    $(opContnr).detach().appendTo('#done-job-' + jobId).css('float', 'right').fadeIn(1000)
   })
 
 }
