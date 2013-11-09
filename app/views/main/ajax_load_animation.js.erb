@@ -31,7 +31,7 @@ function loadAnimationScaffolding() {
   for (var i = 1; i <= machineCnt; i++)
     $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
 
-  animContnr.append('<table id="anim-jobs-table"/>')
+  animContnr.append('<table id="anim-jobs-table" width="100%"/>')
   animContnr.append('<button id="back-button" class="btn">Back</button>')
 
   $("#back-button").click(function() {
@@ -43,19 +43,20 @@ function loadAnimationScaffolding() {
 }
 
 function loadQueueForJob(jobId) {
-  $("#anim-jobs-table").append('<tr><td id="waiting-job-' + jobId +  '" style="border-right: solid"></td>' +
-    '<td id="done-job-' + jobId + '"/></tr>')
+  $("#anim-jobs-table").append('<tr><td id="waiting-job-' + jobId +  '" style="border-right: solid; width: 50%"></td>' +
+    '<td id="done-job-' + jobId + '" style="width: 50%"/></tr>')
   var waitingTd = $("#waiting-job-" + jobId)
 
   for (var i = 1; i <= machineCnt; i++) {
 
     var opContnrId = 'job-' + jobId + '-op-' + i
-    waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative"/>')
+    waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative; width: 20%"/>')
     var opContnr = $('#' + opContnrId)
 
       var opPbId = 'job-' + jobId + '-op-' + i + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-      $("#" + opPbId).progressbar({value: 10*i}).width(opWidth).height(opHeight)
+      $("#" + opPbId).progressbar({value: 10*i})./*width(opWidth).*/height(opHeight).css('width', '100%')
+
 
       var opLabelId = 'job-' + jobId + '-op-' + i + '-label'
 
