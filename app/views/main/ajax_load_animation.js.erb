@@ -1,6 +1,6 @@
 
 
-$("#content").fadeOut(1000, function() {
+$("#content").hide(function() {
 
   var taskId = <%= params[:taskId] %>
 
@@ -12,7 +12,6 @@ $("#content").fadeOut(1000, function() {
     $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
 
   $("#content").append('<table id="anim-table"/>')
-  $("#content").show()
 
   //$("#anim-table").html(
     //'<tr height="5%" id="anim-machines-header" style="border-bottom: solid; border-color: gray"><td colspan="2"></td></tr>' +
@@ -55,9 +54,12 @@ $("#content").fadeOut(1000, function() {
     }
   }
 
-  setTimeout(function() {
-    updateExecutionProgress(taskId, 5, 20)
-  }, 1000)
+  $("#content").show(1000, function() {
+  
+    setTimeout(function() {
+      updateExecutionProgress(taskId, 5, 20)
+    }, 1000)
 
+  })
 
 })
