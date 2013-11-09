@@ -17,7 +17,7 @@ function loadAnimationScaffolding(taskId, machineCnt) {
   animContnr.append('<button id="back-button" class="btn">Back</button>')
 
   $("#back-button").click(function() {
-    $("#anim-container").hide(1000, function() {
+    $("#anim-container").fadeOut(1000, function() {
       $("#task-anim-btn-contnr-" + taskId).show()
       $("#task-list-container").show()
     })
