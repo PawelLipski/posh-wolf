@@ -12,11 +12,13 @@ p = [ p ] unless p.kind_of?(Array)
 tasks = <%= raw(p.to_json) %>
 
 function updateProgresses(task) {
+
   var pbSel = "#progressbar-" + task.id
   var hdrTrSel = "#task-hdr-tr-" + task.id
   var hdrTdSel = "#task-hdr-td-" + task.id
   var detTrSel = ".task-det-tr-" + task.id
   var animBtnId = "task-anim-btn-" + task.id
+  var animBtnContnrId = "task-anim-btn-contnr-" + task.id
 
   if (task.progress == '100') {
     $(pbSel).progressbar({value: 100})
@@ -24,16 +26,15 @@ function updateProgresses(task) {
     
     $(pbSel).hide(1000, function() {      
       $(hdrTdSel).append('<b>Result: 12345</b>' + 
-        '<button id="' + animBtnId + '" class="btn btn-large btn-task-animate" style="float: right">Animate</button>')
+        '<span id="' + animBtnContnrId + '">' + 
+        '<button id="' + animBtnId + '" class="btn btn-large btn-task-animate" style="float: right">Animate</button>' +
+        '</span>')
       
       $(detTrSel).show(1000)
 
       $("#" + animBtnId).click(function() { 
        
-        //$("#content").hide(function() {
-          $("#content").html('<%= image_tag "ajax-loader.gif" %>')
-        //  alert('foo')
-        //})
+        $("#" + animBtnContnrId).html('<%= image_tag "ajax-loader.gif", :style => "float: right" %>')
 
         $.ajax({
           url: '/ajax/load-animation',
