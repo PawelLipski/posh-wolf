@@ -32,13 +32,21 @@ function updateProgresses(task) {
       
       $(detTrSel).show(1000)
 
-      $("#" + animBtnId).click(function() { 
-       
-        $("#" + animBtnContnrId).html('<%= image_tag "ajax-loader.gif", :style => "float: right" %>')
+      var animBtnContnr = $("#" + animBtnContnrId)
+      var animBtn =  $("#" + animBtnId)
+
+      animBtn.click(function() { 
+
+        animBtn.detach()        
+        animBtnContnr.html('<%= image_tag "ajax-loader.gif", style: "float: right" %>')
 
         $.ajax({
           url: '/ajax/load-animation',
-          data: { taskId: task.id }
+          data: { taskId: task.id },
+          success: function() {
+            animBtnContnr.empty()
+            animBtnContnr.append(animBtn)
+          }
         })
       })
 
