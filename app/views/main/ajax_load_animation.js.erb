@@ -43,8 +43,10 @@ function loadAnimationScaffolding() {
 }
 
 function loadQueueForJob(jobId) {
-  $("#anim-jobs-table").append('<tr><td id="waiting-job-' + jobId +  '" style="border-right: solid; width: 50%"></td>' +
-    '<td id="done-job-' + jobId + '" style="width: 50%"/></tr>')
+  $("#anim-jobs-table").append('<tr>' + 
+    '<td id="done-job-' + jobId + '" style="width: 50%"/>' +
+    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 50%"></td>' +
+    '</tr>')
   var waitingTd = $("#waiting-job-" + jobId)
 
   for (var i = 1; i <= machineCnt; i++) {
@@ -72,7 +74,7 @@ function moveOpPbToDone(jobId, opId) {
   var opContnr = $('#job-' + jobId + '-op-' + opId)
 
   opContnr.fadeOut(1000, function() {
-    $(opContnr).detach().prependTo('#done-job-' + jobId).fadeIn(1000)
+    $(opContnr).detach().appendTo('#done-job-' + jobId).fadeIn(1000)
   })
 
 }
