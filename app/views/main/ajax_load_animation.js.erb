@@ -1,8 +1,26 @@
 
+function createMockOrder() {
+  var order = new Array(machineCnt)
+  for (var m = 0; m < machineCnt; m++) {
+    order[m] = new Array(jobCnt)
+    for (var j = 0; j < jobCnt; j++) {
+      order[m][j] =  j+1
+    }
+  }
+  return order
+}
+
+function createMachineSchedArray() {
+  var s = new Array(machineCnt)
+  for (var i = 0; i < machineCnt; i++)
+    s[i] = 1
+  return s
+}
+
 opWidth = 100
 opHeight = 20
 
-function loadAnimationScaffolding(taskId, machineCnt) {
+function loadAnimationScaffolding() {
 
   animContnr = $("#anim-container")
 
@@ -24,7 +42,7 @@ function loadAnimationScaffolding(taskId, machineCnt) {
   })
 }
 
-function loadQueueForJob(jobId, machineCnt) {
+function loadQueueForJob(jobId) {
   $("#anim-jobs-table").append('<tr><td id="waiting-job-' + jobId +  '" style="border-right: solid"></td>' +
     '<td id="done-job-' + jobId + '"/></tr>')
   var waitingTd = $("#waiting-job-" + jobId)
@@ -62,25 +80,31 @@ function updateExecutionProgress(jobId, opId, val) {
   }
 }
 
-function produceMockOrder(jobCnt, machineCnt) {
-  var order = new Array(machineCnt)
-  for (var m = 0; m < machineCnt; m++) {
-    order[m] = new Array(jobCnt)
-    for (var j = 0; j < jobCnt; j++) {
-      order[m][j] =  j+1
-    }
-  }
-  return order
-}
+function handleNextOpExecution(machineId) {
 
-function handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex) {
-
-  var jobId = order[machineId - 1][schedIndex - 1];
+  var schedIndex = currentMachineSched[machineId - 1]
+  var jobId = order[machineId - 1][schedIndex - 1]
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
 
   opPb.animate({ width: 100 }, 5000, function() {
+  
+    currentSchedIndex[machineId - 1] = schedIndex + 1
+
     if (schedIndex < jobCnt)
-      handleOpExecution(order, jobCnt, machineCnt, machineId, schedIndex + 1)
+      handleNextOpExecution(machineId)
+
+    if (machineId < machineCnt) {
+
+      var nextMachineId = machineId + 1
+      var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
+      
+      if (nextMachineSchedIndex < jobCnt) {
+        var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
+
+        if (nextMachineJobToDo == jobId)
+          handleNextOpExecution(nextMachineId)
+      }
+    }
   })
 
 }
@@ -104,22 +128,25 @@ function displayAndStartAnimation(/*TODO*/ jobId) {
 
 $("#task-list-container").fadeOut(1000, function() {
 
-  var taskId = <%= params[:taskId] %>
-  var jobId = 1 // TODO
-  var jobCnt = 20
-  var machineCnt = 5 // TODO
+  taskId = <%= params[:taskId] %> // TODO - czy nie bedzie problemow z synciem przy Back buttonie?
 
-  loadAnimationScaffolding(taskId, machineCnt)
+  jobCnt = 20
+  machineCnt = 5 // TODO - input = eruby
+
+  order = createMockOrder()
+
+  currentMachineSched = createMachineSchedArray()
+
+  loadAnimationScaffolding()
 
   for (var job = 1; job <= jobCnt; job++)
-    loadQueueForJob(job, machineCnt)
+    loadQueueForJob(job)
 
-  var order = produceMockOrder(jobCnt, machineCnt)
 
   //displayAndStartAnimation(jobId /* TODO */)
 
   $("#anim-container").fadeIn(1000, function() {
-      handleOpExecution(order, jobCnt, machineCnt, 1, 1)
+      handleNextOpExecution(1)
   })
 
 })
