@@ -60,23 +60,26 @@ function loadQueueForJob(jobId) {
     '</tr>')
   var waitingTd = $("#waiting-job-" + jobId)
 
-  for (var i = 1; i <= machineCnt; i++) {
+  for (var o = 1; o <= machineCnt; o++) {
 
-    var opContnrId = 'job-' + jobId + '-op-' + i
+    var opContnrId = 'job-' + jobId + '-op-' + o
     waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative; width: 20%"/>')
     var opContnr = $('#' + opContnrId)
 
-      var opPbId = 'job-' + jobId + '-op-' + i + '-pb'
+      var opPbId = 'job-' + jobId + '-op-' + o + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
       $('#' + opPbId).progressbar({ value: 1 }).height(opHeight).css('width', '100%')
       $('#' + opPbId + ' .ui-progressbar-value').css('visibility', 'hidden')
 
 
-      var opLabelId = 'job-' + jobId + '-op-' + i + '-label'
+      var opLabelId = 'job-' + jobId + '-op-' + o + '-label'
 
-      var label = '<div style="display: table; position:absolute; top:0; left:0; width:100px; height:' + opHeight + 'px; overflow: hidden">' + 
-        '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" > <center>foo</center> </div> </div>'
-      opContnr.append(label)
+      var labelText = taskDef[jobId - 1][o - 1]
+      var labelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100px; height:' + opHeight + 
+        'px; overflow: hidden">' + 
+        '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
+        '<center>' + labelText + '</center> </div> </div>'
+      opContnr.append(labelHtml)
   }
 
 }
