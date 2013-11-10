@@ -87,11 +87,12 @@ function loadQueueForJob(jobId) {
 }
 
 
-function moveOpPbToDone(jobId, opId) { 
+function moveOpPbToDone(jobId, opId, doAfter) { 
   var opContnr = $('#job-' + jobId + '-op-' + opId)
 
   opContnr.fadeOut(1000, function() {
     $(opContnr).detach().prependTo('#done-job-' + jobId).css('float', 'right').fadeIn(1000)
+    doAfter()
   })
 
 }
@@ -101,30 +102,33 @@ function handleNextOpExecution(machineId) {
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
+  var jobDuration = taskDef[jobId - 1][machineId - 1]
+
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
   opPb.css('visibility', 'visible')
 
-  opPb.animate({ width: 100 }, 2000, function() {
+  opPb.animate({ width: 100 }, jobDuration * 50, function() {
 
-    moveOpPbToDone(jobId, machineId)
+    moveOpPbToDone(jobId, machineId, function() {
   
-    currentSchedIndex[machineId - 1] = schedIndex + 1
+      currentSchedIndex[machineId - 1] = schedIndex + 1
 
-    if (schedIndex < jobCnt)
-      handleNextOpExecution(machineId)
+      if (schedIndex < jobCnt)
+        handleNextOpExecution(machineId)
 
-    if (machineId < machineCnt) {
+      if (machineId < machineCnt) {
 
-      var nextMachineId = machineId + 1
-      var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
-      
-      if (nextMachineSchedIndex < jobCnt) {
-        var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
+        var nextMachineId = machineId + 1
+        var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
+        
+        if (nextMachineSchedIndex < jobCnt) {
+          var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
 
-        if (nextMachineJobToDo == jobId)
-          handleNextOpExecution(nextMachineId)
+          if (nextMachineJobToDo == jobId)
+            handleNextOpExecution(nextMachineId)
+        }
       }
-    }
+    })
   })
 
 }
