@@ -28,6 +28,13 @@ function createMachineSchedArray() {
   return s
 }
 
+function createNextOpForJobArray() {
+  var s = new Array(jobCnt)
+  for (var i = 0; i < jobCnt; i++)
+    s[i] = 1
+  return s
+}
+
 opWidth = 100
 opHeight = 20
 
@@ -107,14 +114,19 @@ function handleNextOpExecution(machineId) {
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
   opPb.css('visibility', 'visible')
 
-  opPb.animate({ width: 100 }, jobDuration * 50, function() {
+  opPb.animate({ width: 100 }, jobDuration * 200, function() {
 
     moveOpPbToDone(jobId, machineId, function() {
   
-      currentSchedIndex[machineId - 1] = schedIndex + 1
+      currentSchedIndex[machineId - 1] = ++schedIndex
+      nextOpForJob[jobId - 1] = machineId + 1
 
-      if (schedIndex < jobCnt)
-        handleNextOpExecution(machineId)
+      if (schedIndex < jobCnt) {
+        var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
+
+        if (nextOpForJob[nextJobOnThisMachine] == machineId)
+          handleNextOpExecution(machineId)
+      }
 
       if (machineId < machineCnt) {
 
@@ -124,7 +136,7 @@ function handleNextOpExecution(machineId) {
         if (nextMachineSchedIndex < jobCnt) {
           var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
 
-          if (nextMachineJobToDo == jobId)
+          if (nextMachineJobToDo == jobId)          
             handleNextOpExecution(nextMachineId)
         }
       }
@@ -145,6 +157,7 @@ $("#task-list-container").fadeOut(1000, function() {
   order = createMockOrder()
 
   currentSchedIndex = createMachineSchedArray()
+  nextOpForJob = createNextOpForJobArray()
 
   loadAnimationScaffolding()
 
