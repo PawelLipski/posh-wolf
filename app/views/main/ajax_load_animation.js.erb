@@ -10,6 +10,17 @@ function createMockOrder() {
   return order
 }
 
+function createMockTaskDef() {
+  var taskDef = new Array(jobCnt)
+  for (var j = 0; j < jobCnt; j++) {
+    taskDef[j] = new Array(machineCnt)
+    for (var m = 0; m < machineCnt; m++) {
+      taskDef[j][m] = Math.floor((Math.random()*100)+1)
+    }
+  }
+  return taskDef
+}
+
 function createMachineSchedArray() {
   var s = new Array(machineCnt)
   for (var i = 0; i < machineCnt; i++)
@@ -119,6 +130,8 @@ $("#task-list-container").fadeOut(1000, function() {
 
   jobCnt = 20
   machineCnt = 5 // TODO - input = eruby
+
+  taskDef = createMockTaskDef()
 
   order = createMockOrder()
 
