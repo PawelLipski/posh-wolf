@@ -57,7 +57,8 @@ function loadQueueForJob(jobId) {
 
       var opPbId = 'job-' + jobId + '-op-' + i + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-      $("#" + opPbId).progressbar({ value: 1 }).height(opHeight).css('width', '100%')
+      $('#' + opPbId).progressbar({ value: 1 }).height(opHeight).css('width', '100%')
+      $('#' + opPbId + ' .ui-progressbar-value').css('visibility', 'hidden')
 
 
       var opLabelId = 'job-' + jobId + '-op-' + i + '-label'
@@ -85,6 +86,7 @@ function handleNextOpExecution(machineId) {
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
+  opPb.css('visibility', 'visible')
 
   opPb.animate({ width: 100 }, 2000, function() {
 
