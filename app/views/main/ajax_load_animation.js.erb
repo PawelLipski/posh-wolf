@@ -57,7 +57,7 @@ function loadQueueForJob(jobId) {
 
       var opPbId = 'job-' + jobId + '-op-' + i + '-pb'
       opContnr.append('<div id="' + opPbId + '" style="float: left"/>')
-      $("#" + opPbId).progressbar({value: 10*i})./*width(opWidth).*/height(opHeight).css('width', '100%')
+      $("#" + opPbId).progressbar({ value: 1 }).height(opHeight).css('width', '100%')
 
 
       var opLabelId = 'job-' + jobId + '-op-' + i + '-label'
