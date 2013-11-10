@@ -94,12 +94,11 @@ function loadQueueForJob(jobId) {
 }
 
 
-function moveOpPbToDone(jobId, opId, doAfter) { 
+function moveOpPbToDone(jobId, opId) { 
   var opContnr = $('#job-' + jobId + '-op-' + opId)
 
   opContnr.fadeOut(1000, function() {
     $(opContnr).detach().prependTo('#done-job-' + jobId).css('float', 'right').fadeIn(1000)
-    doAfter()
   })
 
 }
@@ -114,33 +113,32 @@ function handleNextOpExecution(machineId) {
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
   opPb.css('visibility', 'visible')
 
-  opPb.animate({ width: 100 }, jobDuration * 200, function() {
+  opPb.animate({ width: 100 }, jobDuration * 50, function() {
 
-    moveOpPbToDone(jobId, machineId, function() {
+    moveOpPbToDone(jobId, machineId)
   
-      currentSchedIndex[machineId - 1] = ++schedIndex
-      nextOpForJob[jobId - 1] = machineId + 1
+    currentSchedIndex[machineId - 1] = ++schedIndex
+    nextOpForJob[jobId - 1] = machineId + 1
 
-      if (schedIndex < jobCnt) {
-        var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
+    if (schedIndex < jobCnt) {
+      var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
 
-        if (nextOpForJob[nextJobOnThisMachine] == machineId)
-          handleNextOpExecution(machineId)
+      if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
+        handleNextOpExecution(machineId)
+    }
+
+    if (machineId < machineCnt) {
+
+      var nextMachineId = machineId + 1
+      var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
+      
+      if (nextMachineSchedIndex < jobCnt) {
+        var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
+
+        if (nextMachineJobToDo == jobId)          
+          handleNextOpExecution(nextMachineId)
       }
-
-      if (machineId < machineCnt) {
-
-        var nextMachineId = machineId + 1
-        var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
-        
-        if (nextMachineSchedIndex < jobCnt) {
-          var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
-
-          if (nextMachineJobToDo == jobId)          
-            handleNextOpExecution(nextMachineId)
-        }
-      }
-    })
+    }
   })
 
 }
