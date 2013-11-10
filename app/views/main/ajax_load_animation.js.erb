@@ -132,7 +132,7 @@ function handleNextOpExecution(machineId) {
       var nextMachineId = machineId + 1
       var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
       
-      if (nextMachineSchedIndex < jobCnt) {
+      if (nextMachineSchedIndex <= jobCnt) {
         var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
 
         if (nextMachineJobToDo == jobId)          
