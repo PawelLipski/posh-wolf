@@ -120,7 +120,7 @@ function handleNextOpExecution(machineId) {
     currentSchedIndex[machineId - 1] = ++schedIndex
     nextOpForJob[jobId - 1] = machineId + 1
 
-    if (schedIndex < jobCnt) {
+    if (schedIndex <= jobCnt) {
       var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
