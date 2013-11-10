@@ -67,7 +67,7 @@ function loadQueueForJob(jobId) {
     '</tr>')
   var waitingTd = $("#waiting-job-" + jobId)
 
-  for (var o = 1; o <= machineCnt; o++) {
+  for (var o = machineCnt; o >= 1; o--) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
     waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative; ' + 
