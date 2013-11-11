@@ -107,7 +107,10 @@ function moveOpPbToDone(jobId, opId) {
 }
 
 
-function handleNextOpExecution(machineId) {
+function handleNextOpExecution(animationId, machineId) {
+
+  if (ongoingAnimationId != animationId)
+    return
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[machineId - 1][schedIndex - 1]
@@ -118,6 +121,9 @@ function handleNextOpExecution(machineId) {
 
   opPb.animate({ width: 100 }, jobDuration * 50, function() {
 
+    if (ongoingAnimationId != animationId)
+      return
+
     moveOpPbToDone(jobId, machineId)
   
     currentSchedIndex[machineId - 1] = ++schedIndex
@@ -127,7 +133,7 @@ function handleNextOpExecution(machineId) {
       var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
-        handleNextOpExecution(machineId)
+        handleNextOpExecution(animationId, machineId)
     }
 
     if (machineId < machineCnt) {
@@ -139,7 +145,7 @@ function handleNextOpExecution(machineId) {
         var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
 
         if (nextMachineJobToDo == jobId)          
-          handleNextOpExecution(nextMachineId)
+          handleNextOpExecution(animationId, nextMachineId)
       }
     }
   })
@@ -166,7 +172,7 @@ $("#task-list-container").fadeOut(1000, function() {
     loadQueueForJob(job)
 
   $("#anim-container").fadeIn(1000, function() {
-      handleNextOpExecution(1)
+      handleNextOpExecution(ongoingAnimationId, 1)
   })
 
 })
