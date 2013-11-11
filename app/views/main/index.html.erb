@@ -1,8 +1,6 @@
 
-<h1> Collection names: </h1> <br>
-  <% @coll_names.each do |coll_name| %>
-  <%= coll_name %> <br/>
-<% end %>
+<h1> Posh Wolf </h1> <br>
+<%= @solve_result %>
 
 <%= form_tag("/testcase/new", method: "post") do %>
   <%= label_tag(:url, "Test case URL::") %>
