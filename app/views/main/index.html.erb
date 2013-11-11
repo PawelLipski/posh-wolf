@@ -26,6 +26,8 @@ progressCheckRunning = false
 initTaskLocked = false
 taskIds = {}
 
+ongoingAnimationId = 0
+
 function get_progress() {
   if (Object.keys(taskIds).length == 0) 
     progressCheckRunning = false
