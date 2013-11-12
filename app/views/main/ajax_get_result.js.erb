@@ -1,0 +1,39 @@
+
+var taskId = <%= params[:taskId] %>
+
+var pbSel = "#progressbar-" + taskId
+var hdrTrSel = "#task-hdr-tr-" + taskId
+var hdrTdSel = "#task-hdr-td-" + taskId
+var detTrSel = ".task-det-tr-" + taskId
+var animBtnId = "task-anim-btn-" + taskId
+var animBtnContnrId = "task-anim-btn-contnr-" + taskId
+
+
+$(pbSel).hide(1000, function() {      
+  $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + 
+    ', computation time: ' + <%= @result[:computation_time] %> + ' </b>' + 
+    '<span id="' + animBtnContnrId + '">' + 
+    '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="float: right">Visualize</button>' +
+    '</span>')
+  
+  $(detTrSel).show(1000)
+
+  var animBtnContnr = $("#" + animBtnContnrId)
+  var animBtn =  $("#" + animBtnId)
+
+  animBtn.click(function() { 
+
+    animBtn.detach()        
+    animBtnContnr.html('<%= image_tag "ajax-loader.gif", style: "float: right" %>')
+
+    $.ajax({
+      url: '/ajax/load-animation',
+      data: { taskId: taskId },
+      success: function() {
+        animBtnContnr.empty().hide().append(animBtn)
+      }
+    })
+  })
+
+})
+
