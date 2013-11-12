@@ -12,6 +12,8 @@ PoshWolf::Application.routes.draw do
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
 
+  get "testcase/ajax/get-result" => "main#ajax_get_result"
+
   get "ajax/load-animation" => "main#ajax_load_animation"
 
   get "sleep" => "main#do_sleep"

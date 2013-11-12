@@ -24,15 +24,38 @@ class MainController < ApplicationController
   end
 
   def ajax_init_task
-    @task_id = execute_soap_request(:initTask, {}, :init_task_response)
+    #@task_id = execute_soap_request(:initTask, {}, :init_task_response)
+    
+    @task_id = execute_soap_request(:postTask, {
+      task: { 
+        jobCount: 2, 
+        machineCount: 3,
+        opDurationsForJobs: {
+          item: [
+            { item: [1, 2, 3] }, 
+            { item: [4, 5, 6] }
+          ]
+        }
+      }
+    }, :post_task_response)
   end
 
   def ajax_get_all_progresses
-    @all_progresses = execute_soap_request(:getAllProgresses, { taskIds: { item: params[:taskIds] } }, :get_all_progresses_response)
+    @all_progresses = execute_soap_request(:getAllProgresses, { 
+      taskIds: { item: params[:taskIds] } 
+    }, :get_all_progresses_response)
   end
 
+  def ajax_get_result
+    @result = execute_soap_request(:getResult, { 
+      taskId: params[:taskId] 
+    }, :get_result_response)
+  end
 
   def ajax_load_animation
+    @full_result = execute_soap_request(:getFullResult, { 
+      taskId: params[:taskId] 
+    }, :get_full_result_response)
   end
 
   def new_test_case
@@ -61,8 +84,8 @@ class MainController < ApplicationController
       respond_to do |format|
         format.js do 
           client = Savon.client do
-            endpoint "http://posh-wolf-ws.herokuapp.com" 
-            #endpoint "http://0.0.0.0:8080"
+            #endpoint "http://posh-wolf-ws.herokuapp.com" 
+            endpoint "http://0.0.0.0:8080"
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
@@ -71,8 +94,8 @@ class MainController < ApplicationController
         end
         format.html do 
           client = Savon.client do
-            endpoint "http://posh-wolf-ws.herokuapp.com" 
-            #endpoint "http://0.0.0.0:8080"
+            #endpoint "http://posh-wolf-ws.herokuapp.com" 
+            endpoint "http://0.0.0.0:8080"
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
