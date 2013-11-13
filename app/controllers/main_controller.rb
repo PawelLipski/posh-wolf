@@ -94,8 +94,8 @@ class MainController < ApplicationController
         end
         format.html do 
           client = Savon.client do
-            #endpoint "http://posh-wolf-ws.herokuapp.com" 
-            endpoint "http://0.0.0.0:8080"
+            endpoint "http://posh-wolf-ws.herokuapp.com" 
+            #endpoint "http://0.0.0.0:8080"
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
