@@ -152,12 +152,12 @@ $("#task-list-container").fadeOut(1000, function() {
 
   taskId = <%= params[:taskId] %>
 
-  jobCnt = 20
-  machineCnt = 5
+  jobCnt = <%= @input[:job_count].to_i %>
+  machineCnt = <%= @input[:machine_count].to_i %>
 
   taskDef = createMockTaskDef()
 
-  order = <%= @result_and_input[:result][:job_order].map { |x| x.to_i } %>                                                    
+  order = <%= @result[:job_order].map { |x| x.to_i } %>                                                    
 
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()

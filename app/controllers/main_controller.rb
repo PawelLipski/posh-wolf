@@ -51,10 +51,13 @@ class MainController < ApplicationController
   end
 
   def ajax_load_animation
-    @result_and_input = execute_soap_request(:getResultAndInput, { 
+    result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
     }, :get_result_and_input_response)   
-    puts @result_and_input
+    puts result_and_input
+    
+    @result = result_and_input[:result]   
+    @input = result_and_input[:task]    
   end
 
   def new_test_case
