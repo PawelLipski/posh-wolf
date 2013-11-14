@@ -53,9 +53,10 @@ class MainController < ApplicationController
   end
 
   def ajax_load_animation
-    @full_result = execute_soap_request(:getFullResult, { 
+    @result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
-    }, :get_full_result_response)
+    }, :get_result_and_input_response)
+    puts @result_and_input
   end
 
   def new_test_case
@@ -84,8 +85,8 @@ class MainController < ApplicationController
       respond_to do |format|
         format.js do 
           client = Savon.client do
-            endpoint "http://posh-wolf-ws.herokuapp.com" 
-            #endpoint "http://0.0.0.0:8080"
+            #endpoint "http://posh-wolf-ws.herokuapp.com" 
+            endpoint "http://0.0.0.0:8080"
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
@@ -94,8 +95,8 @@ class MainController < ApplicationController
         end
         format.html do 
           client = Savon.client do
-            endpoint "http://posh-wolf-ws.herokuapp.com" 
-            #endpoint "http://0.0.0.0:8080"
+            #endpoint "http://posh-wolf-ws.herokuapp.com" 
+            endpoint "http://0.0.0.0:8080"
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
