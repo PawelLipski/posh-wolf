@@ -10,6 +10,8 @@ function createMockOrder() {
   return order
 }
 
+realOrder = <%= @result_and_input[:result][:job_order].map { |x| x.to_i } %>
+
 function createMockTaskDef() {
   var taskDef = new Array(jobCnt)
   for (var j = 0; j < jobCnt; j++) {
