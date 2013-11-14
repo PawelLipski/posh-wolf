@@ -73,8 +73,17 @@ class MainController < ApplicationController
       job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
       f.readline
       durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
-      puts "#{durations}"
+      durations_hashified = durations.map { |x| { item: x } }
+      #puts "#{durations}"
+      
+      execute_soap_request(:postTask, {      
+	jobCount: job_cnt, 
+	machineCount: machine_cnt,
+	opDurationsForJobs: durations_hashified
+      }, :post_task_response)
     end
+    
+    
         
   end
 
