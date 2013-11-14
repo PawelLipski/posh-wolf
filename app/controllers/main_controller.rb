@@ -6,13 +6,14 @@ class MainController < ApplicationController
 
     @solve_result = execute_soap_request(:solve, { 
       task: { 
-        jobCount: 2, 
-        machineCount: 3,
+        jobCount: 20, 
+        machineCount: 5,
         opDurationsForJobs: {
-          item: [
-            { item: [1, 2, 3] }, 
-            { item: [4, 5, 6] }
-          ]
+          item: [ 
+            { item: (1..5).to_a }
+          ] * 20                            
+            #{ item: [1, 2, 3] }, 
+            #{ item: [4, 5, 6] }          
         }
       }
     }, :solve_response)
@@ -26,17 +27,14 @@ class MainController < ApplicationController
   def ajax_init_task
     #@task_id = execute_soap_request(:initTask, {}, :init_task_response)
     
-    @task_id = execute_soap_request(:postTask, {
-      #task: { 
-        jobCount: 2, 
-        machineCount: 3,
-        opDurationsForJobs: {
-          item: [
-            { item: [1, 2, 3] }, 
-            { item: [4, 5, 6] }
-          ]
-        }
-      #}
+    @task_id = execute_soap_request(:postTask, {      
+      jobCount: 20, 
+      machineCount: 5,
+      opDurationsForJobs: {
+	item: [ 
+	  { item: (1..5).to_a }
+	] * 20                            	
+      }    
     }, :post_task_response)
   end
 
