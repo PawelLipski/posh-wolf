@@ -6,8 +6,6 @@ function createMockOrder() {
   return order
 }
 
-realOrder = <%= @result_and_input[:result][:job_order].map { |x| x.to_i } %>
-
 function createMockTaskDef() {
   var taskDef = new Array(jobCnt)
   for (var j = 0; j < jobCnt; j++) {
@@ -152,14 +150,14 @@ function handleNextOpExecution(animationId, machineId) {
 
 $("#task-list-container").fadeOut(1000, function() {
 
-  taskId = <%= params[:taskId] %> // TODO - czy nie bedzie problemow z synciem przy Back buttonie?
+  taskId = <%= params[:taskId] %>
 
   jobCnt = 20
   machineCnt = 5
 
   taskDef = createMockTaskDef()
 
-  order = createMockOrder()
+  order = <%= @result_and_input[:result][:job_order].map { |x| x.to_i } %>                                                    
 
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()
