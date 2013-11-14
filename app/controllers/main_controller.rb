@@ -63,23 +63,19 @@ class MainController < ApplicationController
   end
 
   def new_test_case
-    @url = params[:url]
-    @name = params[:name]
-
-    mongo_client = MongoClient.from_uri("mongodb://hgt:hgt123@ds041178.mongolab.com:41178/hgtdb")
-    db = mongo_client.db("hgtdb")
-    coll = db["flow-shop-test-cases"]
+    url = params[:url]
+    name = params[:name]
 
     require 'open-uri'
-    file = open(@url)
-    @contents = file.read
-
-    doc = { "name" => @name, "contents" => @contents }
-    id = coll.insert(doc)
-
-    #require 'uri'
-    #require 'net/http'
-    #@contents = Net::HTTP.get_response(URI.parse(@url).host, URI.parse(@url).path).body
+    f = open(url)
+    while !f.eof?
+      f.readline
+      job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
+      f.readline
+      durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
+      puts "#{durations}"
+    end
+        
   end
 
   private
