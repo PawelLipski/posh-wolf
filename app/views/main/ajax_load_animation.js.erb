@@ -154,10 +154,10 @@ $("#task-list-container").fadeOut(1000, function() {
 
   jobCnt = <%= @input[:job_count].to_i %>
   machineCnt = <%= @input[:machine_count].to_i %>
+  
+  taskDef = <%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i*20 } } %>  
 
-  taskDef = createMockTaskDef()
-
-  order = <%= @result[:job_order].map { |x| x.to_i } %>                                                    
+  order = <%= @result[:job_order].map { |x| x.to_i } %>
 
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()

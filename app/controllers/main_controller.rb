@@ -54,10 +54,12 @@ class MainController < ApplicationController
     result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
     }, :get_result_and_input_response)   
-    puts result_and_input
+    puts result_and_input    
     
     @result = result_and_input[:result]   
-    @input = result_and_input[:task]    
+    @input = result_and_input[:task]
+    
+    puts "#{@input[:op_durations_for_jobs].map { |x| x[:item] }}"
   end
 
   def new_test_case
