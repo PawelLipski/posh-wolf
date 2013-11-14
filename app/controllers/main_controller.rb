@@ -27,7 +27,7 @@ class MainController < ApplicationController
     #@task_id = execute_soap_request(:initTask, {}, :init_task_response)
     
     @task_id = execute_soap_request(:postTask, {
-      task: { 
+      #task: { 
         jobCount: 2, 
         machineCount: 3,
         opDurationsForJobs: {
@@ -36,7 +36,7 @@ class MainController < ApplicationController
             { item: [4, 5, 6] }
           ]
         }
-      }
+      #}
     }, :post_task_response)
   end
 
@@ -55,7 +55,7 @@ class MainController < ApplicationController
   def ajax_load_animation
     @result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
-    }, :get_result_and_input_response)
+    }, :get_result_and_input_response)   
     puts @result_and_input
   end
 
