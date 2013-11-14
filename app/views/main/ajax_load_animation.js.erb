@@ -1,12 +1,8 @@
 
 function createMockOrder() {
-  var order = new Array(machineCnt)
-  for (var m = 0; m < machineCnt; m++) {
-    order[m] = new Array(jobCnt)
-    for (var j = 0; j < jobCnt; j++) {
-      order[m][j] =  j+1
-    }
-  }
+  var order = new Array(jobCnt)  
+  for (var j = 0; j < jobCnt; j++)
+    order[j] =  j+1   
   return order
 }
 
@@ -115,7 +111,7 @@ function handleNextOpExecution(animationId, machineId) {
     return
 
   var schedIndex = currentSchedIndex[machineId - 1]
-  var jobId = order[machineId - 1][schedIndex - 1]
+  var jobId = order[schedIndex - 1]
   var jobDuration = taskDef[jobId - 1][machineId - 1]
 
   var opPb = $('#job-' + jobId + '-op-' + machineId + '-pb .ui-progressbar-value')
@@ -132,7 +128,7 @@ function handleNextOpExecution(animationId, machineId) {
     nextOpForJob[jobId - 1] = machineId + 1
 
     if (schedIndex <= jobCnt) {
-      var nextJobOnThisMachine = order[machineId - 1][schedIndex - 1]
+      var nextJobOnThisMachine = order[schedIndex - 1]
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
         handleNextOpExecution(animationId, machineId)
@@ -144,7 +140,7 @@ function handleNextOpExecution(animationId, machineId) {
       var nextMachineSchedIndex = currentSchedIndex[nextMachineId - 1]
       
       if (nextMachineSchedIndex <= jobCnt) {
-        var nextMachineJobToDo = order[nextMachineId - 1][nextMachineSchedIndex - 1]
+        var nextMachineJobToDo = order[nextMachineSchedIndex - 1]
 
         if (nextMachineJobToDo == jobId)          
           handleNextOpExecution(animationId, nextMachineId)
@@ -159,7 +155,7 @@ $("#task-list-container").fadeOut(1000, function() {
   taskId = <%= params[:taskId] %> // TODO - czy nie bedzie problemow z synciem przy Back buttonie?
 
   jobCnt = 20
-  machineCnt = 5 // TODO - input = eruby
+  machineCnt = 5
 
   taskDef = createMockTaskDef()
 
