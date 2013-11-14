@@ -65,9 +65,12 @@ class MainController < ApplicationController
   def new_test_case
     url = params[:url]
     name = params[:name]
+    
+    @ids = []
 
     require 'open-uri'
     f = open(url)
+    
     while !f.eof?
       f.readline
       job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
@@ -76,11 +79,12 @@ class MainController < ApplicationController
       durations_hashified = durations.map { |x| { item: x } }
       #puts "#{durations}"
       
-      execute_soap_request(:postTask, {      
+      @ids.push execute_soap_request(:postTask, {      
 	jobCount: job_cnt, 
 	machineCount: machine_cnt,
 	opDurationsForJobs: durations_hashified
       }, :post_task_response)
+            
     end
     
     
