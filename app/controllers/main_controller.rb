@@ -82,21 +82,23 @@ class MainController < ApplicationController
   private
 
     def execute_soap_request(method, args, retval)
+      #ep = "http://0.0.0.0:8080"
+      ep = "http://posh-wolf-ws.herokuapp.com" 
+      
       respond_to do |format|
         format.js do 
-          client = Savon.client do
-            #endpoint "http://posh-wolf-ws.herokuapp.com" 
-            endpoint "http://0.0.0.0:8080"
+          client = Savon.client do       
+            endpoint ep
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
           puts args
           client.call(method, message: args).body[retval][:return]
         end
+	
         format.html do 
-          client = Savon.client do
-            #endpoint "http://posh-wolf-ws.herokuapp.com" 
-            endpoint "http://0.0.0.0:8080"
+          client = Savon.client do            
+            endpoint ep
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
