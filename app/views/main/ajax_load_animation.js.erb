@@ -36,7 +36,7 @@ opHeight = 20
 
 function loadAnimationScaffolding() {
 
-  animContnr = $("#anim-container")
+  var animContnr = $("#anim-container")
 
   animContnr.html('<div id="anim-machines-header" style="position: relative; left: 0; top: 0">' +
     '<h3><small>Machines</small></h3></div>')
@@ -47,6 +47,8 @@ function loadAnimationScaffolding() {
 
   animContnr.append('<table id="anim-jobs-table" width="100%"/>')
   animContnr.append('<button id="back-button" class="btn btn-large btn-primary">Back</button>')
+
+  $("#anim-jobs-table").html('<tr><td rowspan="2" align="center">foo</td><td align="center">bar</td></tr><tr><td align="center">qux</td></tr>')
 
   $("#back-button").click(function() {
 
