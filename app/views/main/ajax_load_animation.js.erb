@@ -1,22 +1,4 @@
 
-function createMockOrder() {
-  var order = new Array(jobCnt)  
-  for (var j = 0; j < jobCnt; j++)
-    order[j] =  j+1   
-  return order
-}
-
-function createMockTaskDef() {
-  var taskDef = new Array(jobCnt)
-  for (var j = 0; j < jobCnt; j++) {
-    taskDef[j] = new Array(machineCnt)
-    for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = Math.floor((Math.random()*100)+1)
-    }
-  }
-  return taskDef
-}
-
 function createMachineSchedArray() {
   var s = new Array(machineCnt)
   for (var i = 0; i < machineCnt; i++)
@@ -34,6 +16,24 @@ function createNextOpForJobArray() {
 opWidth = 100
 opHeight = 20
 
+function createProgressBarForOp(opPbId, opLabelText) {
+  
+  opPb = $('<div id="' + opPbId + '" style="float: left"/>')
+
+  opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
+  opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
+
+  var opLabelId = opPbId + '-label'  
+  var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
+    'px; overflow: hidden">' + 
+    '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
+    '<center><b>' + opLabelText + '</b></center> </div> </div>'
+			      
+  opPb.append(opLabelHtml)
+
+  return opPb
+}
+
 function loadAnimationScaffolding() {
 
   var animContnr = $("#anim-container")
@@ -45,11 +45,12 @@ function loadAnimationScaffolding() {
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
 
-  jobsTable.append('<tr><td colspan="3"><table width="100%"><tr id="anim-machine-headers-tr"/>')
+  jobsTable.append('<tr><td colspan="3"><table width="100%"><tr id="anim-machine-headers-tr"/>')  
+  jobsTable.append('<tr id="anim-machines-tr"/>')
+  jobsTable.append('</table></td></tr>')
+
   for (var i = 1; i <= machineCnt; i++)
     $("#anim-machine-headers-tr").append('<td id="anim-machine-td-' + i + '" width="20%">Machine #' + i + '</td>')
-  jobsTable.append('</tr><tr id="anim-machines-tr">')
-  jobsTable.append('</tr></table></td></tr>')
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Job progress</h1></tr>')
 
@@ -73,23 +74,6 @@ function loadAnimationScaffolding() {
   })
 }
 
-function createProgressBarForOp(opPbId, opLabelText) {
-  
-  opPb = $('<div id="' + opPbId + '" style="float: left"/>')
-
-  opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
-  opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
-
-  var opLabelId = opPbId + '-label'  
-  var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
-    'px; overflow: hidden">' + 
-    '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
-    '<center><b>' + opLabelText + '</b></center> </div> </div>'
-			      
-  opPb.append(opLabelHtml)
-
-  return opPb
-}
 
 function loadQueueForJob(jobId) {
   
