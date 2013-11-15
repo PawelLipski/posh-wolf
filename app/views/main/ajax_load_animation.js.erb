@@ -74,6 +74,7 @@ function loadAnimationScaffolding() {
 }
 
 function loadQueueForJob(jobId) {
+  
   $("#anim-jobs-table").append('<tr ' + 
     ((jobId < jobCnt) ? 'style="border-bottom: solid lightgray 1px"' : '') + '>' + 
     '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
@@ -92,18 +93,19 @@ function loadQueueForJob(jobId) {
     var opPbId = 'job-' + jobId + '-op-' + o + '-pb'
     opPb = $('<div id="' + opPbId + '" style="float: left"/>')
 
-    $(opPb).progressbar({ value: 1 }).height(opHeight).css('width', '100%')
-    $(opPb).find('.ui-progressbar-value').css('visibility', 'hidden')
+    opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
+    opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
 
     var opLabelId = 'job-' + jobId + '-op-' + o + '-label'
-
-    var labelText = taskDef[jobId - 1][o - 1]
-    var labelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
+    var opLabelText = taskDef[jobId - 1][o - 1]
+    var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
       'px; overflow: hidden">' + 
       '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
-      '<center><b>' + labelText + '</b></center> </div> </div>'
-        
-    opContnr.append(opPb).append(labelHtml)
+      '<center><b>' + opLabelText + '</b></center> </div> </div>'
+                               
+    opPb.append(opLabelHtml)
+                               
+    opContnr.append(opPb)
   }
 
 }
