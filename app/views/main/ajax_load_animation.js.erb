@@ -18,7 +18,7 @@ opHeight = 20
 
 function createProgressBarForOp(opPbId, opLabelText) {
   
-  opPb = $('<div id="' + opPbId + '" style="float: left"/>')
+  opPb = $('<div id="' + opPbId + '" style="float: left"/>')    
 
   opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
   opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
@@ -28,7 +28,7 @@ function createProgressBarForOp(opPbId, opLabelText) {
     'px; overflow: hidden">' + 
     '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
     '<center><b>' + opLabelText + '</b></center> </div> </div>'
-			      
+
   opPb.append(opLabelHtml)
 
   return opPb
@@ -55,7 +55,8 @@ function loadAnimationScaffolding() {
 
   var machineTr = $('#anim-machines-tr')
   for (var i = 1; i <= machineCnt; i++) {    
-    var machineTd = $('<td id="anim-machine-td-' + i + '" width="20%"/>').appendTo(machineTr)
+    var machineTd = $('<td id="anim-machine-td-' + i + 
+    '" style="width: 20%; padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
     machineTd.append(createProgressBarForOp('machine-pb-' + i, 'Started'))
   }                                      
 
@@ -95,7 +96,7 @@ function loadQueueForJob(jobId) {
   for (var o = 5; o >= 1; o--) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
-    waitingTd.append('<div id="' + opContnrId + '" style="float: right; position: relative; ' + 
+    waitingTd.append('<div id="' + opContnrId + '" style="float: right; position: relative; ' +
       'width: 18%; margin-left: 1%; margin-right: 1%; margin-top: 5px; margin-bottom: 5px"/>')
     var opContnr = $('#' + opContnrId)  
   
