@@ -73,6 +73,24 @@ function loadAnimationScaffolding() {
   })
 }
 
+function createProgressBarForOp(opPbId, opLabelText) {
+  
+  opPb = $('<div id="' + opPbId + '" style="float: left"/>')
+
+  opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
+  opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
+
+  var opLabelId = opPbId + '-label'  
+  var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
+    'px; overflow: hidden">' + 
+    '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
+    '<center><b>' + opLabelText + '</b></center> </div> </div>'
+			      
+  opPb.append(opLabelHtml)
+
+  return opPb
+}
+
 function loadQueueForJob(jobId) {
   
   $("#anim-jobs-table").append('<tr ' + 
@@ -88,24 +106,12 @@ function loadQueueForJob(jobId) {
     var opContnrId = 'job-' + jobId + '-op-' + o
     waitingTd.append('<div id="' + opContnrId + '" style="float: right; position: relative; ' + 
       'width: 18%; margin-left: 1%; margin-right: 1%; margin-top: 5px; margin-bottom: 5px"/>')
-    var opContnr = $('#' + opContnrId)
-
+    var opContnr = $('#' + opContnrId)  
+  
     var opPbId = 'job-' + jobId + '-op-' + o + '-pb'
-    opPb = $('<div id="' + opPbId + '" style="float: left"/>')
-
-    opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
-    opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
-
-    var opLabelId = 'job-' + jobId + '-op-' + o + '-label'
     var opLabelText = taskDef[jobId - 1][o - 1]
-    var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
-      'px; overflow: hidden">' + 
-      '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
-      '<center><b>' + opLabelText + '</b></center> </div> </div>'
                                
-    opPb.append(opLabelHtml)
-                               
-    opContnr.append(opPb)
+    opContnr.append(createProgressBarForOp(opPbId, opLabelText))
   }
 
 }
