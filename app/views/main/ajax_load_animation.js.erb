@@ -43,18 +43,19 @@ function loadAnimationScaffolding() {
 
   jobsTable = $("#anim-jobs-table")
 
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="2"><h1>Machine states</h1></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
 
-  jobsTable.append('<tr><td colspan="2"><table width="100%"><tr id="anim-machines-tr"/>')
+  jobsTable.append('<tr><td colspan="3"><table width="100%"><tr id="anim-machine-headers-tr"/>')
   for (var i = 1; i <= machineCnt; i++)
-    $("#anim-machines-tr").append('<td id="anim-machine-td-' + i + '" width="20%">' + i + '</td>')
+    $("#anim-machine-headers-tr").append('<td id="anim-machine-td-' + i + '" width="20%">Machine #' + i + '</td>')
+  jobsTable.append('</tr><tr id="anim-machines-tr">')
   jobsTable.append('</tr></table></td></tr>')
 
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="2"><h1>Job progress</h1></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Job progress</h1></tr>')
 
-  jobsTable.append('<tr><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
+  jobsTable.append('<tr><td/><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
     '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>')
-  jobsTable.append('<tr><td/>' +
+  jobsTable.append('<tr><td/><td/>' +
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
 
   opHeaders = $("#op-headers-tr")
@@ -75,8 +76,9 @@ function loadAnimationScaffolding() {
 function loadQueueForJob(jobId) {
   $("#anim-jobs-table").append('<tr ' + 
     ((jobId < jobCnt) ? 'style="border-bottom: solid lightgray 1px"' : '') + '>' + 
-    '<td id="done-job-' + jobId + '" style="width: 50%"/>' +
-    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 50%"></td>' +
+    '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
+    '<td id="done-job-' + jobId + '" style="width: 45%"/>' +
+    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%"></td>' +
     '</tr>')
   var waitingTd = $("#waiting-job-" + jobId)
 
