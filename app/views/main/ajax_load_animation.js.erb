@@ -16,9 +16,14 @@ function createNextOpForJobArray() {
 opWidth = 100
 opHeight = 20
 
-function createProgressBarForOp(opPbId, opLabelText) {
-  
-  var opPb = $('<div id="' + opPbId + '" style="float: left"/>')    
+function createProgressBarForOp(opContnrId, opLabelText, css) {
+
+  var opContnr = $('<div id="' + opContnrId + '" style="position: relative; ' +
+      'margin-left: 1%; margin-right: 1%; margin-top: 5px; margin-bottom: 5px"/>')
+  opContnr.css(css)
+
+  var opPbId = opContnrId + '-pb'
+  var opPb = $('<div id="' + opPbId + '" style="float: left"/>')
 
   opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
   opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
@@ -30,8 +35,9 @@ function createProgressBarForOp(opPbId, opLabelText) {
     '<center><b>' + opLabelText + '</b></center> </div> </div>'
 
   opPb.append(opLabelHtml)
+  opContnr.append(opPb)
 
-  return opPb
+  return opContnr
 }
 
 function loadAnimationScaffolding() {
@@ -54,11 +60,14 @@ function loadAnimationScaffolding() {
     $('#anim-machine-headers-tr').append('<td width="20%" align="center">Machine #' + i + '</td>')
 
   var machineTr = $('#anim-machines-tr')
+  var css = { float: 'center', width: '100%' }
+
   for (var i = 1; i <= machineCnt; i++) {    
     var machineTd = $('<td id="anim-machine-td-' + i + 
     '" style="width: 20%; padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
-    machineTd.append(createProgressBarForOp('machine-pb-' + i, 'Started'))
-  }                                      
+                                        
+    machineTd.append(createProgressBarForOp('machine-pb-' + i, 'Started', css))
+  }
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Job progress</h1></tr>')
 
@@ -83,6 +92,7 @@ function loadAnimationScaffolding() {
 }
 
 
+
 function loadQueueForJob(jobId) {
   
   $("#anim-jobs-table").append('<tr ' + 
@@ -91,19 +101,15 @@ function loadQueueForJob(jobId) {
     '<td id="done-job-' + jobId + '" style="width: 45%"/>' +
     '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%"></td>' +
     '</tr>')
-  var waitingTd = $("#waiting-job-" + jobId)
-
+  var waitingTd = $('#waiting-job-' + jobId)
+  
+  var css = { float: 'right', width: '18%' }
   for (var o = 5; o >= 1; o--) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
-    waitingTd.append('<div id="' + opContnrId + '" style="float: right; position: relative; ' +
-      'width: 18%; margin-left: 1%; margin-right: 1%; margin-top: 5px; margin-bottom: 5px"/>')
-    var opContnr = $('#' + opContnrId)  
-  
-    var opPbId = 'job-' + jobId + '-op-' + o + '-pb'
     var opLabelText = taskDef[jobId - 1][o - 1]
-                               
-    opContnr.append(createProgressBarForOp(opPbId, opLabelText))
+  
+    waitingTd.append(createProgressBarForOp(opContnrId, opLabelText, css))
   }
 
 }
