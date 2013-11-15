@@ -48,7 +48,9 @@ function loadAnimationScaffolding() {
   animContnr.append('<table id="anim-jobs-table" width="100%"/>')
   animContnr.append('<button id="back-button" class="btn btn-large btn-primary">Back</button>')
 
-  $("#anim-jobs-table").html('<tr><td rowspan="2" align="center">foo</td><td align="center">bar</td></tr><tr><td align="center">qux</td></tr>')
+  $("#anim-jobs-table").html('<tr><td rowspan="2" align="center"><h3><small>Complete</small></h3></td>' +
+    '<td align="center"><h3><small>Pending</small></h3></td></tr>' +
+    '<tr><td align="center">qux</td></tr>')
 
   $("#back-button").click(function() {
 
