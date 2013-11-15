@@ -36,21 +36,28 @@ function createProgressBarForOp(opPbId, opLabelText) {
 
 function loadAnimationScaffolding() {
 
-  var animContnr = $("#anim-container")
+  var animContnr = $('#anim-container')
   
   animContnr.append('<table id="anim-jobs-table" width="100%"/>')
   animContnr.append('<button id="back-button" class="btn btn-large btn-primary">Back</button>')
 
-  jobsTable = $("#anim-jobs-table")
+  jobsTable = $('#anim-jobs-table')
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
 
-  jobsTable.append('<tr><td colspan="3"><table width="100%"><tr id="anim-machine-headers-tr"/>')  
-  jobsTable.append('<tr id="anim-machines-tr"/>')
-  jobsTable.append('</table></td></tr>')
+  jobsTable.append('<tr><td colspan="3">' +
+    '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
+    '<tr id="anim-machines-tr"/>' +
+    '</table></td></tr>')
 
   for (var i = 1; i <= machineCnt; i++)
-    $("#anim-machine-headers-tr").append('<td id="anim-machine-td-' + i + '" width="20%">Machine #' + i + '</td>')
+    $('#anim-machine-headers-tr').append('<td width="20%">Machine #' + i + '</td>')
+
+  var machineTr = $('#anim-machines-tr')
+  for (var i = 1; i <= machineCnt; i++) {    
+    var machineTd = $('<td id="anim-machine-td-' + i + '" width="20%"/>').appendTo(machineTr)
+    machineTd.append(createProgressBarForOp('machine-pb-' + i, 'Started'))
+  }                                      
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Job progress</h1></tr>')
 
@@ -61,7 +68,7 @@ function loadAnimationScaffolding() {
 
   opHeaders = $("#op-headers-tr")
   for (var i = 1; i <= machineCnt; i++)
-    opHeaders.append('<td width="20%" align="center"><h4><small>Operation #' + i + '</small></h4></td>')
+    opHeaders.append('<td width="20%" align="center"><h4><small>Op #' + i + '</small></h4></td>')
 
   $("#back-button").click(function() {
 
