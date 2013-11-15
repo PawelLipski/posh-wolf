@@ -150,7 +150,9 @@ function handleNextOpExecution(animationId, machineId) {
       return
 
     moveOpPbToDone(jobId, machineId)
-  
+                                                                                               
+    machinePb.css({visibility: 'hidden', width: 0})    
+                                                               
     currentSchedIndex[machineId - 1] = ++schedIndex
     nextOpForJob[jobId - 1] = machineId + 1
 
@@ -159,6 +161,8 @@ function handleNextOpExecution(animationId, machineId) {
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
         handleNextOpExecution(animationId, machineId)
+      else
+	machineLabel.html('Idle')
     }
 
     if (machineId < machineCnt) {
