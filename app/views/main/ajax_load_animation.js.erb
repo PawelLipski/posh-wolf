@@ -48,9 +48,11 @@ function loadAnimationScaffolding() {
   animContnr.append('<table id="anim-jobs-table" width="100%"/>')
   animContnr.append('<button id="back-button" class="btn btn-large btn-primary">Back</button>')
 
-  $("#anim-jobs-table").html('<tr><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
-    '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>' +
-    '<tr><td/>' +
+  jobsTable = $("#anim-jobs-table")
+  jobsTable.append('<tr style="border-bottom: solid"><td colspan="2"><h1>Job progress</h1></tr>')
+  jobsTable.append('<tr><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
+    '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>')
+  jobsTable.append('<tr><td/>' +
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
 
   opHeaders = $("#op-headers-tr")
