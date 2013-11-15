@@ -60,7 +60,7 @@ function loadAnimationScaffolding() {
 }
 
 function loadQueueForJob(jobId) {
-  $("#anim-jobs-table").append('<tr>' + 
+  $("#anim-jobs-table").append('<tr style="border-bottom: solid lightgray 1px">' + 
     '<td id="done-job-' + jobId + '" style="width: 50%"/>' +
     '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 50%"></td>' +
     '</tr>')
@@ -70,7 +70,7 @@ function loadQueueForJob(jobId) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
     waitingTd.append('<div id="' + opContnrId + '" style="float: left; position: relative; ' + 
-      'width: 15%; padding-right: 10px; padding-bottom: 10px"/>')
+      'width: 15%; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px"/>')
     var opContnr = $('#' + opContnrId)
 
       var opPbId = 'job-' + jobId + '-op-' + o + '-pb'
