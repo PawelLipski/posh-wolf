@@ -18,7 +18,7 @@ opHeight = 20
 
 function createProgressBarForOp(opPbId, opLabelText) {
   
-  opPb = $('<div id="' + opPbId + '" style="float: left"/>')    
+  var opPb = $('<div id="' + opPbId + '" style="float: left"/>')    
 
   opPb.progressbar({ value: 1 }).height(opHeight).css('width', '100%')
   opPb.find('.ui-progressbar-value').css('visibility', 'hidden')
@@ -51,7 +51,7 @@ function loadAnimationScaffolding() {
     '</table></td></tr>')
 
   for (var i = 1; i <= machineCnt; i++)
-    $('#anim-machine-headers-tr').append('<td width="20%">Machine #' + i + '</td>')
+    $('#anim-machine-headers-tr').append('<td width="20%" align="center">Machine #' + i + '</td>')
 
   var machineTr = $('#anim-machines-tr')
   for (var i = 1; i <= machineCnt; i++) {    
