@@ -138,12 +138,13 @@ function handleNextOpExecution(animationId, machineId) {
   opPb.css('visibility', 'visible')
 
   var machinePb = $('#machine-' + machineId + '-pb .ui-progressbar-value')
-  machinePb.animate({ width: 100 }, jobDuration * 50)
+  machinePb.css('visibility', 'visible')
+  machinePb.animate({ width: '100%' }, jobDuration * 50)
 
   var machineLabel = $('#machine-' + machineId + '-pb-label').find('#text')  
   machineLabel.html('Job #' + jobId)
 
-  opPb.animate({ width: 100 }, jobDuration * 50, function() {
+  opPb.animate({ width: '100%' }, jobDuration * 50, function() {
 
     if (ongoingAnimationId != animationId)
       return
