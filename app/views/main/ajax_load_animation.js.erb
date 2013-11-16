@@ -60,6 +60,11 @@ function loadAnimationScaffolding() {
 
   jobsTable = $('#anim-jobs-table')
 
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Overall progress</h1></tr>')
+  jobsTable.append('<tr> <td colspan="3" id="overall-td"> </tr>')
+
+  $('#overall-td').progressbar({ value: 50 }).width('100%')
+                   
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
 
   jobsTable.append('<tr><td colspan="3">' +
