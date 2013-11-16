@@ -1,4 +1,8 @@
 
+opWidth = 100
+opHeight = 20
+
+
 function createMockTaskDef() {
   var taskDef = new Array(jobCnt)
   for (var j = 0; j < jobCnt; j++) {
@@ -24,8 +28,6 @@ function createNextOpForJobArray() {
   return s
 }
 
-opWidth = 100
-opHeight = 20
 
 function createProgressBarForOp(opContnrId, opLabelText, css) {
 
@@ -145,9 +147,7 @@ function moveOpPbToDone(jobId, opId) {
 function handleNextOpExecution(animationId, machineId, timePassed) {
 
   if (ongoingAnimationId != animationId)
-    return
-
-  $('#overall').progressbar({ value: timePassed / 2040.0 * 100 })
+    return  
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[schedIndex - 1]
@@ -164,9 +164,12 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
   machineLabel.html('Job #' + jobId)
 
   opPb.animate({ width: '100%' }, jobDuration * 50, function() {
-
+                                                                
     if (ongoingAnimationId != animationId)
       return
+                                                                   
+    timePassed += jobDuration                                                           
+    $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
 
     moveOpPbToDone(jobId, machineId)
                                                                                                
@@ -179,7 +182,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
       var nextJobOnThisMachine = order[schedIndex - 1]
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
-        handleNextOpExecution(animationId, machineId, timePassed + jobDuration)
+        handleNextOpExecution(animationId, machineId, timePassed)
       else
 	machineLabel.html('Idle')
     } else 
@@ -194,7 +197,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         var nextMachineJobToDo = order[nextMachineSchedIndex - 1]
 
         if (nextMachineJobToDo == jobId)          
-          handleNextOpExecution(animationId, nextMachineId, timePassed + jobDuration)
+          handleNextOpExecution(animationId, nextMachineId, timePassed)
       }
     }
   })
@@ -207,6 +210,8 @@ $("#task-list-container").fadeOut(1000, function() {
 
   jobCnt = <%= @input[:job_count].to_i %>
   machineCnt = <%= @input[:machine_count].to_i %>
+                                                   
+  executionTimespan = <%= @result[:execution_timespan] %>
   
   taskDef = createMockTaskDef()
   //<%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i*20 } } %>  
