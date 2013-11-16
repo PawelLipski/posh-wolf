@@ -45,7 +45,7 @@ function createProgressBarForOp(opContnrId, opLabelText, css) {
     '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
     '<center><b><p id="text">' + opLabelText + '</p></b></center> </div> </div>'
 
-  opPb.append(opLabelHtml)
+  opContnr.append(opLabelHtml)
   opContnr.append(opPb)
 
   return opContnr
