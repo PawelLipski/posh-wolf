@@ -169,7 +169,10 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
       return
                                                                    
     timePassed += jobDuration                                                           
-    $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
+    if (overallTime < timePassed) {
+      overallTime = timePassed                             
+      $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
+    }                              
 
     moveOpPbToDone(jobId, machineId)
                                                                                                
@@ -212,6 +215,7 @@ $("#task-list-container").fadeOut(1000, function() {
   machineCnt = <%= @input[:machine_count].to_i %>
                                                    
   executionTimespan = <%= @result[:execution_timespan] %>
+  overallTime = 0                                                   
   
   taskDef = createMockTaskDef()
   //<%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i*20 } } %>  
