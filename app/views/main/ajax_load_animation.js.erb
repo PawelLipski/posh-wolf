@@ -61,9 +61,10 @@ function loadAnimationScaffolding() {
   jobsTable = $('#anim-jobs-table')
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Overall progress</h1></tr>')
-  jobsTable.append('<tr> <td colspan="3" id="overall-td"> </tr>')
+  jobsTable.append('<tr> <td colspan="3" id="overall"> </tr>')
 
-  $('#overall-td').progressbar({ value: 50 }).width('100%')
+  $('#overall').progressbar({ value: 0 }).width('100%')
+  $('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
                    
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
 
@@ -141,10 +142,12 @@ function moveOpPbToDone(jobId, opId) {
 }
 
 
-function handleNextOpExecution(animationId, machineId) {
+function handleNextOpExecution(animationId, machineId, timePassed) {
 
   if (ongoingAnimationId != animationId)
     return
+
+  $('#overall').progressbar({ value: timePassed / 2040.0 * 100 })
 
   var schedIndex = currentSchedIndex[machineId - 1]
   var jobId = order[schedIndex - 1]
@@ -176,7 +179,7 @@ function handleNextOpExecution(animationId, machineId) {
       var nextJobOnThisMachine = order[schedIndex - 1]
 
       if (nextOpForJob[nextJobOnThisMachine - 1] == machineId)
-        handleNextOpExecution(animationId, machineId)
+        handleNextOpExecution(animationId, machineId, timePassed + jobDuration)
       else
 	machineLabel.html('Idle')
     } else 
@@ -191,7 +194,7 @@ function handleNextOpExecution(animationId, machineId) {
         var nextMachineJobToDo = order[nextMachineSchedIndex - 1]
 
         if (nextMachineJobToDo == jobId)          
-          handleNextOpExecution(animationId, nextMachineId)
+          handleNextOpExecution(animationId, nextMachineId, timePassed + jobDuration)
       }
     }
   })
@@ -219,7 +222,7 @@ $("#task-list-container").fadeOut(1000, function() {
     loadQueueForJob(job)
 
   $("#anim-container").fadeIn(1000, function() {
-      handleNextOpExecution(ongoingAnimationId, 1)
+      handleNextOpExecution(ongoingAnimationId, 1, 0)
   })
 
 })
