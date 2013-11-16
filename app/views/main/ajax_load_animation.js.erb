@@ -163,7 +163,8 @@ function handleNextOpExecution(animationId, machineId) {
         handleNextOpExecution(animationId, machineId)
       else
 	machineLabel.html('Idle')
-    }
+    } else 
+      machineLabel.html('Finished')
 
     if (machineId < machineCnt) {
 
