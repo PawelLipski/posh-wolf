@@ -97,9 +97,11 @@ function loadAnimationScaffolding() {
   jobsTable.append('<tr><td/><td/>' +
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
 
-  opHeaders = $("#op-headers-tr")
-  for (var i = 1; i <= machineCnt; i++)
-    opHeaders.append('<td width="' + headerWidth + '%" align="center"><h4><small>Op #' + i + '</small></h4></td>')
+  var opHeaders = $("#op-headers-tr")  
+  for (var i = 1; i <= machineCnt; i++) {
+    var label = machineCnt < 10 ? 'Op #' + i : '#' + i;
+    opHeaders.append('<td width="' + headerWidth + '%" align="center"><h4><small>' + label + '</small></h4></td>')
+  }                                      
 
   $("#back-button").click(function() {
 
