@@ -218,17 +218,17 @@ $("#task-list-container").fadeOut(1000, function() {
   overallTime = 0                                                   
   
   taskDef = createMockTaskDef()
-  //<%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i*20 } } %>  
+  // <%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i*20 } } %>  
 
-  order = <%= @result[:job_order].map { |x| x.to_i } %>
+  order = <%= @result[:job_order].map { |x| x.to_i }.shuffle %>
 
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()
 
   loadAnimationScaffolding()
 
-  for (var job = 1; job <= jobCnt; job++)
-    loadQueueForJob(job)
+  for (var i = 1; i <= jobCnt; i++)
+    loadQueueForJob(order[i - 1])
 
   $("#anim-container").fadeIn(1000, function() {
       handleNextOpExecution(ongoingAnimationId, 1, 0)
