@@ -114,7 +114,7 @@ function loadAnimationScaffolding() {
 
 function loadQueueForJob(jobId) {
   
-  $("#anim-jobs-table").append('<tr ' + 
+  $("#anim-jobs-table").append('<tr id="job-tr-' + jobId + '" ' +
     ((jobId < jobCnt) ? 'style="border-bottom: solid lightgray 1px"' : '') + '>' + 
     '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
     '<td id="done-job-' + jobId + '" style="width: 45%"/>' +
@@ -134,11 +134,24 @@ function loadQueueForJob(jobId) {
 }
 
 
-function moveOpPbToDone(jobId, opId) { 
+function moveOpPbToDone(jobId, opId, animationId) { 
   var opContnr = $('#job-' + jobId + '-op-' + opId)
 
   opContnr.fadeOut(1000, function() {
-    $(opContnr).detach().prependTo('#done-job-' + jobId).css('float', 'right').fadeIn(1000)
+                                     
+    if (ongoingAnimationId != animationId)
+      return
+                                    
+    $(opContnr).detach().prependTo('#done-job-' + jobId)
+      .css('float', 'right').fadeIn(1000, function() {
+                                                      
+	if (ongoingAnimationId != animationId)
+	  return
+                                                     
+	if (opId == machineCnt)
+	  $('#job-tr-' + jobId).fadeOut(1000)
+      })                                               
+                                   
   })
 
 }
@@ -166,15 +179,15 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
   opPb.animate({ width: '100%' }, jobDuration * 50, function() {
                                                                 
     if (ongoingAnimationId != animationId)
-      return
-                                                                   
+      return                                                                       
+                                                               
     timePassed += jobDuration                                                           
     if (overallTime < timePassed) {
       overallTime = timePassed                             
       $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
     }                              
 
-    moveOpPbToDone(jobId, machineId)
+    moveOpPbToDone(jobId, machineId, animationId)
                                                                                                
     machinePb.css({visibility: 'hidden', width: 0})    
                                                                
@@ -188,8 +201,8 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         handleNextOpExecution(animationId, machineId, timePassed)
       else
 	machineLabel.html('Idle')
-    } else 
-      machineLabel.html('Finished')
+    } else
+      machineLabel.html('Finished')    
 
     if (machineId < machineCnt) {
 
@@ -202,7 +215,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         if (nextMachineJobToDo == jobId)          
           handleNextOpExecution(animationId, nextMachineId, timePassed)
       }
-    }
+    }          
   })
 
 }
