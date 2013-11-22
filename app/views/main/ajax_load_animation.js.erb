@@ -114,8 +114,10 @@ function loadAnimationScaffolding() {
 
 function loadQueueForJob(jobId) {
   
-  $("#anim-jobs-table").append('<tr id="job-tr-' + jobId + '" ' +
-    ((jobId < jobCnt) ? 'style="border-bottom: solid lightgray 1px"' : '') + '>' + 
+  var jobIsLast = jobId == order[jobCnt - 1]
+  var bottomLine = !jobIsLast ? 'style="border-bottom: solid lightgray 1px"' : ''
+
+  $("#anim-jobs-table").append('<tr id="job-tr-' + jobId + '" ' + bottomLine + '>' + 
     '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
     '<td id="done-job-' + jobId + '" style="width: 45%"/>' +
     '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%"></td>' +
