@@ -76,15 +76,17 @@ function loadAnimationScaffolding() {
     '<tr id="anim-machines-tr"/>' +
     '</table></td></tr>')
 
+  var machineHeaderWidth = 100.0 / machineCnt
   for (var i = 1; i <= machineCnt; i++)
-    $('#anim-machine-headers-tr').append('<td width="20%" align="center">Machine #' + i + '</td>')
+    $('#anim-machine-headers-tr').append('<td width="' + machineHeaderWidth + '%" align="center">Machine #' + i + '</td>')
 
   var machineTr = $('#anim-machines-tr')
   var css = { float: 'center', width: '100%' }
 
   for (var i = 1; i <= machineCnt; i++) {    
     var machineTd = $('<td id="anim-machine-td-' + i + 
-    '" style="width: 20%; padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
+    '" style="width: ' + machineHeaderWidth + '%;' + 
+    ' padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
                                         
     machineTd.append(createProgressBarForOp('machine-' + i, 'Started', css))
   }
