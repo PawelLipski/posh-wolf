@@ -24,8 +24,7 @@ class MainController < ApplicationController
     sleep 10
   end
 
-  def ajax_init_task
-    #@task_id = execute_soap_request(:initTask, {}, :init_task_response)
+  def ajax_init_task  
     
     @task_id = execute_soap_request(:postTask, {      
       jobCount: 20, 
@@ -34,6 +33,19 @@ class MainController < ApplicationController
 	item: [ 
 	  { item: (1..5).to_a }
 	] * 20                            	
+      }    
+    }, :post_task_response)
+  end
+  
+  def ajax_init_large_task  
+    
+    @task_id = execute_soap_request(:postTask, {      
+      jobCount: 50, 
+      machineCount: 10,
+      opDurationsForJobs: {
+	item: [ 
+	  { item: (1..10).to_a }
+	] * 50
       }    
     }, :post_task_response)
   end

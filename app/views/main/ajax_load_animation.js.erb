@@ -126,7 +126,7 @@ function loadQueueForJob(jobId) {
   var waitingTd = $('#waiting-job-' + jobId)
   
   var css = { float: 'right', width: '18%' }
-  for (var o = 5; o >= 1; o--) {
+  for (var o = machineCnt; o >= 1; o--) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
     var opLabelText = taskDef[jobId - 1][o - 1]
