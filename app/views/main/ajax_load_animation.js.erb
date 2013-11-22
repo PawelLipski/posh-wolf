@@ -75,17 +75,16 @@ function loadAnimationScaffolding() {
     '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
     '<tr id="anim-machines-tr"/>' +
     '</table></td></tr>')
-
-  var machineHeaderWidth = 100.0 / machineCnt
+  
   for (var i = 1; i <= machineCnt; i++)
-    $('#anim-machine-headers-tr').append('<td width="' + machineHeaderWidth + '%" align="center">Machine #' + i + '</td>')
+    $('#anim-machine-headers-tr').append('<td width="' + headerWidth + '%" align="center">Machine #' + i + '</td>')
 
   var machineTr = $('#anim-machines-tr')
   var css = { float: 'center', width: '100%' }
 
   for (var i = 1; i <= machineCnt; i++) {    
     var machineTd = $('<td id="anim-machine-td-' + i + 
-    '" style="width: ' + machineHeaderWidth + '%;' + 
+    '" style="width: ' + headerWidth + '%;' + 
     ' padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
                                         
     machineTd.append(createProgressBarForOp('machine-' + i, 'Started', css))
@@ -100,7 +99,7 @@ function loadAnimationScaffolding() {
 
   opHeaders = $("#op-headers-tr")
   for (var i = 1; i <= machineCnt; i++)
-    opHeaders.append('<td width="20%" align="center"><h4><small>Op #' + i + '</small></h4></td>')
+    opHeaders.append('<td width="' + headerWidth + '%" align="center"><h4><small>Op #' + i + '</small></h4></td>')
 
   $("#back-button").click(function() {
 
@@ -243,6 +242,7 @@ $("#task-list-container").fadeOut(1000, function() {
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()
 
+  headerWidth = 100.0 / machineCnt                                                   
   loadAnimationScaffolding()
 
   for (var i = 1; i <= jobCnt; i++)
