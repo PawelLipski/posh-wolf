@@ -99,9 +99,16 @@ $(document).ready(function() {
 	url: "/testcase/ajax/init-task-from-url",
 	type: "POST",	
 	data: { srcUrl: $("#input-url").val() },
-	success: function() {
+	
+	complete: function() {
 	  initTaskLocked = false
-
+	},
+	
+	error: function(XMLHttpRequest, textStatus, errorThrown) {
+	  alert('Failure')
+	},
+	
+	success: function() {	  
 	  if (!progressCheckRunning) {
 	    progressCheckRunning = true
 	    get_progress()
