@@ -63,13 +63,13 @@ function loadAnimationScaffolding() {
 
   jobsTable = $('#anim-jobs-table')
 
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Overall progress</h1></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1><small>Overall progress</small></h1></td></tr>')
   jobsTable.append('<tr> <td colspan="3" id="overall"> </tr>')
 
   $('#overall').progressbar({ value: 0 }).width('100%')
   $('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
                    
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Machine states</h1></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1><small>Machine states</small></h1></td></tr>')
 
   jobsTable.append('<tr><td colspan="3">' +
     '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
@@ -90,7 +90,7 @@ function loadAnimationScaffolding() {
     machineTd.append(createProgressBarForOp('machine-' + i, 'Started', css))
   }
 
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1>Job progress</h1></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1><small>Job progress</small></h1></td></tr>')
 
   jobsTable.append('<tr><td/><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
     '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>')
