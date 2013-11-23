@@ -3,9 +3,15 @@ alert('init task from URL')
 
 newTaskIds = <%= raw(@task_ids) %> 
 
-for (var newTaskId in newTaskIds) {
+console.log(newTaskIds)
+
+for (var i = 0; i < newTaskIds.length; i++) {
   
+  newTaskId = newTaskIds[i]
+
   taskIds[newTaskId] = true
+  console.log(newTaskId)
+  console.log(taskIds)
 
   //$("#ajax-status").html('Task initialized, number given: ' + newTaskId + ', all tasks: ' + Object.keys(taskIds))
 
