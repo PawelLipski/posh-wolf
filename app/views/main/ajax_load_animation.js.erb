@@ -128,7 +128,7 @@ function loadQueueForJob(jobId) {
     '</tr>')
   var waitingTd = $('#waiting-job-' + jobId)
   
-  var css = { float: 'right', width: '18%' }
+  var css = { float: 'right', width: (headerWidth-2) + '%' }
   for (var o = machineCnt; o >= 1; o--) {
 
     var opContnrId = 'job-' + jobId + '-op-' + o
