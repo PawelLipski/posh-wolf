@@ -49,7 +49,37 @@ class MainController < ApplicationController
       }    
     }, :post_task_response)
   end
+  
+  def ajax_init_task_from_url
+        
+    url = params[:srcUrl]
+    #name = params[:name]
+    puts params
+    
+    @task_ids = []
 
+    require 'open-uri'
+    f = open(url)
+    
+    while !f.eof?
+      f.readline
+      job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
+      f.readline
+      durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
+      durations_hashified = durations.map { |x| { item: x } }
+      #puts "#{durations}"
+      
+      @task_ids.push execute_soap_request(:postTask, {      
+	jobCount: job_cnt, 
+	machineCount: machine_cnt,
+	opDurationsForJobs: durations_hashified
+      }, :post_task_response)
+            
+    end    
+        
+  end
+  
+  
   def ajax_get_all_progresses
     @all_progresses = execute_soap_request(:getAllProgresses, { 
       taskIds: { item: params[:taskIds] } 
@@ -74,34 +104,6 @@ class MainController < ApplicationController
     puts "#{@input[:op_durations_for_jobs].map { |x| x[:item] }}"
   end
 
-  def new_test_case
-    url = params[:url]
-    name = params[:name]
-    
-    @ids = []
-
-    require 'open-uri'
-    f = open(url)
-    
-    while !f.eof?
-      f.readline
-      job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
-      f.readline
-      durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
-      durations_hashified = durations.map { |x| { item: x } }
-      #puts "#{durations}"
-      
-      @ids.push execute_soap_request(:postTask, {      
-	jobCount: job_cnt, 
-	machineCount: machine_cnt,
-	opDurationsForJobs: durations_hashified
-      }, :post_task_response)
-            
-    end
-    
-    
-        
-  end
 
   private
 

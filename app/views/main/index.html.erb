@@ -1,17 +1,21 @@
 
 <h1> Posh Wolf </h1> <br>
 
+<!--
 <%= form_tag("/testcase/new", method: "post") do %>
   <%= label_tag(:url, "Test case URL:") %>
   <%= text_field_tag(:url) %>
   <%= text_field_tag(:name) %>
   <%= submit_tag("Submit") %>
-<% end %>
+<% end %> -->
+
+<input id="input-url"/>
 
 <!-- TODO: CSRF? -->
-<!-- <####%= link_to "Init task", "/testcase/ajax/init-task", method: :post, remote: true, id: :init_task_link %> -->
-<button id="task-init-button" class="btn btn-large btn-primary">Init task</button>
-<button id="task-init-large-button" class="btn btn-large btn-primary">Init large task</button>
+
+<button id="init-task-button" class="btn btn-large btn-primary">Init task</button>
+<button id="init-large-task-button" class="btn btn-large btn-primary">Init large task</button>
+<button id="init-task-from-url-button" class="btn btn-large btn-primary">Init task from the above URL</button>
 
 <table id="task-table" width="100%">
   <tbody>
@@ -38,7 +42,7 @@ function get_progress() {
 }      
 
 $(document).ready(function() {
-  $("#task-init-button").click(
+  $("#init-task-button").click(
     function() {
       
       if (initTaskLocked) return
@@ -61,7 +65,7 @@ $(document).ready(function() {
 
   })
   
-  $("#task-init-large-button").click(
+  $("#init-large-task-button").click(
     function() {
       
       if (initTaskLocked) return
@@ -83,7 +87,29 @@ $(document).ready(function() {
     })
 
   })
-})  
+  
+  $("#init-task-from-url-button").click(
+    function() {
+      
+      if (initTaskLocked) return
 
+      initTaskLocked = true
+
+      $.ajax({
+	url: "/testcase/ajax/init-task-from-url",
+	type: "POST",	
+	data: { srcUrl: $("#input-url").val() },
+	success: function() {
+	  initTaskLocked = false
+
+	  if (!progressCheckRunning) {
+	    progressCheckRunning = true
+	    get_progress()
+	  }
+	}
+      })
+
+   })  
+})
 </script>
 

@@ -2,15 +2,15 @@ PoshWolf::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root "main#index" 
-
-  post "testcase/new" => "main#new_test_case"
+  root "main#index"   
 
   get "testcase/async" => "main#get_async"
 
   post "testcase/ajax/init-task" => "main#ajax_init_task"
   
   post "testcase/ajax/init-large-task" => "main#ajax_init_large_task"
+  
+  post "testcase/ajax/init-task-from-url" => "main#ajax_init_task_from_url"
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
 
