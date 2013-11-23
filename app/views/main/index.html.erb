@@ -105,7 +105,8 @@ $(document).ready(function() {
 	},
 	
 	error: function(XMLHttpRequest, textStatus, errorThrown) {
-	  alert('Failure')
+	  $("<div>Error</div>").appendTo("#task-list-container")
+	    .dialog({ buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } } ] })
 	},
 	
 	success: function() {	  
