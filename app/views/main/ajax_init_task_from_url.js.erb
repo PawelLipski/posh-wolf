@@ -1,10 +1,8 @@
 
 alert('init task from URL')
 
-/*
-var newTaskIds = <%= @task_ids %> 
+newTaskIds = <%= raw(@task_ids) %> 
 
-      
 for (var newTaskId in newTaskIds) {
   
   taskIds[newTaskId] = true
@@ -25,4 +23,3 @@ for (var newTaskId in newTaskIds) {
   $('#' + pbId).progressbar({ value: false }).height(10)
   $('#' + hdrTrId).show(500)
 }
-*/
