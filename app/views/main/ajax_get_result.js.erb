@@ -1,15 +1,16 @@
 
-var taskId = <%= params[:taskId] %>
 
-var pbSel = "#progressbar-" + taskId
-var hdrTrSel = "#task-hdr-tr-" + taskId
-var hdrTdSel = "#task-hdr-td-" + taskId
-var detTrSel = ".task-det-tr-" + taskId
-var animBtnId = "task-anim-btn-" + taskId
-var animBtnContnrId = "task-anim-btn-contnr-" + taskId
-
+pbSel = "#progressbar-" + <%= params[:taskId] %>
 
 $(pbSel).hide(1000, function() {      
+                                
+  var taskId = <%= params[:taskId] %>
+  var hdrTrSel = "#task-hdr-tr-" + taskId
+  var hdrTdSel = "#task-hdr-td-" + taskId
+  var detTrSel = ".task-det-tr-" + taskId
+  var animBtnId = "task-anim-btn-" + taskId
+  var animBtnContnrId = "task-anim-btn-contnr-" + taskId
+
   $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + 
     ', computation time: ' + <%= @result[:computation_time] %> + ' </b>' + 
     '<span id="' + animBtnContnrId + '">' + 

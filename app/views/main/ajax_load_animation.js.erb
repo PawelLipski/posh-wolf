@@ -108,7 +108,7 @@ function loadAnimationScaffolding() {
     ongoingAnimationId++
 
     $("#anim-container").fadeOut(1000, function() {
-      $("#task-anim-btn-contnr-" + taskId).show()
+      $("#task-anim-btn-contnr-" + animTaskId).show()
       $("#task-list-container").show()
     })
   })
@@ -228,7 +228,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
 
 $("#task-list-container").fadeOut(1000, function() {
 
-  taskId = <%= params[:taskId] %>
+  animTaskId = <%= params[:taskId] %>
 
   jobCnt = <%= @input[:job_count].to_i %>
   machineCnt = <%= @input[:machine_count].to_i %>
