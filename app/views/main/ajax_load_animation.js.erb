@@ -123,8 +123,8 @@ function loadQueueForJob(jobId) {
 
   $("#anim-jobs-table").append('<tr id="job-tr-' + jobId + '" ' + bottomLine + '>' + 
     '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
-    '<td id="done-job-' + jobId + '" style="width: 45%"/>' +
-    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%"></td>' +
+    '<td id="done-job-' + jobId + '" style="width: 45%; padding-right: 10px"/>' +
+    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%; padding-left: 10px"></td>' +
     '</tr>')
   var waitingTd = $('#waiting-job-' + jobId)
   
