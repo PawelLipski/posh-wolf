@@ -58,14 +58,14 @@ function loadAnimationScaffolding() {
   var animContnr = $('#anim-container')
   animContnr.html('')
   
-  animContnr.append('<table id="anim-jobs-table" width="100%"/>')
-  animContnr.append('<button id="back-button" class="btn btn-large btn-primary">Back</button>')
+  animContnr.append('<table id="anim-jobs-table" width="100%"/>')  
 
   jobsTable = $('#anim-jobs-table')
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px">' +
-    '<td colspan="3" align="left">' + 
-      '<div style="float:left"><h1><small>Machine states</small></h1></div>' +      
+    '<td colspan="3" align="left" valign="middle">' +
+      '<div style="float:left"><h1><small>Machine states</small></h1></div>' +
+      '<button id="back-button" style="float: right" class="btn btn-primary">Back</button>' +
     '</td>' +
   '</tr>')
 
