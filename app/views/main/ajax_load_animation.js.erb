@@ -97,8 +97,8 @@ function loadAnimationScaffolding() {
   $('#overall').progressbar({ value: 0 }).width('100%').height(opHeight)
   $('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })  
 
-  jobsTable.append('<tr id="complete-pending-hdr-tr"><td/><td align="center"><h4><small><b><font color="black">Complete jobs</font></b></small></h4></td>' +
-    '<td align="center"><h4><small><b><font color="black">Pending jobs</font></b></small></h4></td></tr>')
+  jobsTable.append('<tr id="complete-pending-hdr-tr"><td/><td align="center"><h4><small><b><font color="black">Complete operations</font></b></small></h4></td>' +
+    '<td align="center"><h4><small><b><font color="black">Pending operations</font></b></small></h4></td></tr>')
   jobsTable.append('<tr><td/><td/>' +
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
 
@@ -130,7 +130,7 @@ function loadQueueForJob(jobId) {
   $("#anim-jobs-table").append('<tr id="job-tr-' + jobId + '" ' + bottomLine + '>' + 
     '<td width="10%"><h3><small>Job #' + jobId + '</small></h3></td>' +
     '<td id="done-job-' + jobId + '" style="width: 45%; padding-right: 10px"/>' +
-    '<td id="waiting-job-' + jobId +  '" style="border-left: solid; width: 45%; padding-left: 10px"></td>' +
+    '<td id="waiting-job-' + jobId +  '" style="border-left: solid lightgray 1px; width: 45%; padding-left: 10px"></td>' +
     '</tr>')
   var waitingTd = $('#waiting-job-' + jobId)
   
