@@ -66,8 +66,8 @@ function loadAnimationScaffolding() {
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1><small>Overall progress</small></h1></td></tr>')
   jobsTable.append('<tr> <td colspan="3" id="overall"> </tr>')
 
-  $('#overall').progressbar({ value: 0 }).width('100%')
-  $('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
+  //$('#overall').progressbar({ value: 0 }).width('100%')
+  //$('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
                    
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><h1><small>Machine states</small></h1></td></tr>')
 
@@ -190,7 +190,8 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
     timePassed += jobDuration                                                           
     if (overallTime < timePassed) {
       overallTime = timePassed                             
-      $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
+      //$('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
+      $('#overall').html('<h1>' + overallTime + '/' + executionTimespan + '</h1>')
     }                              
 
     moveOpPbToDone(jobId, machineId, animationId)
