@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = 1 // (m == 1) ? 100 : 10
+      taskDef[j][m] = 1 //(m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -146,6 +146,23 @@ function loadQueueForJob(jobId) {
 
 }
 
+function showReplayButton() {
+  $("#op-headers-tr").hide(1000)
+					
+  $("#complete-pending-hdr-tr").hide(1000, function() {
+    
+    $(this).html(
+      '<td colspan="3"><button class="btn btn-primary btn-large" id="replay-btn">Replay</button></td>')
+    $(this).show()
+    
+    $("#replay-btn").click(function() {
+      $.ajax({
+	url: '/ajax/load-animation',
+	data: { taskId: animTaskId }
+      })
+    })
+  })  
+}
 
 function moveOpPbToDone(jobId, opId, animationId) { 
   var opContnr = $('#job-' + jobId + '-op-' + opId)
@@ -162,7 +179,11 @@ function moveOpPbToDone(jobId, opId, animationId) {
 	  return
                                                      
 	if (opId == machineCnt)
-	  $('#job-tr-' + jobId).fadeOut(1000)
+	  $('#job-tr-' + jobId).fadeOut(1000, function() {
+	    if (jobId == order[jobCnt - 1]) {	      
+              showReplayButton()                                   
+            }                     
+	  })
       })                                               
                                    
   })
@@ -215,24 +236,8 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         handleNextOpExecution(animationId, machineId, timePassed)
       else
 	machineLabel.html('Idle')
-    } else {            
-      machineLabel.html('Finished')
-           
-      if (machineId == machineCnt) {
-                  
-	$("#op-headers-tr").html('')
-                                   
-	$("#complete-pending-hdr-tr").html(
-	  '<td colspan="3"><button class="btn btn-primary btn-large" id="replay-btn">Replay</button></td>')
-
-	$("#replay-btn").click(function() {
-	  $.ajax({
-	    url: '/ajax/load-animation',
-	    data: { taskId: animTaskId }
-	  })
-	})
-      }
-    }
+    } else
+      machineLabel.html('Finished')                     
 
     if (machineId < machineCnt) {
 
