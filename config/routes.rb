@@ -4,6 +4,8 @@ PoshWolf::Application.routes.draw do
 
   root "main#index"   
 
+  post "upload" => "main#upload"
+  
   get "testcase/async" => "main#get_async"
 
   post "testcase/ajax/post-task" => "main#ajax_post_task"

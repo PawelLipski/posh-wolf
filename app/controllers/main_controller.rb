@@ -19,6 +19,11 @@ class MainController < ApplicationController
     }, :solve_response)
 
   end
+  
+  def upload
+    uploaded_io = params[:new_task]
+    puts "#{uploaded_io.original_filename}"
+  end
 
   def do_sleep
     sleep 10

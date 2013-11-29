@@ -17,6 +17,11 @@
 <button id="init-large-task-button" class="btn btn-large btn-primary">Init large task</button>
 <button id="init-task-from-url-button" class="btn btn-large btn-primary">Init task from the above URL</button>
 
+<%= form_tag({action: :upload}, multipart: true) do %>
+  <%= file_field_tag 'new_task' %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
 <table id="task-table" width="100%">
   <tbody>
   </tbody>
