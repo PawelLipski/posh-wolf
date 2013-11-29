@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = (m == 1) ? 100 : 10
+      taskDef[j][m] = 1 // (m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -215,10 +215,23 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         handleNextOpExecution(animationId, machineId, timePassed)
       else
 	machineLabel.html('Idle')
-    } else {
+    } else {            
       machineLabel.html('Finished')
-      if (machineId == machineCnt)
-	$("#complete-pending-hdr-tr").html('<td colspan="3"><h1><small>Done</small></h1></td>')
+           
+      if (machineId == machineCnt) {
+                  
+	$("#op-headers-tr").html('')
+                                   
+	$("#complete-pending-hdr-tr").html(
+	  '<td colspan="3"><button class="btn btn-primary btn-large" id="replay-btn">Replay</button></td>')
+
+	$("#replay-btn").click(function() {
+	  $.ajax({
+	    url: '/ajax/load-animation',
+	    data: { taskId: animTaskId }
+	  })
+	})
+      }
     }
 
     if (machineId < machineCnt) {
