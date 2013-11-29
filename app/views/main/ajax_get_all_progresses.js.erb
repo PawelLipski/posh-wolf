@@ -26,9 +26,7 @@ function updateProgresses(task) {
   } else {
 
     var pbSel = "#progressbar-" + task.id
-    $(pbSel).progressbar({value: parseInt(task.progress) * 10})   
-    $(pbSel + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
-  
+    $(pbSel).progressbar({value: parseInt(task.progress) * 10})              
   }
 }
 
