@@ -30,7 +30,7 @@ class MainController < ApplicationController
   end
 
   def ajax_post_task  
-    
+        
     @job_cnt = 20
     @machine_cnt = 5
     @task_id = execute_soap_request(:postTask, {      
