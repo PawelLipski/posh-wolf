@@ -20,7 +20,7 @@ $('#task-table > tbody').prepend(
 
   '</tr><tr class="' + detTrCls + '" style="display: none">' +
 
-  <% for v in [@upper_bound, @lower_bound, '<span id="ratio-label"/>', '<span id="ctime-label"/>'] %>
+  <% for v in [@upper_bound, @lower_bound, '<span id="ratio-label-' + @task_id + '"/>', '<span id="ctime-label-' + @task_id + '"/>'] %>
     '<td style="padding-bottom: 20px; padding-top: 10px"><center><%= raw(v) %></center></td>' +
   <% end %>
 

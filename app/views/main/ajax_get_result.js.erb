@@ -10,7 +10,7 @@ $(pbSel).hide(1000, function() {
   var detTrSel = ".task-det-tr-" + taskId
   var animBtnId = "task-anim-btn-" + taskId
   var animBtnContnrId = "task-anim-btn-contnr-" + taskId
-  var ctimeSel = "#ctime-label"
+  var ctimeSel = "#ctime-label-" + taskId
 
   $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
     '<span id="' + animBtnContnrId + '">' + 
