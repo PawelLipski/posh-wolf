@@ -105,8 +105,13 @@ $(document).ready(function() {
 	},
 	
 	error: function(XMLHttpRequest, textStatus, errorThrown) {
-	  $("<div>Error</div>").appendTo("#task-list-container")
-	    .dialog({ buttons: [ { text: "Ok", click: function() { $( this ).dialog( "close" ); } } ] })
+	  $("<div>The specified URL does not point to a valid Flow Shop test case data!</div>").appendTo("#task-list-container")
+	    .dialog({ 
+	      title: "Error",
+	      buttons: [ 
+		{ text: "Ok", click: function() { $(this).dialog("close"); } } 
+	      ]
+	    })
 	},
 	
 	success: function() {	  
