@@ -92,13 +92,16 @@ $(document).ready(function() {
     function() {
       
       if (initTaskLocked) return
+      
+      var srcUrl = $("#input-url").val()      
+      if (srcUrl.match(/^\s*$/)) return // whitespace-only
 
       initTaskLocked = true
 
       $.ajax({
 	url: "/testcase/ajax/init-task-from-url",
 	type: "POST",	
-	data: { srcUrl: $("#input-url").val() },
+	data: { srcUrl: srcUrl },
 	
 	complete: function() {
 	  initTaskLocked = false
