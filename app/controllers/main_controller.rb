@@ -24,7 +24,7 @@ class MainController < ApplicationController
     sleep 10
   end
 
-  def ajax_init_task  
+  def ajax_post_task  
     
     @task_id = execute_soap_request(:postTask, {      
       jobCount: 20, 
@@ -35,9 +35,11 @@ class MainController < ApplicationController
 	] * 20                            	
       }    
     }, :post_task_response)
+    
+    render 'ajax_post_task'
   end
   
-  def ajax_init_large_task  
+  def ajax_post_large_task  
     
     @task_id = execute_soap_request(:postTask, {      
       jobCount: 50, 
@@ -48,34 +50,33 @@ class MainController < ApplicationController
 	] * 50
       }    
     }, :post_task_response)
+    
+    render 'ajax_post_task'
   end
   
-  def ajax_init_task_from_url
+  def ajax_post_task_from_url
         
     url = params[:srcUrl]
     #name = params[:name]
-    puts params
-    
-    @task_ids = []
+    puts params        
 
     require 'open-uri'
     f = open(url)
+        
+    f.readline
+    job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
+    f.readline
+    durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
+    durations_hashified = { item: durations.map { |x| { item: x } } }
+    puts "#{durations_hashified}"
     
-    while !f.eof?
-      f.readline
-      job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
-      f.readline
-      durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
-      durations_hashified = { item: durations.map { |x| { item: x } } }
-      puts "#{durations_hashified}"
-      
-      @task_ids.push execute_soap_request(:postTask, {      
-	jobCount: job_cnt, 
-	machineCount: machine_cnt,
-	opDurationsForJobs: durations_hashified
-      }, :post_task_response)
-            
-    end    
+    @task_id = execute_soap_request(:postTask, {      
+      jobCount: job_cnt, 
+      machineCount: machine_cnt,
+      opDurationsForJobs: durations_hashified
+    }, :post_task_response)
+               
+    render 'ajax_post_task'
         
   end
   

@@ -50,7 +50,7 @@ $(document).ready(function() {
       initTaskLocked = true
 
       $.ajax({
-	url: "/testcase/ajax/init-task",
+	url: "/testcase/ajax/post-task",
 	type: "POST",
 	contentType: "application/soap+xml; charset=utf-8",
 	success: function() {
@@ -73,7 +73,7 @@ $(document).ready(function() {
       initTaskLocked = true
 
       $.ajax({
-	url: "/testcase/ajax/init-large-task",
+	url: "/testcase/ajax/post-large-task",
 	type: "POST",
 	contentType: "application/soap+xml; charset=utf-8",
 	success: function() {
@@ -99,7 +99,7 @@ $(document).ready(function() {
       initTaskLocked = true
 
       $.ajax({
-	url: "/testcase/ajax/init-task-from-url",
+	url: "/testcase/ajax/post-task-from-url",
 	type: "POST",	
 	data: { srcUrl: srcUrl },
 	

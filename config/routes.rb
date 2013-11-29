@@ -6,11 +6,11 @@ PoshWolf::Application.routes.draw do
 
   get "testcase/async" => "main#get_async"
 
-  post "testcase/ajax/init-task" => "main#ajax_init_task"
+  post "testcase/ajax/post-task" => "main#ajax_post_task"
   
-  post "testcase/ajax/init-large-task" => "main#ajax_init_large_task"
+  post "testcase/ajax/post-large-task" => "main#ajax_post_large_task"
   
-  post "testcase/ajax/init-task-from-url" => "main#ajax_init_task_from_url"
+  post "testcase/ajax/post-task-from-url" => "main#ajax_post_task_from_url"
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
 
