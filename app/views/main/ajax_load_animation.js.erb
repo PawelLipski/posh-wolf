@@ -65,7 +65,7 @@ function loadAnimationScaffolding() {
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px">' +
     '<td colspan="3" align="left">' + 
-      '<div style="float:left"><h1><small>Overall state</small></h1></div>' +
+      '<div style="float:left"><h1><small>Machine previews</small></h1></div>' +
       '<div style="float:right"><h3><small>Passed execution time: <b id="overall">started</b></small></h3></div>' +
     '</td>' +
   //'<td colspan="2"><h1><small>Machine states</small></h1></td>' +
@@ -78,7 +78,7 @@ function loadAnimationScaffolding() {
                    
   //jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3">Machine states</td></tr>')
 
-  jobsTable.append('<tr><td id="overall"/> <td colspan="2">' +
+  jobsTable.append('<tr><td colspan="3">' +
     '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
     '<tr id="anim-machines-tr"/>' +
     '</table></td></tr>')
@@ -97,7 +97,7 @@ function loadAnimationScaffolding() {
     machineTd.append(createProgressBarForOp('machine-' + i, 'Started', css))
   }
 
-  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><div style="float:left"><h1><small>Job progress</small></h1></div></td></tr>')
+  jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><div style="float:left"><h1><small>Jobs progress</small></h1></div></td></tr>')
 
   jobsTable.append('<tr><td/><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
     '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>')
