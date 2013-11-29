@@ -21,7 +21,7 @@ $('#task-table > tbody').prepend(
   '</tr><tr class="' + detTrCls + '" style="display: none">' +
 
   <% for v in [@upper_bound, @lower_bound, "(Ratio)", "(Computation time)"] %>
-    '<td style="align: center; padding-bottom: 20px; padding-top: 10px"><%= v %></td>' +
+    '<td style="padding-bottom: 20px; padding-top: 10px"><center><%= v %></center></td>' +
   <% end %>
 
   '</tr>')
