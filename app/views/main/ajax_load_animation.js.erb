@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = 1 //(m == 1) ? 100 : 10
+      taskDef[j][m] = 20 //(m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -146,7 +146,10 @@ function loadQueueForJob(jobId) {
 
 }
 
-function showReplayButton() {
+function hideLastJobAndShowReplayButton(jobId) {
+                                                
+  $("#job-tr-" + jobId).fadeOut(1000)
+                                               
   $("#op-headers-tr").hide(1000)
 					
   $("#complete-pending-hdr-tr").hide(1000, function() {
@@ -179,11 +182,10 @@ function moveOpPbToDone(jobId, opId, animationId) {
 	  return
                                                      
 	if (opId == machineCnt)
-	  $('#job-tr-' + jobId).fadeOut(1000, function() {
-	    if (jobId == order[jobCnt - 1]) {	      
-              showReplayButton()                                   
-            }                     
-	  })
+	  if (jobId == order[jobCnt - 1])
+	    hideLastJobAndShowReplayButton(jobId)                                   
+	  else 
+	    $('#job-tr-' + jobId).fadeOut(1000)
       })                                               
                                    
   })
