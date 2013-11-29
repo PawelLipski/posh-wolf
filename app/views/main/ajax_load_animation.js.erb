@@ -161,6 +161,8 @@ function hideLastJobAndShowReplayButton(jobId) {
 	data: { taskId: animTaskId }
       })
     })
+                                                      
+    $(this).html('<h1><small>All jobs done</small></h1>').show()
   })  
 }
 
