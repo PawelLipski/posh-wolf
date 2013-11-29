@@ -27,5 +27,6 @@ for (var i = 0; i < newTaskIds.length; i++) {
     '<tr class="' + detTrCls + '" style="display: none"><td style="padding-bottom: 20px; padding-top: 10px">Lorem</td><td>Ipsum</td><td>Dolor</td><td>Sit</td></tr>')
   
   $('#' + pbId).progressbar({ value: false }).height(10)
+  $('#' + pbId + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
   $('#' + hdrTrId).show(500)
 }

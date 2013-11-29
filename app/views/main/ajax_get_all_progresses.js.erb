@@ -13,19 +13,21 @@ tasks = <%= raw(p.to_json) %>
 
 function updateProgresses(task) {
 
+  var pbSel = "#progressbar-" + task.id
+
   if (task.progress == '100') {
-    
+
+    $(pbSel).on("progressbarcomplete", function(event, ui) {
+      $.ajax({
+	url: '/testcase/ajax/get-result',
+	data: { taskId: task.id }
+      })
+    })                           
+                              
     $(pbSel).progressbar({value: 100})
-    delete taskIds[parseInt(task.id)]
+    delete taskIds[parseInt(task.id)]    
 
-    $.ajax({
-      url: '/testcase/ajax/get-result',
-      data: { taskId: task.id }
-    })
-
-  } else {
-
-    var pbSel = "#progressbar-" + task.id
+  } else {    
     $(pbSel).progressbar({value: parseInt(task.progress) * 10})              
   }
 }
