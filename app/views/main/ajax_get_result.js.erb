@@ -9,12 +9,15 @@ $(pbSel).hide(1000, function() {
   var hdrTdSel = "#task-hdr-td-" + taskId
   var detTrSel = ".task-det-tr-" + taskId
   var animBtnId = "task-anim-btn-" + taskId
+  <% animLoaderGifId = "task-anim-ldrgif-" + params[:taskId] %>
+  var animLoaderGifId = "<%= raw(animLoaderGifId) %>"
   var animBtnContnrId = "task-anim-btn-contnr-" + taskId
   var ctimeSel = "#ctime-label-" + taskId
 
   $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
     '<span id="' + animBtnContnrId + '">' + 
-    '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="float: right">Visualize</button>' +
+    '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, style: "float: right; display: none" %>' +
+    '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="float: right">Visualize</button>' +    
     '</span>')
                                
   $(ctimeSel).html('<%= "%.2f" % @result[:computation_time] %>s')
@@ -22,18 +25,19 @@ $(pbSel).hide(1000, function() {
   $(detTrSel).show(1000)
 
   var animBtnContnr = $("#" + animBtnContnrId)
-  var animBtn =  $("#" + animBtnId)
-
+  var animBtn =  $("#" + animBtnId)  
+  var animLoaderGif = $("#" + animLoaderGifId)
+                               
   animBtn.click(function() { 
 
-    animBtn.detach()        
-    animBtnContnr.html('<%= image_tag "ajax-loader.gif", style: "float: right" %>')
+    animBtn.css({ visibility: 'hidden' })
+    animLoaderGif.show()    
 
     $.ajax({
       url: '/ajax/load-animation',
       data: { taskId: taskId },
       success: function() {
-        animBtnContnr.empty().hide().append(animBtn)
+        animLoaderGif.css({ visibility: 'hidden' })
       }
     })
   })
