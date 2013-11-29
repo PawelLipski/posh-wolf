@@ -20,13 +20,12 @@ $('#task-table > tbody').prepend(
 
   '</tr><tr class="' + detTrCls + '" style="display: none">' +
 
-  <% for v in [@upper_bound, @lower_bound, "(Ratio)", "(Computation time)"] %>
-    '<td style="padding-bottom: 20px; padding-top: 10px"><center><%= v %></center></td>' +
+  <% for v in [@upper_bound, @lower_bound, '<span id="ratio-label"/>', '<span id="ctime-label"/>'] %>
+    '<td style="padding-bottom: 20px; padding-top: 10px"><center><%= raw(v) %></center></td>' +
   <% end %>
 
   '</tr>')
-//    '</table>' +
-  //'</tr>')
+
 $('#' + pbId).progressbar({ value: false }).height(10)
 $('#' + pbId + ' .ui-progressbar-value').css({"transition": "width 0.5s", "-webkit-transition": "width 0.5s"})
 $('#' + hdrTrId).show(500)
