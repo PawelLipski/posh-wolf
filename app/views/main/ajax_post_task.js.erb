@@ -13,10 +13,18 @@ $('#task-table > tbody').prepend(
   '<td width="25%" style="padding-top: 10px"> <%= @job_cnt %> jobs, <%= @machine_cnt %> machines</td>' + 
   '<td id="' + hdrTdId + '" width="50%" colspan="2" style="padding-top: 10px"><div id="' + pbId + '"></div></td></tr>' + 
   '<tr class="' + detTrCls + '" style="display: none; ">' +
-  <% for h in ["Upper bound", "Lower bound", "Ratio", "Computation time"] %>
-    '<th width="25%" style="padding-bottom: 20px; padding-top: 10px"> <%= h %> </th>' +
+
+  <% for k in ["Upper bound", "Lower bound", "Ratio", "Computation time"] %>
+    '<th width="25%" style="padding-bottom: 20px; padding-top: 10px"> <%= k %> </th>' +
   <% end %>
-  '</tr><tr class="' + detTrCls + '" style="display: none"><td style="padding-bottom: 20px; padding-top: 10px">Lorem</td><td>Ipsum</td><td>Dolor</td><td>Sit</td></tr>')
+
+  '</tr><tr class="' + detTrCls + '" style="display: none">' +
+
+  <% for v in [@upper_bound, @lower_bound, "(Ratio)", "(Computation time)"] %>
+    '<td style="align: center; padding-bottom: 20px; padding-top: 10px"><%= v %></td>' +
+  <% end %>
+
+  '</tr>')
 //    '</table>' +
   //'</tr>')
 $('#' + pbId).progressbar({ value: false }).height(10)
