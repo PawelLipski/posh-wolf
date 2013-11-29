@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = (m == 1) ? 100 : 10
+      taskDef[j][m] = 1 //(m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -99,7 +99,7 @@ function loadAnimationScaffolding() {
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3"><div style="float:left"><h1><small>Jobs progress</small></h1></div></td></tr>')
 
-  jobsTable.append('<tr><td/><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
+  jobsTable.append('<tr id="complete-pending-hdr-tr"><td/><td align="center"><h4><small><b>Complete</b></small></h4></td>' +
     '<td align="center"><h4><small><b>Pending</b></small></h4></td></tr>')
   jobsTable.append('<tr><td/><td/>' +
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
@@ -215,8 +215,11 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
         handleNextOpExecution(animationId, machineId, timePassed)
       else
 	machineLabel.html('Idle')
-    } else
-      machineLabel.html('Finished')    
+    } else {
+      machineLabel.html('Finished')
+      if (machineId == machineCnt)
+	$("#complete-pending-hdr-tr").html('<td colspan="3"><h1><small>Done</small></h1></td>')
+    }
 
     if (machineId < machineCnt) {
 
