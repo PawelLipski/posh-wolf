@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = 20 //(m == 1) ? 100 : 10
+      taskDef[j][m] = 2 //(m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -63,9 +63,9 @@ function loadAnimationScaffolding() {
   jobsTable = $('#anim-jobs-table')
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px">' +
-    '<td colspan="3" align="left" valign="middle">' +
+    '<td colspan="3" id="back-replay-btn-td" align="left" valign="middle">' +
       '<div style="float:left"><h1><small>Machine states</small></h1></div>' +
-      '<button id="back-button" style="float: right" class="btn btn-primary">Back</button>' +
+      '<button id="back-button" style="float: right; margin-left: 20px" class="btn btn-primary btn-large">Back</button>' +
     '</td>' +
   '</tr>')
 
@@ -151,9 +151,8 @@ function hideLastJobAndShowReplayButton(jobId) {
 					
   $("#complete-pending-hdr-tr").hide(1000, function() {
     
-    $(this).html(
-      '<td colspan="3"><button class="btn btn-primary btn-large" id="replay-btn">Replay</button></td>')
-    $(this).show()
+    $("#back-replay-btn-td").append(
+      '<button style="float: right" class="btn btn-primary btn-large" id="replay-btn">Replay</button>')
     
     $("#replay-btn").click(function() {
       $.ajax({
