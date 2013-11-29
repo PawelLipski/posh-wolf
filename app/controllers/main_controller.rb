@@ -66,8 +66,8 @@ class MainController < ApplicationController
       job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
       f.readline
       durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
-      durations_hashified = durations.map { |x| { item: x } }
-      #puts "#{durations}"
+      durations_hashified = { item: durations.map { |x| { item: x } } }
+      puts "#{durations_hashified}"
       
       @task_ids.push execute_soap_request(:postTask, {      
 	jobCount: job_cnt, 
@@ -108,8 +108,8 @@ class MainController < ApplicationController
   private
 
     def execute_soap_request(method, args, retval)
-      #ep = "http://0.0.0.0:8080"
-      ep = "http://posh-wolf-ws.herokuapp.com" 
+      ep = "http://0.0.0.0:8080"
+      #ep = "http://posh-wolf-ws.herokuapp.com" 
       
       respond_to do |format|
         format.js do 
