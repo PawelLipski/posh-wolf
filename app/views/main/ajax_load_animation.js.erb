@@ -8,7 +8,7 @@ function createMockTaskDef() {
   for (var j = 0; j < jobCnt; j++) {
     taskDef[j] = new Array(machineCnt)
     for (var m = 0; m < machineCnt; m++) {
-      taskDef[j][m] = 1 //(m == 1) ? 100 : 10
+      taskDef[j][m] = (m == 1) ? 100 : 10
     }
   }
   return taskDef
@@ -66,15 +66,15 @@ function loadAnimationScaffolding() {
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px">' +
     '<td colspan="3" align="left">' + 
       '<div style="float:left"><h1><small>Machine previews</small></h1></div>' +
-      '<div style="float:right"><h3><small>Passed execution time: <b id="overall">started</b></small></h3></div>' +
+      '<div style="float:right"><h3><small>Passed execution time: <div id="overall"/></small></h3></div>' +
     '</td>' +
   //'<td colspan="2"><h1><small>Machine states</small></h1></td>' +
   '</tr>')
 
   //jobsTable.append('<tr> <td colspan="3" id="overall"> </tr>')
 
-  //$('#overall').progressbar({ value: 0 }).width('100%')
-  //$('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
+  $('#overall').progressbar({ value: 0 }).width('100%')
+  $('#overall .ui-progressbar-value').css({ 'transition': 'width 0.5s', '-webkit-transition': 'width 0.5s' })
                    
   //jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3">Machine states</td></tr>')
 
@@ -197,8 +197,8 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
     timePassed += jobDuration                                                           
     if (overallTime < timePassed) {
       overallTime = timePassed                             
-      //$('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
-      $('#overall').html('<h2>' + overallTime + '/' + executionTimespan + '</h2>')
+      $('#overall').progressbar({ value: timePassed / executionTimespan * 100 })
+      //$('#overall').html('<h2>' + overallTime + '/' + executionTimespan + '</h2>')
     }                              
 
     moveOpPbToDone(jobId, machineId, animationId)
