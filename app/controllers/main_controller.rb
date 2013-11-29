@@ -26,9 +26,11 @@ class MainController < ApplicationController
 
   def ajax_post_task  
     
+    @job_cnt = 20
+    @machine_cnt = 5
     @task_id = execute_soap_request(:postTask, {      
-      jobCount: 20, 
-      machineCount: 5,
+      jobCount: @job_cnt, 
+      machineCount: @machine_cnt,
       opDurationsForJobs: {
 	item: [ 
 	  { item: (1..5).to_a }
@@ -41,9 +43,11 @@ class MainController < ApplicationController
   
   def ajax_post_large_task  
     
+    @job_cnt = 50
+    @machine_cnt = 10
     @task_id = execute_soap_request(:postTask, {      
-      jobCount: 50, 
-      machineCount: 10,
+      jobCount: @job_cnt, 
+      machineCount: @machine_cnt,
       opDurationsForJobs: {
 	item: [ 
 	  { item: (1..10).to_a }
@@ -64,15 +68,15 @@ class MainController < ApplicationController
     f = open(url)
         
     f.readline
-    job_cnt, machine_cnt, _, upper_bound, lower_bound = f.readline.split.map { |x| x.to_i }
+    @job_cnt, @machine_cnt, _, @upper_bound, @lower_bound = f.readline.split.map { |x| x.to_i }
     f.readline
-    durations = Array.new(machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
+    durations = Array.new(@machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
     durations_hashified = { item: durations.map { |x| { item: x } } }
     puts "#{durations_hashified}"
     
     @task_id = execute_soap_request(:postTask, {      
-      jobCount: job_cnt, 
-      machineCount: machine_cnt,
+      jobCount: @job_cnt, 
+      machineCount: @machine_cnt,
       opDurationsForJobs: durations_hashified
     }, :post_task_response)
                
