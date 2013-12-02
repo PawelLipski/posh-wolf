@@ -1,20 +1,39 @@
 
 
 <table id="launch-table" width="100%">
-  <tr height="30%" style="border-bottom: 1px solid lightgray">
-    <td width="40%" valign="top" style="border-right: 1px solid lightgray">
-      <h1><small> Use sample test cases </small></h1>       
+  <tr style="border-bottom: 1px solid lightgray">
+    <td rowspan="4" width="40%" valign="top" style="border-right: 1px solid lightgray">
+      <div style="float: left"> 
+	<h1><small> Use sample test cases </small></h1>       
+      </div>
     </td>    
     <td valign="top">
-      <h1><small> Paste test case URL </small></h1> 
+      <div style="float: left"> 
+	<h1><small> Paste test case URL </small></h1> 
+      </div>
     </td>
   </tr>
+  
   <tr>
-    <td valign="top" style="border-right: 1px solid lightgray">
-      Sample data from Taillard's collection (TODO link)
+    <td>
+      <input id="input-url" value="http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai20_5.txt"/>
     </td>
+  </tr>
+  
+  <tr>
+    <!-- <td valign="top" style="border-right: 1px solid lightgray">
+      Sample data from Taillard's collection (TODO link) 
+    </td> -->
     <td valign="top">
-      <h1><small> Paste test case contents </small></h1> 
+      <div style="float: left"> 
+	<h1><small> Paste test case contents </small></h1> 
+      </div>
+    </td>
+  </tr>
+  
+  <tr>    
+    <td>
+      <input type="edit"/>
     </td>
   </tr>
 </table>
@@ -26,8 +45,6 @@
 </table>  
 
 
-
-<input id="input-url" value="http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai20_5.txt"/>
 
 <button id="init-task-button" class="btn btn-large btn-primary">Init task</button>
 <button id="init-large-task-button" class="btn btn-large btn-primary">Init large task</button>
