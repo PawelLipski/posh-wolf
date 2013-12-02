@@ -3,21 +3,6 @@ include Mongo
 class MainController < ApplicationController
 
   def index
-
-    @solve_result = execute_soap_request(:solve, { 
-      task: { 
-        jobCount: 20, 
-        machineCount: 5,
-        opDurationsForJobs: {
-          item: [ 
-            { item: (1..5).to_a }
-          ] * 20                            
-            #{ item: [1, 2, 3] }, 
-            #{ item: [4, 5, 6] }          
-        }
-      }
-    }, :solve_response)
-
   end
   
   def upload
