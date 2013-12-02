@@ -113,46 +113,26 @@ function get_progress() {
     })
 }      
 
+function lockTaskLaunching() {
+  if (initTaskLocked) 
+    return false
+    
+  initTaskLocked = true
+  
+  return true
+}
+
+function unlockTaskLaunching() {
+
+}
+
 $(document).ready(function() {
   
-  /*$("#upload-button").click(function() {      
-    file = $('#upload-input').files[0];
-    fr = new FileReader();
-    fr.onload = function () {
-      alert(fr.result)
-    }        
-    fr.readAsDataURL(file);         
-  })*/            
-               
-  $("#init-task-button").click(
-    function() {
-      
-      if (initTaskLocked) return
-
-      initTaskLocked = true
-
-      $.ajax({
-	url: "/testcase/ajax/post-task",
-	type: "POST",
-	contentType: "application/soap+xml; charset=utf-8",
-	success: function() {
-	  initTaskLocked = false
-
-	  if (!progressCheckRunning) {
-	    progressCheckRunning = true
-	    get_progress()
-	  }
-      }
-    })
-
-  })
   
   $("#launch-pasted-btn").click(
     function() {
       
-      if (initTaskLocked) return
-
-      initTaskLocked = true
+      if (!lockTaskLaunching()) return
 
       $.ajax({
 	url: "/testcase/ajax/post-task-from-pasted",
@@ -173,13 +153,11 @@ $(document).ready(function() {
   
   $("#launch-url-btn").click(
     function() {
-      
-      if (initTaskLocked) return
-      
+            
       var srcUrl = $("#input-url").val()      
       if (srcUrl.match(/^\s*$/)) return // whitespace-only
 
-      initTaskLocked = true
+      if (!lockTaskLaunching()) return
 
       $.ajax({
 	url: "/testcase/ajax/post-task-from-url",
