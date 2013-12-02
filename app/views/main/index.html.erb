@@ -43,16 +43,16 @@
 	<tr height="80%">
 	  <td style="border-right: 1px solid lightgray; padding-right: 10px">
 
-	    <select size="3">
-	      <% for j, m in [[20,5], [20, 10], [20, 20], [50, 5], [50, 10], [50, 20]] %>
-		<option> <%= j %> jobs, <%= m %> machines </option>
+	    <select id="group-select" size="3">	      
+	      <% for (j, m), i in @groups.zip(1..@groups.length) %>
+		<option <%= 'selected="selected"' if i == 1 %> > <%= j %> jobs, <%= m %> machines </option>
 	      <% end %>	      
 	    </select>
 	  </td>
 	  <td style="padding-left: 10px;">
 	    <select size="3">
 	      <% for i in 1..10 %>
-		<option> Test #<%= i %> </option>
+		<option <%= 'selected="selected"' if i == 1 %> > Test #<%= i %> </option>
 	      <% end %>
 	    </select>
 	  </td>
@@ -121,6 +121,11 @@ function unlockTaskLaunching() {
 
 $(document).ready(function() {
   
+  $("#launch-sample-btn").click(
+    function() {
+      alert($("#group-select").find(":selected").text())
+  })
+    
   
   $("#launch-pasted-btn").click(
     function() {

@@ -3,13 +3,9 @@ include Mongo
 class MainController < ApplicationController
 
   def index
+    @groups = [[20,5], [20, 10], [20, 20], [50, 5], [50, 10], [50, 20]]
   end
   
-  def upload
-    uploaded_io = params[:new_task]
-    puts "#{uploaded_io.original_filename}"
-  end
-
   def do_sleep
     sleep 10
   end
