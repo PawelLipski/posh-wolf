@@ -65,34 +65,24 @@ class MainController < ApplicationController
   
   def ajax_post_task_from_pasted
     
-    puts "Raw POST data: " + request.raw_post
+    require 'stringio'    
     
-    @job_cnt = 50
-    @machine_cnt = 10
-    @task_id = execute_soap_request(:postTask, {      
-      jobCount: @job_cnt, 
-      machineCount: @machine_cnt,
-      opDurationsForJobs: {
-	item: [ 
-	  { item: (1..10).to_a }
-	] * 50
-      }    
-    }, :post_task_response)        
-    
+    data = request.raw_post
+    f = StringIO.new(data)    
+    parse_and_post_file(f)
+        
     render 'ajax_post_task'
   end
   
   def ajax_post_task_from_url
-        
-    url = params[:srcUrl]    
-    #puts params        
-
+    
     require 'open-uri'
+    
+    url = params[:srcUrl]
     f = open(url)            
     parse_and_post_file(f)
                
-    render 'ajax_post_task'
-        
+    render 'ajax_post_task'        
   end
   
   
