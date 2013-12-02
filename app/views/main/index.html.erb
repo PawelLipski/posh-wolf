@@ -82,18 +82,6 @@
 </table>  
 
 
-<button id="init-task-button" class="btn btn-large btn-primary">Init task</button>
-<button id="init-large-task-button" class="btn btn-large btn-primary">Init large task</button>
-<!-- 
-<button id="init-task-from-url-button" class="btn btn-large btn-primary">Init task from the above URL</button>
-
-<%= form_tag({action: :upload}, multipart: true) do %>
-  <%= file_field_tag 'new_task', id: 'upload-input' %>  
-<% end %>
-
-<button id="upload-button">Upload</button>
--->
-
 <script>
 
 progressCheckRunning = false
@@ -123,7 +111,7 @@ function lockTaskLaunching() {
 }
 
 function unlockTaskLaunching() {
-
+  initTaskLocked = false
 }
 
 $(document).ready(function() {
@@ -140,7 +128,8 @@ $(document).ready(function() {
 	contentType: "application/soap+xml; charset=utf-8",
 	data: $("#pasted-text").val(),
 	success: function() {
-	  initTaskLocked = false
+	  
+	  unlockTaskLaunching()
 
 	  if (!progressCheckRunning) {
 	    progressCheckRunning = true
@@ -165,7 +154,7 @@ $(document).ready(function() {
 	data: { srcUrl: srcUrl },
 	
 	complete: function() {
-	  initTaskLocked = false
+	  unlockTaskLaunching()
 	},
 	
 	error: function(XMLHttpRequest, textStatus, errorThrown) {
