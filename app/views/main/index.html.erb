@@ -2,14 +2,15 @@
 
 <table id="launch-table" width="100%">
   <tr>
-    <td width="40%" valign="top" style="border-bottom: 1px solid lightgray; border-right: 1px solid lightgray; padding-right: 5px">
+    <td width="40%" valign="top" style="border-bottom: 1px solid lightgray; padding-right: 5px">
       <div style="float: left"> 
 	<font color="gray"><h4> Use sample test case </h4></font>
       </div>
       <div style="float: right"> 
 	<button id="launch-sample-btn" class="btn btn-primary">Launch</button>
       </div>
-    </td>    
+    </td>        
+    <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td valign="top" style="border-bottom: 1px solid lightgray">
       <div style="float: left"> 
@@ -22,9 +23,10 @@
   </tr>
   
   <tr>
-    <td valign="top" style="border-right: 1px solid lightgray">
+    <td valign="top">
       <font color="gray"> Sample data from Taillard's collection (TODO link) </font>
     </td>
+    <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td style="padding-top: 5px">
       <input id="input-url" value="http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai20_5.txt"/>
@@ -32,7 +34,7 @@
   </tr>
   
   <tr>    
-    <td rowspan="2" valign="top" style="border-right: 1px solid lightgray">
+    <td rowspan="2" valign="top">
       <table width="100%">       
 	<tr height="20%">
 	  <td width="50%" style="border-right: 1px solid lightgray; font-color: gray"><font color="gray">Group</font></td>
@@ -47,7 +49,7 @@
 	      <% end %>	      
 	    </select>
 	  </td>
-	  <td style="padding-left: 10px; padding-right: 10px">
+	  <td style="padding-left: 10px;">
 	    <select size="3">
 	      <% for i in 1..10 %>
 		<option> Test #<%= i %> </option>
@@ -57,6 +59,7 @@
 	</tr>
       </table>
     </td>
+    <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td valign="top" style="border-bottom: 1px solid lightgray">
       <div style="float: left"> 
@@ -69,6 +72,7 @@
   </tr>
   
   <tr>    
+    <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td style="padding-top: 5px">
       <textarea id="pasted-text"></textarea>
