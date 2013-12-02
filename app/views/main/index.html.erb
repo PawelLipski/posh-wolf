@@ -35,15 +35,16 @@
     <td rowspan="2" valign="top" style="border-right: 1px solid lightgray">
       <table width="100%">       
 	<tr height="20%">
-	  <td width="50%" style="border-right: 1px solid lightgray; font-color: gray"><font color="gray">Dimensions</font></td>
-	  <td width="50%" style="padding-left: 5px"><font color="gray">Number</font></td>
+	  <td width="50%" style="border-right: 1px solid lightgray; font-color: gray"><font color="gray">Group</font></td>
+	  <td width="50%" style="padding-left: 5px"><font color="gray">Offset</font></td>
 	</tr> 
 	<tr height="80%">
 	  <td style="border-right: 1px solid lightgray; padding-right: 10px">
+
 	    <select size="3">
-	      <option>Mustard</option>
-	      <option>Ketchup</option>
-	      <option>Relish</option>
+	      <% for j, m in [[20,5], [20, 10], [20, 20], [50, 5], [50, 10], [50, 20]] %>
+		<option> <%= j %> jobs, <%= m %> machines </option>
+	      <% end %>	      
 	    </select>
 	  </td>
 	  <td style="padding-left: 10px; padding-right: 10px">
