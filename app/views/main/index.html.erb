@@ -49,9 +49,9 @@
 	  </td>
 	  <td style="padding-left: 10px; padding-right: 10px">
 	    <select size="3">
-	      <option>Mustard</option>
-	      <option>Ketchup</option>
-	      <option>Relish</option>
+	      <% for i in 1..10 %>
+		<option> Test #<%= i %> </option>
+	      <% end %>
 	    </select>
 	  </td>
 	</tr>
