@@ -1,17 +1,33 @@
 
-<h1> Posh Wolf </h1> <br>
 
-<!--
-<%= form_tag("/testcase/new", method: "post") do %>
-  <%= label_tag(:url, "Test case URL:") %>
-  <%= text_field_tag(:url) %>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Submit") %>
-<% end %> -->
+<table id="launch-table" width="100%">
+  <tr height="30%" style="border-bottom: 1px solid lightgray">
+    <td width="40%" valign="top" style="border-right: 1px solid lightgray">
+      <h1><small> Use sample test cases </small></h1>       
+    </td>    
+    <td valign="top">
+      <h1><small> Paste test case URL </small></h1> 
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" style="border-right: 1px solid lightgray">
+      Sample data from Taillard's collection (TODO link)
+    </td>
+    <td valign="top">
+      <h1><small> Paste test case contents </small></h1> 
+    </td>
+  </tr>
+</table>
+
+
+<table id="task-table" width="100%">
+  <tbody>
+  </tbody>
+</table>  
+
+
 
 <input id="input-url" value="http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai20_5.txt"/>
-
-<!-- TODO: CSRF? -->
 
 <button id="init-task-button" class="btn btn-large btn-primary">Init task</button>
 <button id="init-large-task-button" class="btn btn-large btn-primary">Init large task</button>
@@ -23,26 +39,6 @@
 
 <button id="upload-button">Upload</button>
 
-<table id="launch-table" width="100%">
-  <tr height="30%">
-    <td rowspan="2" width="40%" valign="top"> 
-      <h1><small> Use sample test cases </small></h1> 
-    </td>    
-    <td valign="top">
-      <h1><small> Paste test case URL </small></h1> 
-    </td>
-  </tr>
-  <tr>
-    <td valign="top">
-      <h1><small> Paste test case contents </small></h1> 
-    </td>
-  </tr>
-</table>
-
-<table id="task-table" width="100%">
-  <tbody>
-  </tbody>
-</table>  
 
 <script>
 
