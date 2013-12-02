@@ -63,27 +63,33 @@ class MainController < ApplicationController
     render 'ajax_post_task'
   end
   
-  def ajax_post_task_from_url
-        
-    url = params[:srcUrl]
-    #name = params[:name]
-    puts params        
-
-    require 'open-uri'
-    f = open(url)
-        
-    f.readline
-    @job_cnt, @machine_cnt, _, @upper_bound, @lower_bound = f.readline.split.map { |x| x.to_i }
-    f.readline
-    durations = Array.new(@machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
-    durations_hashified = { item: durations.map { |x| { item: x } } }
-    puts "#{durations_hashified}"
+  def ajax_post_task_from_pasted
     
+    puts "Raw POST data: " + request.raw_post
+    
+    @job_cnt = 50
+    @machine_cnt = 10
     @task_id = execute_soap_request(:postTask, {      
       jobCount: @job_cnt, 
       machineCount: @machine_cnt,
-      opDurationsForJobs: durations_hashified
-    }, :post_task_response)
+      opDurationsForJobs: {
+	item: [ 
+	  { item: (1..10).to_a }
+	] * 50
+      }    
+    }, :post_task_response)        
+    
+    render 'ajax_post_task'
+  end
+  
+  def ajax_post_task_from_url
+        
+    url = params[:srcUrl]    
+    #puts params        
+
+    require 'open-uri'
+    f = open(url)            
+    parse_and_post_file(f)
                
     render 'ajax_post_task'
         
@@ -117,6 +123,24 @@ class MainController < ApplicationController
 
   private
 
+    def parse_and_post_file(f)
+      
+      f.readline
+      @job_cnt, @machine_cnt, _, @upper_bound, @lower_bound = f.readline.split.map { |x| x.to_i }
+      f.readline
+      
+      durations = Array.new(@machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
+      durations_hashified = { item: durations.map { |x| { item: x } } }
+      #puts "#{durations_hashified}"
+      
+      @task_id = execute_soap_request(:postTask, {      
+	jobCount: @job_cnt, 
+	machineCount: @machine_cnt,
+	opDurationsForJobs: durations_hashified
+      }, :post_task_response)
+      
+    end
+    
     def execute_soap_request(method, args, retval)
       #ep = "http://0.0.0.0:8080"
       ep = "http://posh-wolf-ws.herokuapp.com" 

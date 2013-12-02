@@ -10,7 +10,7 @@ PoshWolf::Application.routes.draw do
 
   post "testcase/ajax/post-task" => "main#ajax_post_task"
   
-  post "testcase/ajax/post-large-task" => "main#ajax_post_large_task"
+  post "testcase/ajax/post-task-from-pasted" => "main#ajax_post_task_from_pasted"
   
   post "testcase/ajax/post-task-from-url" => "main#ajax_post_task_from_url"
 
