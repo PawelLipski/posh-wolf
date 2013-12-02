@@ -45,14 +45,14 @@
 
 	    <select id="group-select" size="3">	      
 	      <% for (j, m), i in @groups.zip(1..@groups.length) %>
-		<option <%= 'selected="selected"' if i == 1 %> > <%= j %> jobs, <%= m %> machines </option>
+		<option <%= 'selected="selected"' if i == 1 %> id="j<%= j %>m<%= m %>" > <%= j %> jobs, <%= m %> machines </option>
 	      <% end %>	      
 	    </select>
 	  </td>
 	  <td style="padding-left: 10px;">
-	    <select size="3">
+	    <select id="offset-select" size="3">
 	      <% for i in 1..10 %>
-		<option <%= 'selected="selected"' if i == 1 %> > Test #<%= i %> </option>
+		<option <%= 'selected="selected"' if i == 1 %> id="o<%= i %>" > Test #<%= i %> </option>
 	      <% end %>
 	    </select>
 	  </td>
@@ -123,7 +123,7 @@ $(document).ready(function() {
   
   $("#launch-sample-btn").click(
     function() {
-      alert($("#group-select").find(":selected").text())
+      alert($("#group-select").find(":selected").attr('id') + ', ' + $("#offset-select").find(":selected").attr('id'))
   })
     
   
