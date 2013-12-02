@@ -44,6 +44,11 @@ class MainController < ApplicationController
     render 'ajax_post_task'
   end
   
+  def ajax_post_task_from_sample
+    puts params
+    render 'ajax_post_task'
+  end
+  
   def ajax_post_task_from_pasted
     
     require 'stringio'    

@@ -13,6 +13,8 @@ PoshWolf::Application.routes.draw do
   post "testcase/ajax/post-task-from-pasted" => "main#ajax_post_task_from_pasted"
   
   post "testcase/ajax/post-task-from-url" => "main#ajax_post_task_from_url"
+  
+  post "testcase/ajax/post-task-from-sample" => "main#ajax_post_task_from_sample"
 
   get "testcase/ajax/get-all-progresses" => "main#ajax_get_all_progresses"
 
