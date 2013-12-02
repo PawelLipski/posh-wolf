@@ -45,7 +45,19 @@ class MainController < ApplicationController
   end
   
   def ajax_post_task_from_sample
-    puts params
+    
+    print params
+    job_cnt = params[:jobCnt].to_i
+    machine_cnt = params[:machineCnt].to_i
+    
+    url = get_taillard_url(job_cnt, machine_cnt)
+    f = get_url_as_file(url)
+    
+    offset = params[:offset].to_i
+    skip_test_cases(f, offset - 1, machine_cnt)
+    
+    parse_and_post_file(f)
+                    
     render 'ajax_post_task'
   end
   
@@ -62,10 +74,8 @@ class MainController < ApplicationController
   
   def ajax_post_task_from_url
     
-    require 'open-uri'
-    
-    url = params[:srcUrl]
-    f = open(url)            
+    url = params[:srcUrl]    
+    f = get_url_as_file(url)
     parse_and_post_file(f)
                
     render 'ajax_post_task'        
@@ -99,6 +109,20 @@ class MainController < ApplicationController
 
   private
 
+    def get_taillard_url(job_cnt, machine_cnt)
+      "http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai#{job_cnt}_#{machine_cnt}.txt"
+    end
+    
+    def get_url_as_file(url)
+      puts url
+      require 'open-uri'
+      open(url)
+    end
+    
+    def skip_test_cases(file, how_many, machine_cnt)
+      how_many.times { (3 + machine_cnt).times { f.readline } }
+    end
+    
     def parse_and_post_file(f)
       
       f.readline
