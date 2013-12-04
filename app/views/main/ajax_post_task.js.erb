@@ -14,7 +14,7 @@ $('#task-table > tbody').prepend(
   '<td id="' + hdrTdId + '" width="50%" colspan="2" style="padding-top: 10px"><div id="' + pbId + '"></div></td></tr>' + 
   '<tr class="' + detTrCls + '" style="display: none; ">' +
 
-  <% for k in ["Upper bound", "Lower bound", "Relative margin", "Computation time"] %>
+  <% for k in ["Upper bound", "Lower bound", "Relative difference", "Computation time"] %>
     '<th width="25%" style="padding-bottom: 20px; padding-top: 10px"> <%= k %> </th>' +
   <% end %>
 
