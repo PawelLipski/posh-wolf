@@ -13,6 +13,7 @@ $(pbSel).hide(1000, function() {
   var animLoaderGifId = "<%= raw(animLoaderGifId) %>"
   var animBtnContnrId = "task-anim-btn-contnr-" + taskId
   var ctimeSel = "#ctime-label-" + taskId
+  var ratioSel = "#ratio-label-" + taskId
 
   $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
     '<span id="' + animBtnContnrId + '">' + 
@@ -22,6 +23,9 @@ $(pbSel).hide(1000, function() {
                                
   $(ctimeSel).html('<%= "%.2f" % @result[:computation_time] %>s')
   
+  var upperBound = parseInt($(ratioSel).text())
+  $(ratioSel).html(Math.round((((<%= raw(@result[:execution_timespan]) %>) - upperBound) / upperBound) * 100) + '%')
+                   
   $(detTrSel).show(1000)
 
   var animBtnContnr = $("#" + animBtnContnrId)

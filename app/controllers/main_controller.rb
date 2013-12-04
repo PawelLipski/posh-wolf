@@ -9,40 +9,7 @@ class MainController < ApplicationController
   def do_sleep
     sleep 10
   end
-
-  def ajax_post_task  
-        
-    @job_cnt = 20
-    @machine_cnt = 5
-    @task_id = execute_soap_request(:postTask, {      
-      jobCount: @job_cnt, 
-      machineCount: @machine_cnt,
-      opDurationsForJobs: {
-	item: [ 
-	  { item: (1..5).to_a }
-	] * 20                            	
-      }    
-    }, :post_task_response)
-    
-    render 'ajax_post_task'
-  end
   
-  def ajax_post_large_task  
-    
-    @job_cnt = 50
-    @machine_cnt = 10
-    @task_id = execute_soap_request(:postTask, {      
-      jobCount: @job_cnt, 
-      machineCount: @machine_cnt,
-      opDurationsForJobs: {
-	item: [ 
-	  { item: (1..10).to_a }
-	] * 50
-      }    
-    }, :post_task_response)
-    
-    render 'ajax_post_task'
-  end
   
   def ajax_post_task_from_sample
     
@@ -91,9 +58,10 @@ class MainController < ApplicationController
   def ajax_get_result
     @result = execute_soap_request(:getResult, { 
       taskId: params[:taskId] 
-    }, :get_result_response)
+    }, :get_result_response)        
   end
 
+  
   def ajax_load_animation
     result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
