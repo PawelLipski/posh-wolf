@@ -28,7 +28,7 @@ function updateProgresses(task) {
     delete taskIds[parseInt(task.id)]    
 
   } else {    
-    $(pbSel).progressbar({value: parseInt(task.progress) * 10})              
+    $(pbSel).progressbar({value: parseInt(task.progress)})              
   }
 }
 
