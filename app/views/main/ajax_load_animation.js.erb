@@ -270,7 +270,7 @@ $("#task-list-container").fadeOut(1000, function() {
   taskDef = <%= @input[:op_durations_for_jobs].map { |x| x[:item].map { |x| x.to_i } } %>  
   //createMockTaskDef()
 
-  order = <%= @result[:job_order].map { |x| x.to_i }.shuffle %>
+  order = <%= @result[:job_order].map { |x| x.to_i } %>
 
   currentSchedIndex = createMachineSchedArray()
   nextOpForJob = createNextOpForJobArray()
