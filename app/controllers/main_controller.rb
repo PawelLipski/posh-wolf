@@ -88,7 +88,7 @@ class MainController < ApplicationController
     end
     
     def skip_test_cases(file, how_many, machine_cnt)
-      how_many.times { (3 + machine_cnt).times { f.readline } }
+      how_many.times { (3 + machine_cnt).times { file.readline } }
     end
     
     def parse_and_post_file(f)
