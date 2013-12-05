@@ -7,7 +7,7 @@
 	<font color="gray"><h4> Use sample test case </h4></font>
       </div>
       <div style="float: right"> 
-	<button id="launch-sample-btn" class="btn btn-primary">Launch</button>
+	<button id="launch-sample-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>        
     <td width="10px" style="border-right: 1px solid lightgray"/>
@@ -17,7 +17,7 @@
 	<font color="gray"><h4> Paste test case URL </h4></font>
       </div>
       <div style="float: right"> 
-	<button id="launch-url-btn" class="btn btn-primary">Launch</button>
+	<button id="launch-url-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>
   </tr>
@@ -66,7 +66,7 @@
 	<font color="gray"><h4> Paste test case contents </h4></font>
       </div>
       <div style="float: right"> 
-	<button id="launch-pasted-btn" class="btn btn-primary">Launch</button>
+	<button id="launch-pasted-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>
   </tr>
@@ -111,11 +111,13 @@ function lockTaskLaunching() {
     return false
     
   initTaskLocked = true
+  $(".launch-btn").removeClass("btn-primary").addClass("btn-inverse")
   
   return true
 }
 
 function unlockTaskLaunching() {
+  $(".launch-btn").removeClass("btn-inverse").addClass("btn-primary")
   initTaskLocked = false
 }
 
