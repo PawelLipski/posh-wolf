@@ -74,7 +74,7 @@ function loadAnimationScaffolding() {
     '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
     '<tr id="anim-machines-tr"/>' +
     '</table></td></tr>')
-    
+      
   for (var i = 1; i <= machineCnt; i++) {
     var machineHdrLabel = (machineCnt < 20 ? 'Machine '  : '') + '#' + i
     $('#anim-machine-headers-tr').append('<td width="' + headerWidth + 
@@ -106,10 +106,11 @@ function loadAnimationScaffolding() {
     '<td align="center"><table width="100%"><tr id="op-headers-tr"/></table></td></tr>')
 
   var opHeaders = $("#op-headers-tr")  
-  for (var i = 1; i <= machineCnt; i++) {
-    var label = machineCnt < 10 ? 'Op #' + i : '#' + i;
-    opHeaders.append('<td width="' + headerWidth + '%" align="center"><h4><small>' + label + '</small></h4></td>')
-  }                                      
+  if (machineCnt < 20)
+    for (var i = 1; i <= machineCnt; i++) {
+      var label = machineCnt < 10 ? 'Op #' + i : '#' + i;
+      opHeaders.append('<td width="' + headerWidth + '%" align="center"><h4><small>' + label + '</small></h4></td>')
+    }                                      
 
   $("#back-button").click(function() {
 
