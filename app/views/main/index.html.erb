@@ -121,6 +121,17 @@ function unlockTaskLaunching() {
   initTaskLocked = false
 }
 
+function showErrorDialog(XMLHttpRequest, textStatus, errorThrown) {
+  $("<div>There was an error running the specified Flow Shop test case.</div>").appendTo("#task-list-container")
+    .dialog({ 
+      title: "Error",
+      buttons: [ 
+	{ text: "Ok", click: function() { $(this).dialog("close"); } } 
+      ]
+    })
+    $(".ui-dialog-titlebar-close").css({ display: "none" })
+}
+
 $(document).ready(function() {
   
   $("#launch-sample-btn").click(
@@ -189,20 +200,9 @@ $(document).ready(function() {
 	type: "POST",	
 	data: { srcUrl: srcUrl },
 	
-	complete: function() {
-	  unlockTaskLaunching()
-	},
+	complete: unlockTaskLaunching,
 	
-	error: function(XMLHttpRequest, textStatus, errorThrown) {
-	  $("<div>The specified URL does not point to a valid Flow Shop test case data!</div>").appendTo("#task-list-container")
-	    .dialog({ 
-	      title: "Error",
-	      buttons: [ 
-		{ text: "Ok", click: function() { $(this).dialog("close"); } } 
-	      ]
-	    })
-	    $(".ui-dialog-titlebar-close").css({ display: "none" })
-	},
+	error: showErrorDialog,
 	
 	success: function() {	  
 	  if (!progressCheckRunning) {
