@@ -19,8 +19,8 @@ function updateProgresses(task) {
 
     $(pbSel).on("progressbarcomplete", function(event, ui) {
       $.ajax({
-	url: '/ajax/get-result',
-	data: { taskId: task.id }
+        url: '/ajax/get-result',
+        data: { taskId: task.id }
       })
     })                           
                               

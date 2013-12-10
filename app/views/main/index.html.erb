@@ -187,25 +187,8 @@ $(document).ready(function() {
   
   $("#launch-pasted-btn").click(
     function() {
-      
-      if (!lockTaskLaunching()) return
 
-      $.ajax({
-	url: "/ajax/post-task-from-pasted",
-	type: "POST",
-	//contentType: "application/soap+xml; charset=utf-8",
-	data: $("#pasted-text").val(),
-	success: function() {
-	  
-	  unlockTaskLaunching()
-
-	  if (!progressCheckRunning) {
-	    progressCheckRunning = true
-	    get_progress()
-	  }
-      }
-    })
-
+      postTaskGeneric("/ajax/post-task-from-pasted", $("#pasted-text").val())
   })
   
   $("#launch-url-btn").click(
