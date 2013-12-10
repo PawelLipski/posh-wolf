@@ -158,32 +158,16 @@ $(document).ready(function() {
   $("#launch-sample-btn").click(
     function() {
     
-      if (!lockTaskLaunching()) return
-
       var jm = $("#group-select").find(":selected").attr('id').split('-')
       var jobCnt = jm[0], machineCnt = jm[1]
       var offset = $("#offset-select").find(":selected").attr('id')
-      
-      $.ajax({
-	url: "/ajax/post-task-from-sample",
-	type: "POST",	
-	data: {
-	  jobCnt: jobCnt,
-	  machineCnt: machineCnt,
-	  offset: offset
-	},
-	success: function() {
-	  
-	  unlockTaskLaunching()
 
-	  if (!progressCheckRunning) {
-	    progressCheckRunning = true
-	    get_progress()
-	  }
-      }
-    })
+      postTaskGeneric("/ajax/post-task-from-sample", {
+        jobCnt: jobCnt,
+        machineCnt: machineCnt,
+        offset: offset
+      })
   })
-    
   
   $("#launch-pasted-btn").click(
     function() {
