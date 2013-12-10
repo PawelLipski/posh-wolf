@@ -139,6 +139,20 @@ function ensureProgressCheckRunning() {
   }
 }
 
+function postTaskGeneric(url, data) {
+  if (!lockTaskLaunching()) return
+
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: data,
+    
+    complete: unlockTaskLaunching,	
+    error: showErrorDialog,	
+    success: ensureProgressCheckRunning
+  })
+}
+
 $(document).ready(function() {
   
   $("#launch-sample-btn").click(
@@ -200,17 +214,7 @@ $(document).ready(function() {
       var srcUrl = $("#input-url").val()      
       if (srcUrl.match(/^\s*$/)) return // whitespace-only
 
-      if (!lockTaskLaunching()) return
-
-      $.ajax({
-	url: "/testcase/ajax/post-task-from-url",
-	type: "POST",	
-	data: { srcUrl: srcUrl },
-	
-	complete: unlockTaskLaunching,	
-	error: showErrorDialog,	
-	success: ensureProgressCheckRunning
-      })
+      postTaskGeneric("/testcase/ajax/post-task-from-url", { srcUrl: srcUrl })
 
    })  
 })
