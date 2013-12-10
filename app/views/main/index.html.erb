@@ -132,6 +132,13 @@ function showErrorDialog(XMLHttpRequest, textStatus, errorThrown) {
     $(".ui-dialog-titlebar-close").css({ display: "none" })
 }
 
+function ensureProgressCheckRunning() {
+  if (!progressCheckRunning) {
+    progressCheckRunning = true
+    get_progress()
+  }
+}
+
 $(document).ready(function() {
   
   $("#launch-sample-btn").click(
@@ -200,16 +207,9 @@ $(document).ready(function() {
 	type: "POST",	
 	data: { srcUrl: srcUrl },
 	
-	complete: unlockTaskLaunching,
-	
-	error: showErrorDialog,
-	
-	success: function() {	  
-	  if (!progressCheckRunning) {
-	    progressCheckRunning = true
-	    get_progress()
-	  }
-	}
+	complete: unlockTaskLaunching,	
+	error: showErrorDialog,	
+	success: ensureProgressCheckRunning
       })
 
    })  
