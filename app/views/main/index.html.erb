@@ -111,13 +111,13 @@ function lockTaskLaunching() {
     return false
     
   initTaskLocked = true
-  $(".launch-btn").removeClass("btn-primary").addClass("btn-inverse")
+  $(".launch-btn").removeClass("btn-primary").addClass("btn-inactive")
   
   return true
 }
 
 function unlockTaskLaunching() {
-  $(".launch-btn").removeClass("btn-inverse").addClass("btn-primary")
+  $(".launch-btn").removeClass("btn-inactive").addClass("btn-primary")
   initTaskLocked = false
 }
 
