@@ -45,7 +45,8 @@ function createProgressBarForOp(opContnrId, opLabelText, css) {
   var opLabelHtml = '<div style="display: table; position:absolute; top:0; left:0; width:100%; height:' + opHeight + 
     'px; overflow: hidden">' + 
     '<div id="' + opLabelId + '" style="display: table-cell; vertical-align: middle" >' +
-    '<center><b><p id="text">' + opLabelText + '</p></b></center> </div> </div>'
+    '<center><font color="black">' +  (machineCnt < 20 ? '' : '<small>') + 
+    '<p id="text">' + opLabelText + '</p></center> </div> </div>'
 
   opContnr.append(opLabelHtml)
   opContnr.append(opPb)
@@ -73,10 +74,12 @@ function loadAnimationScaffolding() {
     '<table width="100%"><tr id="anim-machine-headers-tr"/>' + 
     '<tr id="anim-machines-tr"/>' +
     '</table></td></tr>')
-  
-  for (var i = 1; i <= machineCnt; i++)
+    
+  for (var i = 1; i <= machineCnt; i++) {
+    var machineHdrLabel = (machineCnt < 20 ? 'Machine '  : '') + '#' + i
     $('#anim-machine-headers-tr').append('<td width="' + headerWidth + 
-      '%" align="center"><font color="gray">Machine #' + i + '</font></td>')
+      '%" align="center"><font color="gray">' + machineHdrLabel + '</font></td>')
+  }                                      
 
   var machineTr = $('#anim-machines-tr')
   var css = { float: 'center', width: '100%' }
@@ -86,7 +89,7 @@ function loadAnimationScaffolding() {
     '" style="width: ' + headerWidth + '%;' + 
     ' padding-left: 1%; padding-right: 1%; padding-top: 5px; padding-bottom: 5px"/>').appendTo(machineTr)
                                         
-    machineTd.append(createProgressBarForOp('machine-' + i, 'Started', css))
+    machineTd.append(createProgressBarForOp('machine-' + i, 'Start', css))
   }
 
   jobsTable.append('<tr style="border-bottom: solid lightgray 1px"><td colspan="3" style="padding-top: 20px">' + 
@@ -210,7 +213,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
   machinePb.animate({ width: '100%' }, jobDuration * 50)
 
   var machineLabel = $('#machine-' + machineId + '-pb-label').find('#text')  
-  machineLabel.html('Job #' + jobId)
+  machineLabel.html((machineCnt < 20 ? 'Job ' : '') + '#' + jobId)
 
   opPb.animate({ width: '100%' }, jobDuration * 50, function() {
                                                                 
@@ -239,7 +242,7 @@ function handleNextOpExecution(animationId, machineId, timePassed) {
       else
 	machineLabel.html('Idle')
     } else
-      machineLabel.html('Finished')                     
+      machineLabel.html('Done')                     
 
     if (machineId < machineCnt) {
 
