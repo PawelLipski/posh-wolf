@@ -57,12 +57,12 @@ class AjaxController < ApplicationController
     result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
     }, :get_result_and_input_response)   
-    puts result_and_input    
+    #puts result_and_input    
     
     @result = result_and_input[:result]   
     @input = result_and_input[:task]
     
-    puts "#{@input[:op_durations_for_jobs].map { |x| x[:item] }}"
+    #puts "#{@input[:op_durations_for_jobs].map { |x| x[:item] }}"
   end
 
 
@@ -77,7 +77,7 @@ class AjaxController < ApplicationController
     end
     
     def get_url_as_file(url)
-      puts url
+      #puts url
       require 'open-uri'
       open url
     end
@@ -115,7 +115,7 @@ class AjaxController < ApplicationController
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
-          puts args
+          #puts args
           client.call(method, message: args).body[retval][:return]
         end
 	
@@ -125,7 +125,7 @@ class AjaxController < ApplicationController
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
-          puts args
+          #puts args
           client.call(method, message: args).body[retval][:return]
         end
       end
