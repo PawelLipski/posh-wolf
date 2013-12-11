@@ -15,7 +15,7 @@ $(pbSel).hide(1000, function() {
   var ctimeSel = "#ctime-label-" + taskId
   var ratioSel = "#ratio-label-" + taskId
 
-  $(hdrTdSel).append('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
+  $(hdrTdSel).html('<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
     '<span id="' + animBtnContnrId + '">' + 
     '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, style: "float: right; display: none" %>' +
     '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="float: right">Visualize</button>' +    
