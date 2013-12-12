@@ -1,23 +1,42 @@
 
+<p> This application is a semestral project for Operational Research, a ## third-grade subject in ## 
+Computer Science, Faculty of ###, AGH University of Science and Technology in Cracow, Poland. </p>
+
+<p> Its ##purpose is to experiment with Cuckoo algorithm as a way to solve flow shop problem
+and to provide a friendly ### demonstration of the flow shop execution. </p>
+
 <table width="100%">
 
 <tr> 
 <td width="30%">Client-side (browser) </td>
-<td>jQuery + Twitter Bootstrap</td>
+<td>Web interface for visualization of flow shop problem instances. Uses jQuery and Twitter Bootstrap.</td>
 </tr>
 
-<tr> <td colspan="2"> <font color="gray"> AJAX </td> </tr>
+<tr> <td colspan="2" align="center"> <font color="gray"> AJAX </td> </tr>
 
 <tr> 
 <td> Webapp </td>
-<td> Ruby on Rails, deployed ON Heroku cloud </td> 
+<td> 
+Ruby on Rails web app, handling requests from the clients ## mainly through AJAX. 
+Wraps client requests to comply SOAP standards (## Savon gem) and passes to the web service.
+Deployed ###ON Heroku cloud </td> 
 </tr>
 
-<tr> <td colspan="2"> <font color="gray"> SOAP </td> </tr>
+<tr> <td colspan="2" align="center"> <font color="gray"> SOAP </td> </tr>
+
+<tr> 
+<td> Web service </td>
+<td> SOAP web service, implemented in Scala with JAX-WS. Employs actors for ##asynchronous task scheduling and execution. 
+Web API enables task enqueueing, checking progress/partial results for ongoing tasks and result retrieval for tasks that finished. 
+Hosted ###ON Heroku cloud. </td>
+</tr>
+
+<tr> <td colspan="2" align="center"> <font color="gray"> (direct access) </td> </tr>
 
 <tr> 
 <td> Back-end </td>
-<td> Cuckoo algorithm, further described <%= link_to "here", "cuckoo" %> </td> 
+<td> Cuckoo algorithm implemented in Java by Aleksander Książek and Przemysław Burczyk. Further described <%= link_to "here", "cuckoo" %>. </td> 
 </tr>
 
 </table>
+
