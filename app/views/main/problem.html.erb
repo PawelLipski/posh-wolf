@@ -1,14 +1,17 @@
 
 <h1> The flow shop problem </h1>
 
-<p align="justify"> There are n machines and m jobs. 
+<p class="doc"> There are n machines and m jobs. 
 Each job contains exactly n operations. 
 i-th operation of the job must be executed on the i-th machine.
 No machine can perform more than one operation simultaneously.
 For each operation of each job, execution time is specified.
 Operations in one job must be performed in the specified order - the first operation gets executed on the first machine, then (as the first operation is finished) the second operation on the second machine, and so until the n-th operation. 
 Jobs can be executed in any order, however, and the problem is to determine the optimal such arrangement.
-The optimal solution is the solution with the shortest total job execution timespan possible. </p>
+The optimal solution is the solution with the shortest total job execution timespan possible. </p
+>
 
-<p align="justify"> The problem is NP-complete for n &gt; 2, which renders it almost impossible to find an optimal solution for large n. Various heuristics are employed, including the <%= link_to "Cuckoo Search algorithm", "cuckoo" %> - as we did in Posh Wolf.</p>
+<p class="doc"> 
+The problem is NP-complete for n &gt; 2, which renders it almost impossible to find an optimal solution for large n. Various heuristics are employed, including the <%= link_to "Cuckoo Search algorithm", "cuckoo" %> - as we did in Posh Wolf.
+</p>
 
