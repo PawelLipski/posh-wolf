@@ -150,7 +150,7 @@ input {
   @extend .error;
 }
 
-/* Headers in module description table */
+/* Cells in module description table */
 
 // Module
 .mod-hdr {
@@ -165,5 +165,12 @@ input {
   width: 11%;
   text-align: center;
   color: gray;
+}
+
+// Module description
+.mod-descr {
+  width: 25%;
+  text-align: justify;
+  vertical-align: top;
 }
 

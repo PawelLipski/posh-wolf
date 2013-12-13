@@ -23,22 +23,22 @@ and to provide a friendly ### demonstration of the flow shop execution. </p>
 </tr>
 
 <tr>
-  <td width="25%">
+  <td class="mod-descr">
   Web interface for visualization of flow shop problem instances. Uses jQuery and Twitter Bootstrap.
   </td>
-  <td width="25%"> 
+  <td class="mod-descr"> 
   Web app built with Ruby on Rails. Based mainly on AJAX.
   Handles requests from browsers wrapping them in SOAP envelope (with Savon gem) and passes to the web service.
   Deployed ###ON Heroku cloud, running on Unicorn ##web server to enable ## handle requests simultaneously. 
   </td> 
 
-  <td width="25%"> 
+  <td class="mod-descr"> 
   SOAP web service, implemented in Scala ## with JAX-WS. ## Employs Scala actors ## for ## asynchronous task scheduling and execution. 
   ## Publishes!!! web API, which enables enqueueing flow shop tasks, checking progress and partial results for ongoing tasks and retrieving result for complete tasks. 
   Hosted ###ON Heroku cloud. 
   </td>
 
-  <td width="25%"> 
+  <td class="mod-descr"> 
   Cuckoo algorithm implemented in Java by Aleksander Książek and Przemysław Burczyk. 
   A detailed description may be found <%= link_to "here", "algorithm" %>. 
   </td> 
