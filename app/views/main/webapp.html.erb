@@ -8,18 +8,19 @@
     <table width="90%"> <tr>
       <td class="mod-hdr">Client-side </td>
       <td class="prot-hdr"> 
-        <%= image_tag "/assets/arrows.gif" %> 
+        <% img = image_tag "/assets/arrows.gif", width: 60, height: 60 %> 
+        <%= img %>
         AJAX 
       </td>
       <td class="mod-hdr"> Webapp </td>
       <td class="prot-hdr"> 
-        <%= image_tag "/assets/arrows.gif" %> 
+        <%= img %>
         SOAP 
       </td>
       <td class="mod-hdr"> Web service </td>
       <td class="prot-hdr"> 
-        <%= image_tag "/assets/arrows.gif" %> 
-        Direct access 
+        <%= img %>
+        (directly)
       </td>
       <td class="mod-hdr"> Back-end </td>
     </tr> </table>
