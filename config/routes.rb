@@ -16,4 +16,5 @@ PoshWolf::Application.routes.draw do
 
   get  "sleep" => "main#do_sleep"
 
+  get '*path' => redirect('/') unless Rails.env.development?
 end
