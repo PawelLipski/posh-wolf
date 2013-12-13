@@ -1,0 +1,16 @@
+
+
+We solve the problem by the means of optimization algorithm known as cuckoo search, elaborated by ###CHK TODOODODODODO!!! Xin-She Yang and Suash Deb in 2009.
+#By assumption, it represents ##brood behavior of cuckoos. Potential solution instances are represented by eggs, located in nests. In the basic version of the algorithm #employed #for this #problem, each nest keeps at most one egg. Who provide new solutions are the cuckoos, each of them remembers one solution instance.
+
+#solution->candidate
+
+As soon as initial nest &ampl cuckoos population is randomized, optimization process starts. In every iteration a single cuckoo is randomly chosen and its solution is modified in a random way. Various strategies are employed #to modification. Yang and Deb prove in their article that the optimal one are so-called L#kreska!#evy flights, but we did not follow this path due to implementational difficulties. Posh Wolf uses simple random walk instead - a modified egg (solution) is placed in a randomly chosen nest, if only it #super the egg that was placed there before.
+
+Solution quality is estimated using a #target function - and in the case of flow shop problem it is the total #sprawdzic, czy to jest ok# execution timespan. The algorithm aims, of course, to minimize this time, i.e. to minimize the time that passes between the first job starts and the very last jobs completes.
+
+At the end of each iteration, a number of the worst solution candidates is removed and substituted with randomly generated ones.
+
+The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
+
+( moze sie da jakos skopiowac??? 

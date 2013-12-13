@@ -2,8 +2,9 @@
 PoshWolf::Application.routes.draw do
 
   root "main#index"   
-  get  "about" => "main#about"
-  get  "flow-shop" => "main#flow_shop"
+  get  "problem" => "main#problem"
+  get  "algorithm" => "main#algorithm"
+  get  "webapp" => "main#webapp"
 
   post "ajax/post-task-from-pasted" => "ajax#post_task_from_pasted"
   post "ajax/post-task-from-url" => "ajax#post_task_from_url"
