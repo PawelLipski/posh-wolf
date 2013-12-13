@@ -14,10 +14,11 @@ class MainController < ApplicationController
   def webapp
   end
 
-  def do_sleep
-    sleep 10
+  def about
   end
-  
-  
+
+  def contact
+  end
+
 end
 
