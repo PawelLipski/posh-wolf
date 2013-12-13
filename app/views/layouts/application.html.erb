@@ -6,12 +6,16 @@
   <%= stylesheet_link_tag    "progressbar" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
+      <div class="pull-left" style="margin-top: 5px; margin-right: 10px">
+        <%= image_tag "/assets/favicon.png", width: 30, height: 30 %>
+      </div>
       <%= link_to "posh wolf", '#', id: "logo" %>
       <nav>
         <ul class="nav pull-right">
