@@ -11,7 +11,8 @@ detTrCls = 'task-det-tr-' + newTaskId
 $('#task-table > tbody').prepend(
   '<tr id="' + hdrTrId + '" style="display: none; border-bottom: 1px solid LightGray"><td width="25%" style="padding-top: 30px"><h4>Task #' + newTaskId + '</h4></td>' +
   '<td width="25%" style="padding-top: 30px"> <%= @job_cnt %> jobs, <%= @machine_cnt %> machines</td>' + 
-  '<td id="' + hdrTdId + '" width="50%" colspan="2" style="padding-top: 30px"><div id="' + pbId + '"></div></td></tr>' + 
+  '<td id="' + hdrTdId + '" width="50%" colspan="2" style="padding-top: 30px; vertical-align: middle">' + 
+  '<div id="' + pbId + '"></div></td></tr>' + 
   '<tr class="' + detTrCls + '" style="display: none; ">' +
 
   <% for k in ["Upper bound", "Lower bound", "Relative difference", "Computation time"] %>
