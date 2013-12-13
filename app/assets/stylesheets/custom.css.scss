@@ -151,7 +151,18 @@ input {
 }
 
 /* Headers in module description table */
+
+// Module
 .mod-hdr {
   width: 16.5%;
   text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+// Protocol
+.prot-hdr {
+  width: 11%;
+  text-align: center;
+  color: gray;
 }
