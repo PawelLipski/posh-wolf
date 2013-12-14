@@ -7,29 +7,30 @@
 <%= link_to "Xin-She Yang and Suash Deb in 2009", "http://arxiv.org/pdf/1003.1594.pdf" %>.
 It is inspired by brood parisitism of certain cuckoo species. 
 Candidate solutions are represented by <b>eggs</b>, located in <b>nests</b>. 
-In the version of the algorithm which is used to solve the flow shop problem in Posh Wolf, <b>each nest keeps at most one egg</b>. 
-What provide new candidates are the cuckoos, each of them <b>holding one such candidate</b> solution instance.
+In the version of the algorithm which is used in Posh Wolf, <b>each nest keeps at most one egg</b>. 
+What provides new candidates are the cuckoos, each of them <b>holding one such candidate</b> solution instance.
 </p>
 
 <p class="doc">
-As soon as initial nests and cuckoos population is generated, optimization process starts. 
-In every single iteration, a <b>single cuckoo</b> is randomly chosen and its solution is modified in a random way. 
-Various strategies are employed to modification. 
-Yang and Deb prove in their article that the optimal one are so-called <b>Lévy flights</b>, but we did not follow this path due to implementational difficulties. 
-Posh Wolf uses simple random walk instead - a modified egg (solution) is placed in a <b>randomly chosen nest</b>, if only it surpasses the egg that was placed there before.
+As soon as initial nests and cuckoos population are generated, optimization process starts. 
+In every single iteration, <b>one cuckoo</b> is randomly chosen and its solution is modified in a random way. 
+Various strategies are employed to this modification. 
+Yang and Deb prove in their article that the optimal strategy are so-called <b>Lévy flights</b>, but we did not follow this path due to implementational difficulties. 
+Posh Wolf uses simple random walk instead - a modified egg (solution) is placed in a <b>randomly chosen nest</b> (if only it surpasses the egg that was placed there before).
 At the end of each iteration, a number of the <b>worst solution candidates is removed</b> and substituted with randomly generated ones.
 </p>
 
 <p class="doc">
-Solution quality is estimated using a target function - and in the case of flow shop problem it is the <b>total execution timespan</b>. 
-The algorithm aims, of course, to minimize this value, i.e. to minimize the time that passes <b>between the first job starts and the very last jobs completes</b>.
+Solution quality is estimated using a target function - for flow shop problem it is defined as the <b>total execution timespan</b>. 
+The algorithm aims, of course, at minimizing this value, i.e. at minimizing the time that passes <b>between the first job starts and the very last jobs completes</b>.
 </p>
 
 <p class="doc">
 The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
 </p>
 
-<div style="font-family: 'Book Antiqua'">
+<table style="font-family: 'Book Antiqua'; font-size: large; margin-top: 30px; line-height: 1.5" align="center"> <tr> 
+<td style="border-top: 1px solid lightgray; border-bottom: 1px solid lightgray">
 <b>begin</b>
   <span style="display: block; margin-left: 20px">
   
@@ -43,7 +44,7 @@ The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
 
     <span style="display: block; margin-left: 40px">
 
-    Get a cuckoo randomly by Lévy ﬂights <br/>
+    Get a cuckoo randomly (possibly by Lévy flights) <br/>
     Evaluate its quality/fitness <i>F<sub>i</sub></i> <br/>
     Choose a nest among <i>n </i>(say, <i>j</i>) randomly <br>
 
@@ -65,7 +66,7 @@ The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
 
   </span>
 <b>end</b>
-</div>
+</td> </tr> </table>
 
 </td> </tr> </table>
 
