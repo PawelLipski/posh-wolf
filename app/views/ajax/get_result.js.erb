@@ -20,7 +20,8 @@ $(pbSel).hide(1000, function() {
 
   $(hdrTrSel).append('<td width="25%" align="right" valign="bottom">' + 
     '<span id="' + animBtnContnrId + '">' + 
-    '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, style: "display: none" %>' +
+    '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, 
+      style: "display: none; margin-bottom: 10px; margin-right: 40px" %>' +
     '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="margin-bottom: 5px">' +
     'Visualize</button>' +    
     '</span></td>')
@@ -38,7 +39,7 @@ $(pbSel).hide(1000, function() {
                                
   animBtn.click(function() { 
 
-    animBtn.css({ visibility: 'hidden' })
+    animBtn.css({ display: 'none' })
     animLoaderGif.show()    
 
     $.ajax({
