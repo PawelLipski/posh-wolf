@@ -29,26 +29,43 @@ The algorithm aims, of course, to minimize this value, i.e. to minimize the time
 The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
 </p>
 
+<div style="font-family: 'Book Antiqua'">
 <b>begin</b>
-  Objective function f(x), x = (x1, ..., xd)
-  T
-  Generate initial population of
-  n host nests xi (i = 1,2, ..., n)
-  while (t &lt; MaxGeneration) or (stop criterion)
-  Get a cuckoo randomly by L´evy ﬂights
-  evaluate its quality/ﬁtness Fi
-  Choose a nest among n (say, j) randomly
-  if (Fi &gt; Fj),
-  replace j by the new solution;
-  end
-  A fraction (pa) of worse nests
-  are abandoned and new ones are built;
-  Keep the best solutions
-  (or nests with quality solutions);
-  Rank the solutions and ﬁnd the current best
-  end while
-  Postprocess results and visualization
+  <span style="display: block; margin-left: 20px">
+  
+  Objective function f(<i>x</i>), <i>x</i> =
+  (<i>x<sub>1</sub></i>, ..., <i>x<sub>d</sub></i>) <sup>T</sup> <br/>
+  
+  Generate initial population of <i>n</i> host nests <i>x<sub>i</sub></i>,
+  <i>i</i> = 1, 2, ..., <i>n</i> <br/>
+  
+  <b>while</b> (<i>t </i>&lt; MaxGeneration) <b>or</b> (stop criterion)
+
+    <span style="display: block; margin-left: 40px">
+
+    Get a cuckoo randomly by Lévy ﬂights <br/>
+    Evaluate its quality/fitness <i>F<sub>i</sub></i> <br/>
+    Choose a nest among <i>n </i>(say, <i>j</i>) randomly <br>
+
+    <b>if</b> <i>F<sub>i</sub></i> &gt; <i>F<sub>j</sub></i> <br>
+
+      <span style="display: block; margin-left: 60px">
+      Replace <i>j</i> by the new solution
+      </span>
+ 
+    <b>end</b> <br>
+
+    A fraction (p<sub>a</sub>) of worse nests are abandoned and new ones are built <br>
+    Keep the best solutions (or nests with quality solutions) <br>
+    Rank the solutions and ﬁnd the current best 
+
+    </span>
+  
+  <b>end while</b>
+
+  </span>
 <b>end</b>
+</div>
 
 </td> </tr> </table>
 
