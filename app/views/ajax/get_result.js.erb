@@ -15,13 +15,15 @@ $(pbSel).hide(1000, function() {
   var ctimeSel = "#ctime-label-" + taskId
   var ratioSel = "#ratio-label-" + taskId
 
-  $(hdrTdSel).html(
-    '<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>' +
+  $(hdrTdSel).attr('colspan', 1).attr('width', '25%').html(
+    '<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>')
+
+  $(hdrTrSel).append('<td width="25%" align="right" valign="bottom">' + 
     '<span id="' + animBtnContnrId + '">' + 
-    '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, style: "float: right; display: none" %>' +
-    '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="float: right; margin-bottom: 10px">' +
+    '<%= image_tag "ajax-loader.gif", id: animLoaderGifId, style: "display: none" %>' +
+    '<button id="' + animBtnId + '" class="btn btn-large btn-primary" style="margin-bottom: 5px">' +
     'Visualize</button>' +    
-    '</span>')
+    '</span></td>')
                                
   $(ctimeSel).html('<%= "%.2f" % @result[:computation_time] %>s')
   
