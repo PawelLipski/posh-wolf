@@ -15,7 +15,7 @@ class MainController < ApplicationController
   def algorithm
   end
   
-  def webapp
+  def system
   end
 
   def about

@@ -4,7 +4,7 @@ PoshWolf::Application.routes.draw do
   root "main#index"   
   get  "problem" => "main#problem"
   get  "algorithm" => "main#algorithm"
-  get  "webapp" => "main#webapp"
+  get  "system" => "main#system"
   get  "about" => "main#about"
   get  "contact" => "main#contact"
 
