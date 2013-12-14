@@ -29,7 +29,27 @@ The algorithm aims, of course, to minimize this value, i.e. to minimize the time
 The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
 </p>
 
+<b>begin</b>
+  Objective function f(x), x = (x1, ..., xd)
+  T
+  Generate initial population of
+  n host nests xi (i = 1,2, ..., n)
+  while (t &lt; MaxGeneration) or (stop criterion)
+  Get a cuckoo randomly by L´evy ﬂights
+  evaluate its quality/ﬁtness Fi
+  Choose a nest among n (say, j) randomly
+  if (Fi &gt; Fj),
+  replace j by the new solution;
+  end
+  A fraction (pa) of worse nests
+  are abandoned and new ones are built;
+  Keep the best solutions
+  (or nests with quality solutions);
+  Rank the solutions and ﬁnd the current best
+  end while
+  Postprocess results and visualization
+<b>end</b>
+
 </td> </tr> </table>
 
-TODO: moze sie da jakos skopiowac??? + ladny syntax!
 
