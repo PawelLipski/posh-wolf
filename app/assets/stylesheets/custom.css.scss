@@ -178,10 +178,19 @@ input {
   padding-top: 20px;
 }
 
-// Table cell in About page
+
 .about-list-cell {
   border-bottom: 1px solid lightgray;
   padding-top: 15px;
 }
 
+.about-main-cell {
+  //border-bottom: 1px solid lightgray;
+  //padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  vertical-align: top;
+  text-align: center;
+}
 
