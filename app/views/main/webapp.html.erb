@@ -30,24 +30,25 @@
 <tr>
   <td class="mod-descr">
   Web interface for task scheduling and visualization of flow shop execution.
-  Connects to the web application mainly via AJAX requests.
-  Uses jQuery and Twitter Bootstrap.
+  Connects to the web application mainly via <b>AJAX</b> requests.
+  Uses <b>jQuery</b> and <b>Twitter Bootstrap</b>.
   </td>
 
   <td class="mod-descr">
-  Web app built with Ruby on Rails.
-  Handles requests from browsers wrapping them in SOAP envelope (through the use of Savon gem) and passes to the web service.
-  Deployed to the Heroku cloud. Running on the Unicorn HTTP server to enable handling multiple HTTP requests simultaneously. 
+  Web app built with <b>Ruby on Rails</b>.
+  Handles requests from browsers wrapping them in <b>SOAP</b> envelope (through the use of <b>Savon</b> gem) and passes to the web service.
+  Deployed to the <b>Heroku</b> cloud. Running on the <b>Unicorn</b> HTTP server to enable handling multiple HTTP requests simultaneously. 
   </td> 
 
   <td class="mod-descr"> 
-  SOAP web service, implemented in Scala with JAX-WS. Employs Scala actors to asynchronous task scheduling and execution. 
+  <b>SOAP web service</b>, implemented in <b>Scala</b> with <b>JAX-WS</b>. 
   Offers Web API, which enables enqueueing flow shop tasks, checking progress and partial results for ongoing tasks and retrieving result for the complete ones. 
-  Hosted on Heroku cloud.
+  Employs Scala <b>actors</b> to implement asynchronous task scheduling and execution. 
+  Hosted on <b>Heroku</b> cloud.
   </td>
 
   <td class="mod-descr"> 
-  Cuckoo algorithm implemented in Java by Aleksander Książek and Przemysław Burczyk.
+  <b>Cuckoo search algorithm</b> implemented in <b>Java</b> by Aleksander Książek and Przemysław Burczyk.
   A detailed description may be found <%= link_to "here", "algorithm" %>.
   Thanks to Java/Scala bytecode compatibility, back-end is simply stored as a part of the web service.
   </td> 
