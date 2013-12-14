@@ -118,7 +118,7 @@ function loadAnimationScaffolding() {
 
     $("#anim-container").fadeOut(1000, function() {
       $("#task-anim-ldrgif-" + animTaskId).css({ visibility: 'visible' }).hide()
-      $("#task-anim-btn-" + animTaskId).css({ visibility: 'visible' })
+      $("#task-anim-btn-" + animTaskId).show() //css({ visibility: 'visible' })
       $("#task-list-container").show()
     })
   })
