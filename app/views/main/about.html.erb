@@ -46,6 +46,16 @@
     <li> SOAP web service (written in Scala) &amp; back-end (written in Java): <%= link_to "sources at GitHub", "/ws-src" %> 
     </ul>
   </td> </tr>
+
+  <tr> <td class="about-header">
+    Credits 
+  </td> </tr>
+
+  <tr> <td class="about-content">
+    <% for i in ["ajaxload", "clker", "subtle_patterns", "uptime_robot"] %>
+      <%= image_tag "/assets/credits/#{i}.png" %>
+    <% end %>
+  </td> </tr>
 </table>
 
 </p>
