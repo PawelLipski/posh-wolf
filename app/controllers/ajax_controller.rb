@@ -7,8 +7,6 @@ class AjaxController < ApplicationController
     job_cnt = params[:jobCnt].to_i
     machine_cnt = params[:machineCnt].to_i
     
-    #url = get_taillard_url(job_cnt, machine_cnt)
-    #f = get_url_as_file(url)
     f = get_sample_file(job_cnt, machine_cnt)
     
     offset = params[:offset].to_i
@@ -57,12 +55,10 @@ class AjaxController < ApplicationController
     result_and_input = execute_soap_request(:getResultAndInput, { 
       taskId: params[:taskId] 
     }, :get_result_and_input_response)   
-    #puts result_and_input    
     
     @result = result_and_input[:result]   
     @input = result_and_input[:task]
     
-    #puts "#{@input[:op_durations_for_jobs].map { |x| x[:item] }}"
   end
 
 
@@ -77,7 +73,6 @@ class AjaxController < ApplicationController
     end
     
     def get_url_as_file(url)
-      #puts url
       require 'open-uri'
       open url
     end
@@ -94,7 +89,6 @@ class AjaxController < ApplicationController
       
       durations = Array.new(@machine_cnt) { |y| f.readline.split.map { |x| x.to_i } }.transpose
       durations_hashified = { item: durations.map { |x| { item: x } } }
-      #puts "#{durations_hashified}"
       
       @task_id = execute_soap_request(:postTask, {      
         jobCount: @job_cnt, 
@@ -115,7 +109,6 @@ class AjaxController < ApplicationController
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
-          #puts args
           client.call(method, message: args).body[retval][:return]
         end
 	
@@ -125,7 +118,6 @@ class AjaxController < ApplicationController
             namespace "com.poshwolf.ws"
             strip_namespaces true
           end
-          #puts args
           client.call(method, message: args).body[retval][:return]
         end
       end
