@@ -37,14 +37,16 @@
   <td class="mod-descr">
   Web app built with <b>Ruby on Rails</b>.
   Handles requests from browsers wrapping them in <b>SOAP</b> envelope (through the use of <b>Savon</b> gem) and passes to the web service.
-  Deployed to the <b>Heroku</b> cloud. Running on the <b>Unicorn</b> HTTP server to enable handling multiple HTTP requests simultaneously. 
+  Deployed to the <b>Heroku</b> cloud. Running on the <b>Unicorn</b> server to handle multiple HTTP requests simultaneously. 
+  Traffic stats are collected with <b>Google Analytics</b>.
   </td> 
 
   <td class="mod-descr"> 
   <b>SOAP web service</b>, implemented in <b>Scala</b> with <b>JAX-WS</b>. 
-  Offers Web API, which enables enqueueing flow shop tasks, checking progress and partial results for ongoing tasks and retrieving result for the complete ones. 
+  Offers Web API, which enables enqueueing flow shop tasks, 
+  checking progress and partial results for ongoing tasks and retrieving result for the complete ones. 
   Employs Scala <b>actors</b> to implement asynchronous task scheduling and execution. 
-  Hosted on <b>Heroku</b> cloud.
+  Hosted on <b>Heroku</b> cloud (at posh-wolf-ws.herokuapp.com).
   </td>
 
   <td class="mod-descr"> 
