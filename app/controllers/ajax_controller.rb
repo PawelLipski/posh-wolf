@@ -112,14 +112,6 @@ class AjaxController < ApplicationController
           client.call(method, message: args).body[retval][:return]
         end
 	
-        format.html do 
-          client = Savon.client do            
-            endpoint ep
-            namespace "com.poshwolf.ws"
-            strip_namespaces true
-          end
-          client.call(method, message: args).body[retval][:return]
-        end
       end
     end
 
