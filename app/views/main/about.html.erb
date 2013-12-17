@@ -52,9 +52,18 @@
   </td> </tr>
 
   <tr> <td class="about-content">
-    <% for i in ["ajaxload", "clker", "subtle_patterns", "uptime_robot"] %>
-      <%= image_tag "/assets/credits/#{i}.png" %>
+    <table> <tr>
+    <% for name, url in [
+        ["ajaxload", "ajaxload.info"],
+        ["clker", "clker.com"],
+        ["subtle_patterns", "subtlepatterns.com"],
+        ["uptime_robot", "uptimerobot.com"]
+    ] %>
+      <td style="height: 10em; padding-left: 20px; padding-right: 20px">
+        <%= link_to( image_tag("/assets/credits/#{name}.png"), "http://#{url}" ) %>
+      </td>
     <% end %>
+    </tr> </table>
   </td> </tr>
 </table>
 
