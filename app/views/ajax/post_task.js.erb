@@ -15,8 +15,15 @@ $('#task-table > tbody').prepend(
   '<div id="' + pbId + '"></div></td></tr>' + 
   '<tr class="' + detTrCls + '" style="display: none; ">' +
 
-  <% for k in ["Upper bound", "Lower bound", "Relative difference", "Computation time"] %>
-    '<th width="25%" style="padding-bottom: 20px; padding-top: 10px"> <%= k %> </th>' +
+  <% for label, descr in [
+    ["Upper bound",
+      "It is known that this flow shop instance can be completed within such timespan, but possibly there exists a better solution."],
+    ["Lower bound", "It is proven that no job order can imply shorter execution timespan than this." ],
+    ["Relative difference", "It is the ratio (our result - best known result) / (best known result), times 100%." ],
+    ["Computation time", "It is the time the Cuckoo algorithm elapsed for computing this test case." ]
+  ] %>
+    '<th width="25%" style="padding-bottom: 20px; padding-top: 10px">' +
+    '<%= label %> <span title="<%= descr %>"><sup> [?] </sup> </span> </th>' +
   <% end %>
 
   '</tr><tr class="' + detTrCls + '" style="display: none">' +

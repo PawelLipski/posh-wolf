@@ -24,39 +24,17 @@
           <li><%= link_to "Algorithm", "/algorithm" %></li>          
           <li><%= link_to "System", "/system" %></li>          
 
-            <!-- <li><%= link_to "Settings", "#" %></li>
-                <li><%= link_to "Sign out" %></li>
-                <li><%= link_to "Profile" %></li> -->
-
-                <!-- 
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profile" %></li>
-                <li><%= link_to "Settings" %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out" %>
-                </li>
-              </ul>
-            </li>
-            -->
         </ul>
         <ul class="nav pull-right">
           <li> 
               <%= link_to "READ MORE:", "#", style: "color: white" %> 
           </li>
         </ul>
-        <!-- <ul class="nav pull-right">        
-          <li><%= link_to "Home", "/" %></li>
-        </ul> -->
       </nav>
     </div>
   </div>
 </header>
-<div style="display: block; width: 80%; margin:0 auto"> <!-- class="container"> -->
+<div style="display: block; width: 80%; margin:0 auto"> 
   <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %> </div>
   <% end %>
@@ -68,7 +46,6 @@
   <div id="anim-container">
   </div>
 
-  <!-- <#### %= debug(params) if Rails.env.development? %> -->
   <%= render 'layouts/footer' %>
 </div>
 </body>
