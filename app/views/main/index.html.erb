@@ -1,4 +1,6 @@
 
+<% tooltip = raw('<span title="Use the test case format as in the Taillard\'s collection, ' + 
+  'linked under <Use sample test case>."> <sup> <b> [?] </b> </sup> </span>') %>
 
 <table id="launch-table" width="100%">
   <tr>
@@ -14,10 +16,12 @@
     <td width="10px"/>
     <td valign="top" style="border-bottom: 1px solid lightgray">
       <div style="float: left"> 
-	<font color="gray"><h4> Paste test case URL </h4></font>
+        <font color="gray"><h4> Paste test case URL
+        <%= tooltip %>
+        </h4></font>
       </div>
       <div style="float: right"> 
-	<button id="launch-url-btn" class="btn btn-primary launch-btn">Launch</button>
+        <button id="launch-url-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>
   </tr>
@@ -63,7 +67,9 @@
     <td width="10px"/>
     <td valign="top" style="border-bottom: 1px solid lightgray">
       <div style="float: left"> 
-	<font color="gray"><h4> Paste test case contents </h4></font>
+	<font color="gray"><h4> Paste test case contents 
+  <%= tooltip %>
+  </h4> </font>
       </div>
       <div style="float: right"> 
 	<button id="launch-pasted-btn" class="btn btn-primary launch-btn">Launch</button>
