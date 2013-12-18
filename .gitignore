@@ -25,6 +25,3 @@ doc/
 .idea
 .secret
 
-# Ignore secret file with MongoDB credentials
-MONGO-CREDENTIALS.sh
-
