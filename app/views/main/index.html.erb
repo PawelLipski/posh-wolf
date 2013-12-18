@@ -165,7 +165,7 @@ $(document).ready(function() {
   
   $("#launch-sample-btn").click(
     function() {
-      _gaq.push(['_trackEvent', 'launch-sample', 'clicked'])
+      gaTrackClick('launch-sample')
 
       var jm = $("#group-select").find(":selected").attr('id').split('-')
       var jobCnt = jm[0], machineCnt = jm[1]
@@ -180,12 +180,14 @@ $(document).ready(function() {
   
   $("#launch-pasted-btn").click(
     function() {
+      gaTrackClick('launch-pasted')
 
       postTaskGeneric("/ajax/post-task-from-pasted", $("#pasted-text").val())
   })
   
   $("#launch-url-btn").click(
     function() {
+      gaTrackClick('launch-url')
             
       var srcUrl = $("#input-url").val()      
       if (srcUrl.match(/^\s*$/)) return // whitespace-only

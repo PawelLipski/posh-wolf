@@ -38,6 +38,7 @@ $(pbSel).hide(1000, function() {
   var animLoaderGif = $("#" + animLoaderGifId)
                                
   animBtn.click(function() { 
+    gaTrackClick('visualize')
 
     animBtn.css({ display: 'none' })
     animLoaderGif.show()    

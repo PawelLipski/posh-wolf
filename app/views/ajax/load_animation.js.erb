@@ -113,7 +113,7 @@ function loadAnimationScaffolding() {
     }                                      
 
   $("#back-button").click(function() {
-
+    gaTrackClick('back')
     ongoingAnimationId++
 
     $("#anim-container").fadeOut(1000, function() {
@@ -161,9 +161,11 @@ function hideLastJobAndShowReplayButton(jobId) {
       '<button style="float: right" class="btn btn-primary btn-large" id="replay-btn">Replay</button>')
     
     $("#replay-btn").click(function() {
+      gaTrackClick('replay')
+
       $.ajax({
-	url: '/ajax/load-animation',
-	data: { taskId: animTaskId }
+        url: '/ajax/load-animation',
+        data: { taskId: animTaskId }
       })
     })
                                                       
