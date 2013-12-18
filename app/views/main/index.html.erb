@@ -6,10 +6,10 @@
   <tr>
     <td width="40%" valign="top" style="border-bottom: 1px solid lightgray; padding-right: 5px">
       <div style="float: left"> 
-	<font color="gray"><h4> Use sample test case </h4></font>
+        <font color="gray"><h4> Use sample test case </h4></font>
       </div>
       <div style="float: right"> 
-	<button id="launch-sample-btn" class="btn btn-primary launch-btn">Launch</button>
+        <button id="launch-sample-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>        
     <td width="10px" style="border-right: 1px solid lightgray"/>
@@ -40,39 +40,39 @@
   <tr>    
     <td rowspan="2" valign="top">
       <table width="100%">       
-	<tr height="20%">
-	  <td width="50%" style="border-right: 1px solid lightgray; font-color: gray"><font color="gray">Group</font></td>
-	  <td width="50%" style="padding-left: 5px"><font color="gray">Offset</font></td>
-	</tr> 
-	<tr height="80%">
-	  <td style="border-right: 1px solid lightgray; padding-right: 10px">
+        <tr height="20%">
+          <td width="50%" style="border-right: 1px solid lightgray; font-color: gray"><font color="gray">Group</font></td>
+          <td width="50%" style="padding-left: 5px"><font color="gray">Offset</font></td>
+        </tr> 
+        <tr height="80%">
+          <td style="border-right: 1px solid lightgray; padding-right: 10px">
 
-	    <select id="group-select" size="3">	      
-	      <% for (j, m), i in @groups.zip(1..@groups.length) %>
-		<option <%= 'selected="selected"' if i == 1 %> id="<%= j %>-<%= m %>" > <%= j %> jobs, <%= m %> machines </option>
-	      <% end %>	      
-	    </select>
-	  </td>
-	  <td style="padding-left: 10px;">
-	    <select id="offset-select" size="3">
-	      <% for i in 1..10 %>
-		<option <%= 'selected="selected"' if i == 1 %> id="<%= i %>" > Test #<%= i %> </option>
-	      <% end %>
-	    </select>
-	  </td>
-	</tr>
+            <select id="group-select" size="3">	      
+              <% for (j, m), i in @groups.zip(1..@groups.length) %>
+                <option <%= 'selected="selected"' if i == 1 %> id="<%= j %>-<%= m %>" > <%= j %> jobs, <%= m %> machines </option>
+              <% end %>	      
+            </select>
+          </td>
+          <td style="padding-left: 10px;">
+            <select id="offset-select" size="3">
+              <% for i in 1..10 %>
+                <option <%= 'selected="selected"' if i == 1 %> id="<%= i %>" > Test #<%= i %> </option>
+              <% end %>
+            </select>
+          </td>
+        </tr>
       </table>
     </td>
     <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td valign="top" style="border-bottom: 1px solid lightgray">
       <div style="float: left"> 
-	<font color="gray"><h4> Paste test case contents 
-  <%= tooltip %>
-  </h4> </font>
+        <font color="gray"><h4> Paste test case contents 
+        <%= tooltip %>
+        </h4> </font>
       </div>
       <div style="float: right"> 
-	<button id="launch-pasted-btn" class="btn btn-primary launch-btn">Launch</button>
+        <button id="launch-pasted-btn" class="btn btn-primary launch-btn">Launch</button>
       </div>
     </td>
   </tr>
@@ -132,7 +132,7 @@ function showErrorDialog(XMLHttpRequest, textStatus, errorThrown) {
     .dialog({ 
       title: "Error",
       buttons: [ 
-	{ text: "Ok", click: function() { $(this).dialog("close"); } } 
+        { text: "Ok", click: function() { $(this).dialog("close"); } } 
       ]
     })
     $(".ui-dialog-titlebar-close").css({ display: "none" })

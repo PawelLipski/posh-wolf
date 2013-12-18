@@ -1,12 +1,7 @@
-//$("#ajax-status").append('<br>Progress: <%= @all_progresses.to_s %>')
 
 <% 
-#puts @all_progresses[:item]
-
 p = @all_progresses[:item]
 p = [ p ] unless p.kind_of?(Array)
-
-#puts p.to_json  
 %>
 
 tasks = <%= raw(p.to_json) %>
