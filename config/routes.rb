@@ -9,7 +9,9 @@ PoshWolf::Application.routes.draw do
   get  "contact" => "main#contact"
 
   get "taillard" => redirect("http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html")
+
   get "webapp-src" => redirect('http://github.com/tilius/posh-wolf')
+  get "webtests-src" => redirect('http://bitbucket.org/bartexki/poshwolftest')
   get "ws-src" => redirect('http://github.com/tilius/posh-wolf-ws')
 
   post "ajax/post-task-from-pasted" => "ajax#post_task_from_pasted"
