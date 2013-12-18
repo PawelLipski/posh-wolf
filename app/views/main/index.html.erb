@@ -165,7 +165,8 @@ $(document).ready(function() {
   
   $("#launch-sample-btn").click(
     function() {
-    
+      _gaq.push(['_trackEvent', 'launch-sample', 'clicked'])
+
       var jm = $("#group-select").find(":selected").attr('id').split('-')
       var jobCnt = jm[0], machineCnt = jm[1]
       var offset = $("#offset-select").find(":selected").attr('id')
