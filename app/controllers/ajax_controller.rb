@@ -3,9 +3,6 @@ class AjaxController < ApplicationController
 
   def post_task_from_sample
     
-    config = params[:config]
-    puts config
-
     job_cnt = params[:jobCnt].to_i
     machine_cnt = params[:machineCnt].to_i
     
@@ -50,6 +47,8 @@ class AjaxController < ApplicationController
     @result = execute_soap_request(:getResult, { 
       taskId: params[:taskId] 
     }, :get_result_response)        
+
+    puts @result[:iterations_until_result]
   end
 
   
@@ -95,7 +94,8 @@ class AjaxController < ApplicationController
       @task_id = execute_soap_request(:postTask, {      
         jobCount: @job_cnt, 
         machineCount: @machine_cnt,
-        opDurationsForJobs: durations_hashified
+        opDurationsForJobs: durations_hashified,
+        config: params[:config]
       }, :post_task_response)
       
     end
