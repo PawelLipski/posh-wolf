@@ -3,7 +3,9 @@ class AjaxController < ApplicationController
 
   def post_task_from_sample
     
-    print params
+    config = params[:config]
+    puts config
+
     job_cnt = params[:jobCnt].to_i
     machine_cnt = params[:machineCnt].to_i
     
@@ -99,8 +101,8 @@ class AjaxController < ApplicationController
     end
     
     def execute_soap_request(method, args, retval)
-      #ep = "http://0.0.0.0:8080"
-      ep = "http://posh-wolf-ws.herokuapp.com" 
+      ep = "http://0.0.0.0:8080"
+      #ep = "http://posh-wolf-ws.herokuapp.com" 
       
       respond_to do |format|
         format.js do 

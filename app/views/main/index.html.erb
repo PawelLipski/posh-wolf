@@ -85,6 +85,12 @@
       <textarea id="pasted-text"></textarea>
     </td>
   </tr>
+  <tr>    
+    <td width="10px" colspan="3">
+      Nest number: <nobr/>
+      <input id="nest-number-cfg" value="7"/>
+    </td>
+  </tr>
 </table>
 
 
@@ -148,6 +154,10 @@ function ensureProgressCheckRunning() {
 
 function postTaskGeneric(url, data) {
   if (!lockTaskLaunching()) return
+
+  data.config = {
+    nestNumber: $("#nest-number-cfg").val()
+  }
 
   $.ajax({
     url: url,
