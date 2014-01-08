@@ -86,9 +86,20 @@
     </td>
   </tr>
   <tr>    
-    <td width="10px" colspan="3">
-      Nest number: <nobr/>
-      <input id="nest-number-cfg" value="7"/>
+    <td width="10px" colspan="4">
+      <!-- <div width="100%" style="position: relative"> -->
+      <table width="100%"> <tr> 
+        <td width="12.5%">
+          <span id="nest-number-label"> <font color="gray"> Nest number: </font> </span>
+          <b> <span id="nest-number-value"> 7 </span> </b>
+        </td>
+        <td width="12.5%">
+          <div id="nest-number-slider" width="100%"/>
+        </td>
+        <td width="75%">
+        </td>
+      <!-- style="position: absolute; right: 0px; top: 0px" -->
+      </tr> </table>
     </td>
   </tr>
 </table>
@@ -204,6 +215,8 @@ $(document).ready(function() {
       postTaskGeneric("/ajax/post-task-from-url", { srcUrl: srcUrl })
 
    })  
+   
+   $("#nest-number-slider").slider({ min: 1, max: 100 })
 })
 </script>
 
