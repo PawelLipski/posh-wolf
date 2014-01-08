@@ -19,11 +19,11 @@ $('#task-table > tbody').prepend(
   '<tr class="' + detTrCls + '" style="display: none; ">' +
 
   <% for label, descr in [
-    ["Upper/lower bound",
-      "It is known that this flow shop instance can be completed within such timespan, but possibly there exists a better solution." + 
-      "It is proven that no job order can imply shorter execution timespan than this." ],
+    ["Lower/upper bound",
+      "Lower: it is proven that no job order can imply shorter execution timespan than this. " +
+      "Upper: it is known that this flow shop instance can be completed within such timespan, but possibly there exists a better solution."],
     ["Iterations until result", "The iterations that passed until the result has been reached."],
-    ["Perfection ratio", "It is the ratio (our result - best known result) / (best known result), times 100%." ],
+    ["Perfection ratio", "It is the ratio (our result - upper bound) / (upper bound), times 100%." ],
     ["Computation time", "It is the time the Cuckoo algorithm elapsed for computing this test case." ]
   ] %>
     '<th width="25%" style="padding-bottom: 20px; padding-top: 10px">' +
@@ -33,7 +33,7 @@ $('#task-table > tbody').prepend(
   '</tr><tr class="' + detTrCls + '" style="display: none">' +
 
   <% for v in [
-      "#{@upper_bound} / #{@lower_bound}",
+      "#{@lower_bound} / #{@upper_bound}",
       '<span id="iteration-label-' + @task_id + '"/>',
       '<span id="ratio-label-' + @task_id + '">' + @upper_bound.to_s + '</span>',
       '<span id="ctime-label-' + @task_id + '"/>'] %>
