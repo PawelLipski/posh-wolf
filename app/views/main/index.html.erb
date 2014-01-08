@@ -165,7 +165,7 @@ function postTaskGeneric(url, data) {
   if (!lockTaskLaunching()) return
 
   data.config = {
-    nestNumber: $("#nest-number-cfg").val()
+    nestNumber: $("#nest-number-slider").slider('value')
   }
 
   $.ajax({
