@@ -88,15 +88,20 @@
   <tr>    
     <td width="10px" colspan="4">
       <table width="100%"> <tr> 
-        <td width="12.5%">
-          <span id="nest-number-label"> <font color="gray"> Nest number: </font> </span>
-          <b> <span id="nest-number-value"/> </b>
-        </td>
-        <td width="12.5%">
-          <div id="nest-number-slider" width="100%"/>
-        </td>
-        <td width="75%">
-        </td>
+        <% for id, label in [
+          ["max-iters", "Max iterations"],
+          ["nest-number", "Total nests"],
+          ["abandon-number", "Nests to abandon"],
+          ["disc-prob", "Discovery probability"]
+        ] %>
+          <td width="15%">
+            <span id="<%= id %>-label"> <font color="gray"> <%= label %>: </font> </span>
+            <b> <span id="<%= id %>-value"/> </b>
+          </td>
+          <td width="10%">
+            <div id="<%= id %>-slider" width="100%" style="margin-right: 10px"%/>
+          </td>
+        <% end %>
       </tr> </table>
     </td>
   </tr>
@@ -226,7 +231,12 @@ $(document).ready(function() {
 
    })  
   
-  setupSlider('nest-number', 1, 7, 100)
+
+  setupSlider("max-iters", 10*1000, 500*1000, 1000*1000)
+  setupSlider("nest-number", 1, 7, 100)
+  setupSlider("abandon-number", 1, 2, 100)
+  setupSlider("disc-prob", 0, 0.2, 1)
+  $("#disc-prob-slider").slider({ step: 0.05 })
 
 })
 </script>
