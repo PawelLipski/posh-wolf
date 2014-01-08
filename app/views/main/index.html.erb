@@ -88,15 +88,17 @@
   <tr>    
     <td width="10px" colspan="4">
       <table width="100%">
+        
         <% config_entries = [
           ["max-iters", "Max iterations"],
           ["nest-number", "Total nests"],
           ["abandon-number", "Nests to abandon"],
           ["disc-prob", "Discovery probability"]
         ] %>
+
         <tr>
           <% for id, label in config_entries %>
-            <td width="25%">
+            <td width="25%" align="center">
               <span id="<%= id %>-label"> <font color="gray"> <%= label %>: </font> </span>
               <b> <span id="<%= id %>-value"/> </b>
             </td>
@@ -106,7 +108,7 @@
         <tr>
           <% for id, _ in config_entries %>
             <td width="25%">
-              <div id="<%= id %>-slider" width="100%" style="margin-right: 10px"%/>
+              <div id="<%= id %>-slider" style="margin-left: 10%; margin-right: 10%" />
             </td>
           <% end %>
         </tr>
