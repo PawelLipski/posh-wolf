@@ -90,7 +90,7 @@
       <table width="100%"> <tr> 
         <td width="12.5%">
           <span id="nest-number-label"> <font color="gray"> Nest number: </font> </span>
-          <b> <span id="nest-number-value"> 7 </span> </b>
+          <b> <span id="nest-number-value"/> </b>
         </td>
         <td width="12.5%">
           <div id="nest-number-slider" width="100%"/>
@@ -179,6 +179,18 @@ function postTaskGeneric(url, data) {
   })
 }
 
+function setupSlider(name, min, def, max) {
+  $("#" + name + "-slider").slider({ 
+    min: min, 
+    value: def,
+    max: max,
+    change: function( event, ui ) {
+      $("#" + name + "-value").text(ui.value)
+    }
+  })
+  $("#" + name + "-value").text(def)
+}
+
 $(document).ready(function() {
 
   $("#launch-sample-btn").click(
@@ -213,14 +225,9 @@ $(document).ready(function() {
       postTaskGeneric("/ajax/post-task-from-url", { srcUrl: srcUrl })
 
    })  
-   
-   $("#nest-number-slider").slider({ 
-      min: 1, 
-      max: 100,
-      change: function( event, ui ) {
-        $("#nest-number-value").text(ui.value)
-      }
-   })
+  
+  setupSlider('nest-number', 1, 7, 100)
+
 })
 </script>
 
