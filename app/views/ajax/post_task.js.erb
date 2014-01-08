@@ -11,7 +11,7 @@ $('#task-table > tbody').prepend(
   '<td width="25%" style="padding-top: 30px">' +
     '<%= @job_cnt %> jobs, ' +
     '<%= @machine_cnt %> machines, ' +
-    '<%= image_tag "/assets/wrench.png", style: "height: 2em" %>' +
+    '<%= image_tag "/assets/wrench.png", style: "height: 2em", title: @verbose_config %>' +
     '<font color="gray"> (hover) </font>' +
   '</td>' + 
   '<td id="' + hdrTdId + '" width="50%" colspan="2" style="padding-top: 30px; vertical-align: middle">' + 

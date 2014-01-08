@@ -79,9 +79,20 @@ class AjaxController < ApplicationController
     def skip_test_cases(file, how_many, machine_cnt)
       how_many.times { (3 + machine_cnt).times { file.readline } }
     end
+
+    def build_verbose_config
+      c = params[:config]
+      @verbose_config =
+        "#{c[:maxIterations]} iterations, "\
+        "#{c[:nestNumber]} total nests, "\
+        "#{c[:nestsToAbandonNumber]} nests to abandon, "\
+        "discovery probability = #{c[:discoveryProbability]}"     
+    end
     
     def parse_and_post_file(f)
-      
+     
+      build_verbose_config
+
       f.readline
       @job_cnt, @machine_cnt, _, @upper_bound, @lower_bound = f.readline.split.map { |x| x.to_i }
       f.readline
