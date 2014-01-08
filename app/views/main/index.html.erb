@@ -87,7 +87,6 @@
   </tr>
   <tr>    
     <td width="10px" colspan="4">
-      <!-- <div width="100%" style="position: relative"> -->
       <table width="100%"> <tr> 
         <td width="12.5%">
           <span id="nest-number-label"> <font color="gray"> Nest number: </font> </span>
@@ -98,7 +97,6 @@
         </td>
         <td width="75%">
         </td>
-      <!-- style="position: absolute; right: 0px; top: 0px" -->
       </tr> </table>
     </td>
   </tr>
@@ -216,7 +214,13 @@ $(document).ready(function() {
 
    })  
    
-   $("#nest-number-slider").slider({ min: 1, max: 100 })
+   $("#nest-number-slider").slider({ 
+      min: 1, 
+      max: 100,
+      change: function( event, ui ) {
+        alert("" + ui.value)
+      }
+   })
 })
 </script>
 
