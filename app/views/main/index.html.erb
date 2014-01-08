@@ -166,11 +166,19 @@ function ensureProgressCheckRunning() {
   }
 }
 
+
 function postTaskGeneric(url, data) {
   if (!lockTaskLaunching()) return
 
+  function sliderValue(name) {
+    return $("#" + name + "-slider").slider('value')
+  }
+
   data.config = {
-    nestNumber: $("#nest-number-slider").slider('value')
+    maxIterations: sliderValue("max-iters"),
+    nestNumber: sliderValue("nest-number"),
+    nestsToAbandonNumber: sliderValue("abandon-number"),
+    discoveryProbability: sliderValue("disc-prob")
   }
 
   $.ajax({
