@@ -17,7 +17,7 @@ $(pbSel).hide(1000, function() {
   var ratioSel = "#ratio-label-" + taskId
 
   $(hdrTdSel).attr('colspan', 1).attr('width', '25%').html(
-    '<b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b>')
+    '<center><b>Execution timespan: ' + <%= @result[:execution_timespan] %> + '</b></center>')
 
   $(hdrTrSel).append('<td width="25%" align="right" valign="bottom">' + 
     '<span id="' + animBtnContnrId + '">' + 
