@@ -12,6 +12,7 @@ $(pbSel).hide(1000, function() {
   <% animLoaderGifId = "task-anim-ldrgif-" + params[:taskId] %>
   var animLoaderGifId = "<%= raw(animLoaderGifId) %>"
   var animBtnContnrId = "task-anim-btn-contnr-" + taskId
+  var iterationSel = "#iteration-label-" + taskId
   var ctimeSel = "#ctime-label-" + taskId
   var ratioSel = "#ratio-label-" + taskId
 
@@ -26,6 +27,8 @@ $(pbSel).hide(1000, function() {
     'Visualize</button>' +    
     '</span></td>')
                                
+  $(iterationSel).html('<%= @result[:iterations_until_result] %>')
+
   $(ctimeSel).html('<%= "%.2f" % @result[:computation_time] %>s')
   
   var upperBound = parseInt($(ratioSel).text())
