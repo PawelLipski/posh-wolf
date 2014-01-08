@@ -202,12 +202,13 @@ function postTaskGeneric(url, data) {
   })
 }
 
-function setupSlider(name, min, def, max) {
+function setupSlider(name, min, def, max, step) {
   $("#" + name + "-slider").slider({ 
     min: min, 
     value: def,
     max: max,
-    change: function( event, ui ) {
+    step: step,
+    slide: function( event, ui ) {
       $("#" + name + "-value").text(ui.value)
     }
   })
@@ -250,11 +251,10 @@ $(document).ready(function() {
    })  
   
 
-  setupSlider("max-iters", 10*1000, 500*1000, 1000*1000)
-  setupSlider("nest-number", 1, 7, 100)
-  setupSlider("abandon-number", 1, 2, 100)
-  setupSlider("disc-prob", 0, 0.2, 1)
-  $("#disc-prob-slider").slider({ step: 0.05 })
+  setupSlider("max-iters", 10*1000, 500*1000, 1000*1000, 10*1000)
+  setupSlider("nest-number", 1, 7, 100, 1)
+  setupSlider("abandon-number", 1, 2, 100, 1)
+  setupSlider("disc-prob", 0, 0.2, 1, 0.05)
 
 })
 </script>
