@@ -10,7 +10,7 @@ $('#task-table > tbody').prepend(
   '<tr id="' + hdrTrId + '" style="display: none; border-bottom: 1px solid LightGray"><td width="25%" style="padding-top: 30px"><h4>Task #' + newTaskId + '</h4></td>' +
   '<td width="25%" style="padding-top: 30px">' +
     '<%= @job_cnt %> jobs, ' +
-    '<%= @machine_cnt %> machines, ' +
+    '<%= @machine_cnt %> machines ' +
     '<%= image_tag "/assets/wrench.png", style: "height: 2em", title: @verbose_config %>' +
     '<font color="gray"> (hover) </font>' +
   '</td>' + 
@@ -22,7 +22,7 @@ $('#task-table > tbody').prepend(
     ["Upper/lower bound",
       "It is known that this flow shop instance can be completed within such timespan, but possibly there exists a better solution." + 
       "It is proven that no job order can imply shorter execution timespan than this." ],
-    ["Iterations until result", ""],
+    ["Iterations until result", "The iterations that passed until the result has been reached."],
     ["Perfection ratio", "It is the ratio (our result - best known result) / (best known result), times 100%." ],
     ["Computation time", "It is the time the Cuckoo algorithm elapsed for computing this test case." ]
   ] %>
