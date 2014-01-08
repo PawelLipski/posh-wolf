@@ -47,8 +47,6 @@ class AjaxController < ApplicationController
     @result = execute_soap_request(:getResult, { 
       taskId: params[:taskId] 
     }, :get_result_response)        
-
-    puts @result[:iterations_until_result]
   end
 
   
