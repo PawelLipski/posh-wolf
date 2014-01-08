@@ -100,10 +100,14 @@ end
       <table width="100%">
         
         <% config_entries = [
-          ["max-iters", "Iterations", "The number of iterations to be performed"],
-          ["nest-number", "Total nests", "The total number of nests in the Cuckoo algorithm"],
-          ["abandon-number", "Nests to abandon", ""],
-          ["disc-prob", "Discovery probability", ""]
+          ["max-iters", "Iterations", 
+            "The number of iterations to be performed."],
+          ["nest-number", "Total nests", 
+            "The total number of nests in the Cuckoo algorithm."],
+          ["abandon-number", "Nests to abandon", 
+            "The number of worst nests to be abandoned and replaced with new nests (which happens with <Discovery probability>)."],
+          ["disc-prob", "Discovery probability", 
+            "With this probability the algorithm will abandon worst nests and replace with new nests."]
         ] %>
 
         <tr>
