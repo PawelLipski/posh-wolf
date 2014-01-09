@@ -236,8 +236,14 @@ function setupSlider(name, min, def, max, step) {
 }
 
 function toggleConfig() {
-  $('#config-table').fadeIn(500)
-  $('#toggle-config-link').text('Hide config')
+  t = $('#config-table')
+  if (t.css('display') == 'none') {
+    t.fadeIn(500)
+    $('#toggle-config-link').text('Hide Cuckoo algorithm config')
+  } else {
+    t.fadeOut(500)
+    $('#toggle-config-link').text('Show Cuckoo algorithm config')
+  }
 }
 
 $(document).ready(function() {
