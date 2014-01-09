@@ -97,7 +97,8 @@ end
   </tr>
   <tr>    
     <td width="10px" colspan="4">
-      <table width="100%">
+      <a onClick="toggleConfig()"> Show Cuckoo algorithm config </a>
+      <table id="config-table" width="100%" style="display: none">
         
         <% config_entries = [
           ["max-iters", "Iterations", 
@@ -232,6 +233,10 @@ function setupSlider(name, min, def, max, step) {
     }
   })
   $("#" + name + "-value").text(def)
+}
+
+function toggleConfig() {
+  $('#config-table').fadeIn(500)
 }
 
 $(document).ready(function() {
