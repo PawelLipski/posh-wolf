@@ -22,7 +22,8 @@ $('#task-table > tbody').prepend(
       "Lower: it is proven that no job order can imply shorter execution timespan than this. " +
       "Upper: it is known that this flow shop instance can be completed within such timespan, but possibly there exists a better solution."],
     ["Iterations until result", "The iterations that passed until the result has been reached."],
-    ["Perfection ratio", "It is the ratio (our result - upper bound) / (upper bound), times 100%." ],
+    ["Perfection ratio", "It is the ratio (current result - upper bound) / (upper bound), times 100%. " +
+      "The lower the ratio, the better is the result." ],
     ["Computation time", "It is the time the Cuckoo algorithm elapsed for computing this test case." ]
   ] %>
     '<th width="25%" style="padding-bottom: 20px; padding-top: 10px">' +
