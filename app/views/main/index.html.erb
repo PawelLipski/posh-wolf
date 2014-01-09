@@ -97,7 +97,7 @@ end
   </tr>
   <tr>    
     <td width="10px" colspan="4">
-      <a onClick="toggleConfig()"> Show Cuckoo algorithm config </a>
+      <a id="toggle-config-link" onClick="toggleConfig()"> Show Cuckoo algorithm config </a>
       <table id="config-table" width="100%" style="display: none">
         
         <% config_entries = [
@@ -237,6 +237,7 @@ function setupSlider(name, min, def, max, step) {
 
 function toggleConfig() {
   $('#config-table').fadeIn(500)
+  $('#toggle-config-link').text('Hide config')
 }
 
 $(document).ready(function() {
