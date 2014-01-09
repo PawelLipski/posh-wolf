@@ -37,10 +37,10 @@ The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
   Objective function f(<i>x</i>), <i>x</i> =
   (<i>x<sub>1</sub></i>, ..., <i>x<sub>d</sub></i>) <sup>T</sup> <br/>
   
-  Generate initial population of <i>n</i> host nests <i>x<sub>i</sub></i>,
+  Generate initial population of <i>n (nest number)</i> host nests <i>x<sub>i</sub></i>,
   <i>i</i> = 1, 2, ..., <i>n</i> <br/>
   
-  <b>while</b> (<i>t </i>&lt; MaxGeneration) <b>or</b> (stop criterion)
+  <b>while</b> (<i>t </i>&lt; <i>number of iterations</i>) <b>or</b> (stop criterion)
 
     <span style="display: block; margin-left: 40px">
 
@@ -56,7 +56,8 @@ The general outline of algorithm, as proposed by Yang &amp; Deb, is as follows:
  
     <b>end</b> <br>
 
-    A fraction (p<sub>a</sub>) of worse nests are abandoned and new ones are built <br>
+    With a fixed probability (referred to as <i>discovery probability</i>), 
+    a fixed number (referred to as <i>nests to abandon number</i>) of the worst nests are abandoned and new ones are built <br>
     Keep the best solutions (or nests with quality solutions) <br>
     Rank the solutions and ﬁnd the current best 
 
