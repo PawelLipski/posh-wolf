@@ -22,7 +22,7 @@ class AjaxController < ApplicationController
     
     require 'stringio'    
     
-    data = request.raw_post
+    data = params[:raw]
     f = StringIO.new(data)    
     parse_and_post_file(f)
         
@@ -64,19 +64,6 @@ class AjaxController < ApplicationController
 
 
   private
-
-    def get_taillard_url(job_cnt, machine_cnt)
-      "http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai#{job_cnt}_#{machine_cnt}.txt"
-    end
-
-    def get_url_as_file(url)
-      require 'open-uri'
-      open url
-    end
-    
-    def skip_test_cases(file, how_many, machine_cnt)
-      how_many.times { (3 + machine_cnt).times { file.readline } }
-    end
 
     def build_verbose_config
       c = params[:config]

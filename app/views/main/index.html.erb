@@ -92,8 +92,16 @@ end
     <td width="10px" style="border-right: 1px solid lightgray"/>
     <td width="10px"/>
     <td style="padding-top: 5px">
-      <textarea id="pasted-text">
-      </textarea>
+      <textarea id="pasted-text"><%=
+        f = get_sample_file(20, 5)        
+        skip_test_cases(f, 9, 5)
+        lines = ""
+        while (line = f.gets)
+          lines += line.lstrip
+          print line.lstrip
+        end
+        lines
+      %></textarea>
     </td>
   </tr>
   <tr>    
@@ -271,7 +279,7 @@ $(document).ready(function() {
     function() {
       gaTrackClick('launch-pasted')
 
-      postTaskGeneric("/ajax/post-task-from-pasted", $("#pasted-text").val())
+      postTaskGeneric("/ajax/post-task-from-pasted", { raw: $("#pasted-text").val() })
   })
   
   $("#launch-url-btn").click(
