@@ -231,8 +231,11 @@ function setupSlider(name, min, def, max, step) {
     slide: function( event, ui ) {
       $("#" + name + "-value").text(ui.value)
     }
-  })
-  $("#" + name + "-value").text(def)
+  }).css('background-image', 'url("/assets/squairy_light.png")')
+
+  //$(".ui-slider-handle").css('background', '#00ff00')
+
+  $("#" + name + "-value").text(def)  
 }
 
 function toggleConfig() {
