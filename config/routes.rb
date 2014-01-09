@@ -8,7 +8,7 @@ PoshWolf::Application.routes.draw do
   get  "about" => "main#about"
   get  "contact" => "main#contact"
 
-  get "taillard" => redirect("http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html")
+  get "collection" => redirect("http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/ordonnancement.html")
 
   get "webapp-src" => redirect('http://github.com/tilius/posh-wolf')
   get "webtests-src" => redirect('http://bitbucket.org/bartexki/poshwolftest')
