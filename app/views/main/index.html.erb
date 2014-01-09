@@ -271,9 +271,18 @@ $(document).ready(function() {
   
 
   setupSlider("max-iters", 10*1000, 500*1000, 1000*1000, 10*1000)
-  setupSlider("nest-number", 1, 7, 100, 1)
-  setupSlider("abandon-number", 1, 2, 100, 1)
+  setupSlider("nest-number", 2, 7, 100, 1)
+  setupSlider("abandon-number", 1, 2, 7, 1)
   setupSlider("disc-prob", 0, 0.2, 1, 0.05)
+
+  $("#nest-number-slider").slider({ 
+    slide: function(event, ui) {
+      $("#nest-number-value").text(ui.value)
+      ans = $("#abandon-number-slider")
+      ans.slider({ max: ui.value })
+      $("#abandon-number-value").text(ans.slider('value'))
+    }
+  })
 
 })
 </script>
