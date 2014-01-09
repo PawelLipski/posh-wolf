@@ -1,6 +1,8 @@
 
 class AjaxController < ApplicationController
 
+  include ApplicationHelper
+
   def post_task_from_sample
     
     job_cnt = params[:jobCnt].to_i
@@ -67,10 +69,6 @@ class AjaxController < ApplicationController
       "http://mistic.heig-vd.ch/taillard/problemes.dir/ordonnancement.dir/flowshop.dir/tai#{job_cnt}_#{machine_cnt}.txt"
     end
 
-    def get_sample_file(job_cnt, machine_cnt)
-      open Rails.root.join('testcases', "tai#{job_cnt}_#{machine_cnt}.txt")
-    end
-    
     def get_url_as_file(url)
       require 'open-uri'
       open url
