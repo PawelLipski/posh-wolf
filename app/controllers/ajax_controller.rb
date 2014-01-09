@@ -95,8 +95,11 @@ class AjaxController < ApplicationController
     end
     
     def execute_soap_request(method, args, retval)
-      ep = "http://0.0.0.0:8080"
-      #ep = "http://posh-wolf-ws.herokuapp.com" 
+      if Rails.env.production?
+        ep = "http://posh-wolf-ws.herokuapp.com" 
+      else
+        ep = "http://0.0.0.0:8080"
+      end
       
       respond_to do |format|
         format.js do 
