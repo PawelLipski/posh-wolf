@@ -107,7 +107,7 @@ end
   <tr>    
     <td width="10px" colspan="4">
       <a id="toggle-config-link" onClick="toggleConfig()"> Show Cuckoo algorithm config </a>
-      <table id="config-table" width="100%" style="display: none">
+      <table id="config-table" width="100%" style="display: none; margin-top: 10px">
         
         <% config_entries = [
           ["max-iters", "Iterations", 
@@ -123,13 +123,20 @@ end
         <tr>
           <% for id, label, tt in config_entries %>
             <td width="25%" align="center">
-              <span id="<%= id %>-label" style="float: left; margin-left: 20px">
+              <span id="<%= id %>-label">
                 <font color="gray"> 
                   <%= label %> 
                   <%= tooltip tt %>
                 </font> 
               </span>
-              <b> <span id="<%= id %>-value" style="float: right; margin-right: 20px"/> </b>
+            </td>
+          <% end %>
+        </tr>
+
+        <tr>
+          <% for id, _, __ in config_entries %>
+            <td width="25%" align="center">
+              <b> <span id="<%= id %>-value"/> </b>
             </td>
           <% end %>
         </tr>
